@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
-
-    <FrameLayout
-        android:id="@+id/your_placeholder"
+    tools:context=".view.PlaceHolderActivity">
+    <TextView
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+        android:text="@string/placeholder"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

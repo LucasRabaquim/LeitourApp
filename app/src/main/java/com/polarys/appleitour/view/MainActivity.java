@@ -1,13 +1,11 @@
-package com.polarys.appleitour;
-
-import static com.polarys.appleitour.ApiUtil.GET;
+package com.polarys.appleitour.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
+
+import com.polarys.appleitour.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +14,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = new Intent(this,LoginDummyActivity.class);
+        startActivity(intent);
+        /*
 //        TextView txt = findViewById(R.id.test);
 
 
@@ -36,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        String value = apiThread.getValue();
-        ft.replace(R.id.your_placeholder, new BlankFragment(value));
+        String value = apiThread.getJson();
+        ft.replace(R.id.your_placeholder, new BlankFragment(value));*/
 
 
     }

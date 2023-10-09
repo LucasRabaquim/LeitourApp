@@ -14,6 +14,7 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -24,12 +25,16 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    buildFeatures {
+    buildFeatures{
         dataBinding = true
+        viewBinding = true
     }
 }
 
 dependencies {
+
+    annotationProcessor ("android.arch.lifecycle:compiler:1.1.1")
+    implementation ("android.arch.lifecycle:viewmodel:1.1.0")
     implementation ("android.arch.lifecycle:extensions:1.1.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

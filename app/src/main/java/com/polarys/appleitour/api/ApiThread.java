@@ -1,27 +1,14 @@
-package com.polarys.appleitour;
+package com.polarys.appleitour.api;
 
-import static com.polarys.appleitour.ApiUtil.DELETE;
-import static com.polarys.appleitour.ApiUtil.GET;
-import static com.polarys.appleitour.ApiUtil.POST;
-import static com.polarys.appleitour.ApiUtil.SIGN;
-import static com.polarys.appleitour.ApiUtil.UPDATE;
+import static com.polarys.appleitour.api.ApiUtil.DELETE;
+import static com.polarys.appleitour.api.ApiUtil.GET;
+import static com.polarys.appleitour.api.ApiUtil.POST;
+import static com.polarys.appleitour.api.ApiUtil.SIGN;
+import static com.polarys.appleitour.api.ApiUtil.UPDATE;
+
+import com.polarys.appleitour.api.ApiUtil;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.concurrent.Future;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Headers;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 
 public class ApiThread implements Runnable {
@@ -55,7 +42,7 @@ public class ApiThread implements Runnable {
                 try {
                     result = api.get(url,token);
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    result = e.toString();
                 }
                 break;
 
@@ -63,7 +50,7 @@ public class ApiThread implements Runnable {
                 try {
                     result = api.post(url,json,token);
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    result = e.toString();
                 }
                 break;
             case SIGN:
@@ -73,14 +60,14 @@ public class ApiThread implements Runnable {
                 try {
                     result = api.update(url,json,token);
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    result = e.toString();
                 }
                 break;
             case DELETE:
                 try {
                     result = api.delete(url,token);
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    result = e.toString();
                 }
             default:
                 System.out.println("Invalid day of the week");
@@ -88,7 +75,7 @@ public class ApiThread implements Runnable {
         }
     }
 
-    public String getValue() {
+    public String getJson() {
         return result;
     }
 }

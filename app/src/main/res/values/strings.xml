@@ -2,4 +2,7 @@
     <string name="app_name">App Leitour</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="placeholder">PLACEHOLDER</string>
+    <string name="short_placeholder">holder</string>
+    <string name="long_placeholder">I AM A VERY LONG PLACE HOLDER FRIEND</string>
 </resources>

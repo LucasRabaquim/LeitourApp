@@ -1,8 +1,17 @@
 package com.polarys.appleitour.model;
 
+import static com.polarys.appleitour.api.ApiUtil.GET;
+import static com.polarys.appleitour.api.ApiUtil.POST;
+import static com.polarys.appleitour.api.ApiUtil.SIGN;
+
+import com.polarys.appleitour.api.ApiThread;
+import com.polarys.appleitour.api.ApiUtil;
+import com.polarys.appleitour.interfaces.userApi;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements userApi, Serializable {
     private int id;
     private String nameUser;
     private String email;
@@ -10,6 +19,8 @@ public class User {
     private String profilePhoto;
     private String access;
     private Date createdDate;
+
+    private static final String path = "User";
 
     public User() { }
 
@@ -21,6 +32,26 @@ public class User {
         this.profilePhoto = profilePhoto;
         this.access = access;
         this.createdDate = createdDate;
+    }
+
+    public User(String email, String password) {
+        this.id = 0;
+        this.nameUser = "d";
+        this.email = email;
+        this.password = password;
+        this.profilePhoto = "";
+        this.access = "Comum";
+        this.createdDate = null;
+    }
+
+    public User(String username, String email, String password) {
+        this.id = 0;
+        this.nameUser = username;
+        this.email = email;
+        this.password = password;
+        this.profilePhoto = "";
+        this.access = "Comum";
+        this.createdDate = null;
     }
 
     public int getId() {
@@ -77,5 +108,27 @@ public class User {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+    public String Login(String user){
+        ApiThread apiThread = new ApiThread(SIGN,path+"/login",user);
+        Thread thread = new Thread(apiThread);
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return apiThread.getJson();
+    }
+    public String Register(String user){
+        ApiThread apiThread = new ApiThread(SIGN,path+"/register",user);
+        Thread thread = new Thread(apiThread);
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return apiThread.getJson();
     }
 }
