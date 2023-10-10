@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BookApi extends RecyclerView.ViewHolder {
+public class BookApi implements Serializable{
     private String key;
     private String title;
     private String authors;
@@ -16,6 +16,9 @@ public class BookApi extends RecyclerView.ViewHolder {
     private String categories;
     private String language;
     private String cover;
+
+    private String TITLE = "Title";
+    private String ISBN = "Isbn";
 
     public BookApi(@NonNull View itemView) {
         super(itemView);
@@ -100,4 +103,25 @@ public class BookApi extends RecyclerView.ViewHolder {
     public void setCover(String cover) {
         this.cover = cover;
     }
+
+    public String searchBookApi(String param, String search){
+        ApiThread apiThread; 
+        switch(param){
+            case TITLE: 
+                apiThread = new ApiThread(GET,TITLE+"/"+search);
+                break;
+            case ISBN:
+                apiThread = new ApiThread(GET,isbn+"/"+search);
+                break;
+            default:
+                return "";
+        };
+        Thread thread = new Thread(apiThread);
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return apiThread.getJson();
 }
