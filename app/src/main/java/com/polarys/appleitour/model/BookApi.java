@@ -1,14 +1,17 @@
 package com.polarys.appleitour.model;
 
 import static com.polarys.appleitour.api.ApiRequest.GET;
+import static com.polarys.appleitour.api.ApiRequest.GETPUBLIC;
 
 import com.polarys.appleitour.api.ApiThread;
+import com.polarys.appleitour.interfaces.BookApiInterface;
 
 import java.io.Serializable;
 
-public class BookApi implements Serializable {
+public class BookApi implements Serializable, BookApiInterface {
 
     public static final String TITLE = "Title";
+    public static final String AUTHOR = "Author";
     public static final String ISBN = "Isbn";
     private String key;
     private String title;
@@ -18,6 +21,8 @@ public class BookApi implements Serializable {
     private String description;
     private int pages;
     private String categories;
+    private String isbn10;
+    private String isbn13;
     private String language;
     private String cover;
 
@@ -105,14 +110,24 @@ public class BookApi implements Serializable {
         this.cover = cover;
     }
 
-    public ApiResponse SearchByIsbn(String search) {
-        ApiThread apiThread = new ApiThread(GET, ISBN + "/" + search, null);
+    public ApiResponse GetByIsbn(String search) {
+        ApiThread apiThread = new ApiThread(GETPUBLIC, "SearchBy/"+ISBN + "/" + search, null);
         return apiThread.CreateThread(apiThread).getJson();
     }
 
-    public ApiResponse SearchByTitle(String search) {
+    public ApiResponse GetByTitle(String search) {
         ApiThread apiThread;
-        apiThread = new ApiThread(GET, TITLE + "/" + search, null);
+        apiThread = new ApiThread(GETPUBLIC, "SearchBy/"+TITLE + "/" + search, null);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+    public ApiResponse GetByAuthor(String search) {
+        ApiThread apiThread;
+        apiThread = new ApiThread(GETPUBLIC, "SearchBy/"+AUTHOR + "/" + search, null);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+    public ApiResponse GetByKey(String search) {
+        ApiThread apiThread;
+        apiThread = new ApiThread(GET, "SearchBy/key/" + search, null);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

@@ -21,6 +21,21 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+    sourceSets {
+        named("main") {
+            manifest.srcFile("src/main/AndroidManifest.xml")
+            java.srcDirs("src/main/java", "apt_generated")
+            aidl.srcDirs("src/main.aidl", "apt_generated")
+            assets.srcDirs("src/main/assets")
+            res.srcDirs(
+                    "src/main/res/layout/activity",
+                    "src/main/res/layout/fragment",
+                    "src/main/res/layout/dialog",
+                    "src/main/res/layout/adapter",
+                    "src/main/res"
+            )
+        }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -48,4 +63,6 @@ dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
     implementation ("androidx.appcompat:appcompat:1.6.1")
     implementation ("com.google.code.gson:gson:2.10.1")
+    implementation("com.squareup.picasso:picasso:2.71828")
+    implementation("com.fasterxml.jackson.core:jackson-annotations")
 }

@@ -1,5 +1,8 @@
 package com.polarys.appleitour.view.adapter;
 
+import static com.polarys.appleitour.helper.IntentHelper.BOOK_SHARED;
+
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.model.BookApi;
+import com.polarys.appleitour.view.BookInfoActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookHolder> {
@@ -35,16 +41,13 @@ public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookH
     public void onBindViewHolder(@NonNull ApiBookHolder holder, int position) {
 
         BookApi book = books.get(position);
-        //Picasso.get().load(book.getCover()).into(holder.cover);
+      //  Picasso.get().load(book.getCover()).into(holder.cover);
         holder.title.setText(book.getTitle());
         holder.author.setText(book.getAuthors());
-
-      //  Picasso.get().load(book.getCover()).into(holder.cover);
-       /* holder.mainLayout.setOnClickListener(view -> {
-            Intent intent = new Intent(context, BookActivity.class);
-            intent.putExtra("Book", book);
-            context.startActivity(intent);
-        });*/
+        holder.mainLayout.setOnClickListener(view -> {
+            IntentHelper intentHelper = new IntentHelper((Activity) context, BOOK_SHARED);
+            intentHelper.nextActivityObj(BookInfoActivity.class,book);
+        });
 
     }
 

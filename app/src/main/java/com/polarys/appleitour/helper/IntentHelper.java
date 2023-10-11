@@ -1,16 +1,19 @@
 package com.polarys.appleitour.helper;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.polarys.appleitour.view.PlaceHolderActivity;
+import java.io.Serializable;
 
 public class IntentHelper extends AppCompatActivity {
     public final static String USER_SHARED = "USER";
     public final static String BOOK_SHARED = "BOOK";
+    public final static String BOOK_KEY_SHARED = "BOOK_KEY";
+    public final static String SAVED_SHARED = "SAVED_BOOK";
+    public final static String POST_SHARED = "POST";
+    public final static String COMMENT_SHARED = "COMMENT";
     static String EXTRA_KEY;
 
     private Activity activity;
@@ -27,13 +30,20 @@ public class IntentHelper extends AppCompatActivity {
     public void nextActivity(Class nextScreen){
         activity.finish();
         Intent intent = new Intent(activity, nextScreen);
-        startActivity(intent);
+        activity.startActivity(intent);
     }
     public void nextActivity(Class nextScreen,String data){
         activity.finish();
         Intent intent = new Intent(activity, nextScreen);
         intent.putExtra(EXTRA_KEY, data);
-        startActivity(intent);
+        activity.startActivity(intent);
+    }
+
+    public void nextActivityObj(Class nextScreen,Object data){
+        activity.finish();
+        Intent intent = new Intent(activity, nextScreen);
+        intent.putExtra(EXTRA_KEY, (Serializable) data);
+        activity.startActivity(intent);
     }
 
 

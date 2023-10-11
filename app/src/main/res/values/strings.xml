@@ -5,4 +5,6 @@
     <string name="placeholder">PLACEHOLDER</string>
     <string name="short_placeholder">holder</string>
     <string name="long_placeholder">I AM A VERY LONG PLACE HOLDER FRIEND</string>
+    <string name="likes">Likes</string>
+    <string name="add_like">Curtir</string>
 </resources>

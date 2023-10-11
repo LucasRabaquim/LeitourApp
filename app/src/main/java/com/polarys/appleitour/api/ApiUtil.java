@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.polarys.appleitour.model.User;
 
 import org.json.JSONObject;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 
 import okhttp3.MediaType;
 
-public class ApiUtil {
+public final class ApiUtil {
     public static boolean verifyConectivity(Context context){
         final ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connMgr == null)
@@ -32,18 +33,15 @@ public class ApiUtil {
         return gson.toJson(object);
     }
 
-    public static Object JsonToObject(Object object, JSONObject json){
+    public static Object JsonToObject(Object object, String json){
         Gson gson = new Gson();
-        return gson.fromJson(json.toString(), object.getClass());
+        return gson.fromJson(json, object.getClass());
     }
 
-    public static ArrayList<? extends Object> JsonToArrayObject(Object t, String json){
+    public static <T> ArrayList<T> JsonToArrayObject(Class<T[]> clazz, String json){
         Gson gson = new Gson();
-        // Ref: https://howtodoinjava.com/gson/gson-parse-json-array/
-        // Array as root
-        ArrayList<? extends Object> arrayList = (ArrayList<?>) gson.fromJson(json, t.getClass());
-        // Other
-        return arrayList;
+        T[] arr = new Gson().fromJson(json, clazz);
+        return new ArrayList<>(Arrays.asList(arr));
     }
 
 

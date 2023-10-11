@@ -1,10 +1,17 @@
 package com.polarys.appleitour.model;
 
+import static com.polarys.appleitour.api.ApiRequest.GET;
+
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.polarys.appleitour.api.ApiThread;
 
 public class Post {
     private int id;
     private int userId;
+    @JsonIgnore
+    private String userName;
     private String messagePost;
     private int likes;
     private Date postDate;
@@ -31,6 +38,9 @@ public class Post {
 
     public int getUserId() {
         return userId;
+    }
+    public String getUserName() {
+        return userName;
     }
 
     public void setUserId(int userId) {
@@ -67,5 +77,11 @@ public class Post {
 
     public void setAlteratedDate(Date alteratedDate) {
         this.alteratedDate = alteratedDate;
+    }
+
+    public ApiResponse GetPosts() {
+        ApiThread apiThread;
+        apiThread = new ApiThread(GET, "Post/", null);
+        return apiThread.CreateThread(apiThread).getJson();
     }
 }

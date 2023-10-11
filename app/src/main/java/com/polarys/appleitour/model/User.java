@@ -6,7 +6,9 @@ import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 import com.polarys.appleitour.api.ApiThread;
 import com.polarys.appleitour.interfaces.UserApiInterface;
 
-import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDateTime;
+
 
 public class User implements UserApiInterface {
     private int id = 0;
@@ -15,20 +17,20 @@ public class User implements UserApiInterface {
     private String password;
     private String profilePhoto = "";
     private String access = "Comum";
-    private Date createdDate = null;
+    private LocalDateTime createdLocalDateTime = null;
 
     private static final String path = "User";
 
     public User() { }
 
-    public User(int id, String nameUser, String email, String password, String profilePhoto, String access, Date createdDate) {
+    public User(int id, String nameUser, String email, String password, String profilePhoto, String access, LocalDateTime createdLocalDateTime) {
         this.id = id;
         this.nameUser = nameUser;
         this.email = email;
         this.password = password;
         this.profilePhoto = profilePhoto;
         this.access = access;
-        this.createdDate = createdDate;
+        this.createdLocalDateTime = createdLocalDateTime;
     }
 
     public User(String email, String password) {
@@ -90,13 +92,7 @@ public class User implements UserApiInterface {
         this.access = access;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
     public ApiResponse Login(){
         User user = new User(this.email,this.password);
         ApiThread apiThread = new ApiThread(SIGN,path+"/login",ObjectToString(user));

@@ -18,6 +18,22 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.SavedBookActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.SocialActivity"
+            android:exported="false" />
+        <activity android:name=".helper.SharedHelper" />
+        <activity
+            android:name=".view.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.BookInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.BookApiActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.PlaceHolderActivity"
             android:exported="false" />
         <activity

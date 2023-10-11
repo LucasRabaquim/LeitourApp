@@ -19,6 +19,7 @@ public class ApiRequest {
     static final String TOKEN = "token";
     static final String USER_TOKEN = null;
     public static final String GET = "GET";
+    public static final String GETPUBLIC = "GETPUBLIC";
     public static final String POST = "POST";
     public static final String SIGN = "SIGN";
     public static final String UPDATE = "PUT";

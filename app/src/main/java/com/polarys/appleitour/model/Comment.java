@@ -1,10 +1,14 @@
 package com.polarys.appleitour.model;
 
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Comment {
     private int commentId;
     private int userId;
+    @JsonIgnore
+    private String userName;
     private int postId;
     private String messagePost;
     private Date postDate;
@@ -38,6 +42,9 @@ public class Comment {
 
     public int getPostId() {
         return postId;
+    }
+    public String getUserName() {
+        return userName;
     }
 
     public void setPostId(int postId) {

@@ -1,22 +1,33 @@
 package com.polarys.appleitour.helper;
 
+import static com.polarys.appleitour.api.ApiUtil.JsonToObject;
+import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
+
 import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-public class SharedHelper extends AppCompatActivity{
+import com.polarys.appleitour.api.ApiUtil;
+import com.polarys.appleitour.model.User;
+
+public class SharedHelper extends AppCompatActivity {
     final static String SHARED_NAME = "com.example.appleitour";
     final static String TOKEN = "Token";
     final static String THEME = "Theme";
+    final static String USER = "User";
     final static String KEEP_LOGGED = "Keep_Logged";
-
-
-    Activity context;
     SharedPreferences settings;
-    public SharedHelper(Activity context){
-        this.context = context;
+    private static Application instance;
+
+    public static Context getContext() {
+        return instance.getApplicationContext();
+    }
+
+    public SharedHelper(Context context){
         this.settings = context.getSharedPreferences(SHARED_NAME, 0);
     }
 
@@ -47,5 +58,14 @@ public class SharedHelper extends AppCompatActivity{
     }
     public boolean GetKeepLogged(){
         return settings.getBoolean(KEEP_LOGGED, false);
+    }
+
+    public void SetUser(User user){
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(USER, ObjectToString(user));
+        editor.apply();
+    }
+    public User GetUser(){
+        return (User) JsonToObject(User.class,settings.getString(USER, ""));
     }
 }

@@ -1,6 +1,16 @@
 package com.polarys.appleitour.model;
 
+import static com.polarys.appleitour.api.ApiRequest.GET;
+
+import android.app.Activity;
+import android.content.Context;
+
+import com.polarys.appleitour.api.ApiThread;
+import com.polarys.appleitour.helper.SharedHelper;
+
 import java.util.Date;
+
+import kotlin.jvm.Transient;
 
 public class Annotation {
     private int annotationId;
@@ -57,5 +67,11 @@ public class Annotation {
 
     public void setAlteratedDate(Date alteratedDate) {
         this.alteratedDate = alteratedDate;
+    }
+
+    public ApiResponse getAnnotations(int id,String token){
+        ApiThread apiThread;
+        apiThread = new ApiThread(GET, "savedBook/Annotation/"+id,token);
+        return apiThread.CreateThread(apiThread).getJson();
     }
 }

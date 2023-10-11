@@ -1,20 +1,10 @@
 package com.polarys.appleitour.view;
 
-        import static com.polarys.appleitour.api.ApiRequest.GET;
-        import static com.polarys.appleitour.api.ApiUtil.JsonToObject;
-        import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
-
-        import android.appwidget.AppWidgetManager;
-        import android.content.ComponentName;
-        import android.content.Intent;
         import android.os.Bundle;
-        import android.util.Log;
-        import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ProgressBar;
         import android.widget.TextView;
-        import android.widget.Toast;
 
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.lifecycle.ViewModelProviders;
@@ -23,17 +13,9 @@ package com.polarys.appleitour.view;
 
 
         import com.polarys.appleitour.R;
-        import com.polarys.appleitour.api.ApiThread;
-        import com.polarys.appleitour.helper.SharedHelper;
-        import com.polarys.appleitour.model.ApiResponse;
         import com.polarys.appleitour.model.BookApi;
-        import com.polarys.appleitour.model.User;
         import com.polarys.appleitour.view.adapter.ApiBookAdapter;
         import com.polarys.appleitour.viewmodel.BookApiViewModel;
-        import com.polarys.appleitour.viewmodel.LoginViewModel;
-
-        import org.json.JSONArray;
-        import org.json.JSONObject;
 
         import java.util.ArrayList;
 
@@ -54,19 +36,16 @@ public class BookApiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(BookApiViewModel.class);
+        viewModel.setContext(this);
         books = new ArrayList<>();
         recyclerView = findViewById(R.id.recycler_returned_books);
         apiBookAdapter = new ApiBookAdapter(books,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(apiBookAdapter);
-
-
-
-
-
+        btnSearchBook = findViewById(R.id.btn_SearchBook);
         btnSearchBook.setOnClickListener(view ->{
-            String bookQuery = searchBar.getText().toString();
-            ArrayList<BookApi> bookList = viewModel.search("TITLE",bookQuery);
+            String bookQuery = "Harry Potter";//searchBar.getText().toString();
+            ArrayList<BookApi> bookList = viewModel.search("Title",bookQuery);
             if(bookList == null)
                 return;
             books.clear();

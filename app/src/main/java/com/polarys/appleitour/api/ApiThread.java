@@ -2,6 +2,7 @@ package com.polarys.appleitour.api;
 
 import static com.polarys.appleitour.api.ApiRequest.DELETE;
 import static com.polarys.appleitour.api.ApiRequest.GET;
+import static com.polarys.appleitour.api.ApiRequest.GETPUBLIC;
 import static com.polarys.appleitour.api.ApiRequest.POST;
 import static com.polarys.appleitour.api.ApiRequest.SIGN;
 import static com.polarys.appleitour.api.ApiRequest.UPDATE;
@@ -17,6 +18,12 @@ public class ApiThread implements Runnable {
     private static String token;
     private volatile ApiResponse result;
 
+    public ApiThread(String url){
+        this.method = GET;
+        this.url = url;
+        this.json = null;
+        this.token = null;
+    }
     public ApiThread(String method,String url,String json){
         this.method = method;
         this.url = url;
@@ -44,6 +51,9 @@ public class ApiThread implements Runnable {
     public void run() {
         ApiRequest api = new ApiRequest();
         switch (method) {
+            case GETPUBLIC:
+                result = api.get(url);
+                break;
             case GET:
                 result = api.get(url,token);
                 break;
