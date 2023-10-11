@@ -4,12 +4,11 @@ import static com.polarys.appleitour.api.ApiRequest.SIGN;
 import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 
 import com.polarys.appleitour.api.ApiThread;
-import com.polarys.appleitour.interfaces.userApi;
+import com.polarys.appleitour.interfaces.UserApiInterface;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class User implements userApi {
+public class User implements UserApiInterface {
     private int id = 0;
     private String nameUser = "null";
     private String email;
@@ -101,25 +100,11 @@ public class User implements userApi {
     public ApiResponse Login(){
         User user = new User(this.email,this.password);
         ApiThread apiThread = new ApiThread(SIGN,path+"/login",ObjectToString(user));
-        Thread thread = new Thread(apiThread);
-        thread.start();
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        return apiThread.getJson();
+        return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse Register(){
         User user = new User(this.nameUser,this.email,this.password);
         ApiThread apiThread = new ApiThread(SIGN,path+"/register",ObjectToString(user));
-        Thread thread = new Thread(apiThread);
-        thread.start();
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        return apiThread.getJson();
+        return apiThread.CreateThread(apiThread).getJson();
     }
 }

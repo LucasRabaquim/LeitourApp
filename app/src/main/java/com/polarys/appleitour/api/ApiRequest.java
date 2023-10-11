@@ -14,9 +14,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ApiRequest {
-
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-
     static final String API_URL = "http://192.168.15.31:80/api/";
     static final String TOKEN = "token";
     static final String USER_TOKEN = null;
@@ -26,6 +24,8 @@ public class ApiRequest {
     public static final String UPDATE = "PUT";
     public static final String DELETE = "DELETE";
     final OkHttpClient client = new OkHttpClient();
+
+
     public ApiResponse get(String path) {
         Request request = new Request.Builder()
                 .url(API_URL+path)

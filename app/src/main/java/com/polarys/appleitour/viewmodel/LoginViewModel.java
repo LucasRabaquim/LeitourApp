@@ -45,7 +45,6 @@ public class LoginViewModel extends ViewModel {
             Toast.makeText(context, apiResponse.getBody(), Toast.LENGTH_SHORT).show();
             return apiResponse.getBody();
         }
-
         JSONObject jsonResponse = new JSONObject(apiResponse.getBody());
         JSONObject jsonUser = jsonResponse.getJSONObject("user");
         user = (User) JsonToObject(new User(), jsonUser);

@@ -7,6 +7,8 @@ import static com.polarys.appleitour.api.ApiRequest.SIGN;
 import static com.polarys.appleitour.api.ApiRequest.UPDATE;
 import com.polarys.appleitour.model.ApiResponse;
 
+import org.json.JSONObject;
+
 public class ApiThread implements Runnable {
 
     private static String method;
@@ -28,6 +30,16 @@ public class ApiThread implements Runnable {
         this.token = token;
     }
 
+    public ApiThread CreateThread(ApiThread apiThread){
+        Thread thread = new Thread(apiThread);
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return apiThread;
+    }
     @Override
     public void run() {
         ApiRequest api = new ApiRequest();

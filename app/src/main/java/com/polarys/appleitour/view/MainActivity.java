@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.helper.IntentHelper;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -14,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this,LoginDummyActivity.class);
-        startActivity(intent);
+        IntentHelper intentHelper = new IntentHelper(this);
+        intentHelper.nextActivity(BookApiActivity.class);
         /*
 //        TextView txt = findViewById(R.id.test);
 

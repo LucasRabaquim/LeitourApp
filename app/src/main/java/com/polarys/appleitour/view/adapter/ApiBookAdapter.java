@@ -1,5 +1,6 @@
 package com.polarys.appleitour.view.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,11 @@ import com.polarys.appleitour.model.BookApi;
 import java.util.ArrayList;
 public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookHolder> {
     private final ArrayList<BookApi> books;
+    private Context context;
 
-    public ApiBookAdapter(ArrayList apiBooks) {
+    public ApiBookAdapter(ArrayList apiBooks, Context context) {
         books = apiBooks;
+        this.context = context;
     }
 
     @Override
@@ -30,19 +33,19 @@ public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookH
 
     @Override
     public void onBindViewHolder(@NonNull ApiBookHolder holder, int position) {
-        /*
-        Book book = books.get(position);
-        Picasso.get().load(book.getCover()).into(holder.cover);
-        holder.title.setText(book.getName());
-        holder.author.setText(book.getAuthor());
 
-        Picasso.get().load(book.getCover()).into(holder.cover);
-        holder.mainLayout.setOnClickListener(view -> {
+        BookApi book = books.get(position);
+        //Picasso.get().load(book.getCover()).into(holder.cover);
+        holder.title.setText(book.getTitle());
+        holder.author.setText(book.getAuthors());
+
+      //  Picasso.get().load(book.getCover()).into(holder.cover);
+       /* holder.mainLayout.setOnClickListener(view -> {
             Intent intent = new Intent(context, BookActivity.class);
             intent.putExtra("Book", book);
             context.startActivity(intent);
-        });
-        */
+        });*/
+
     }
 
 

@@ -2,16 +2,14 @@ package com.polarys.appleitour.model;
 
 import static com.polarys.appleitour.api.ApiRequest.GET;
 
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.polarys.appleitour.api.ApiThread;
 
 import java.io.Serializable;
 
 public class BookApi implements Serializable {
+
+    public static final String TITLE = "Title";
+    public static final String ISBN = "Isbn";
     private String key;
     private String title;
     private String authors;
@@ -23,10 +21,8 @@ public class BookApi implements Serializable {
     private String language;
     private String cover;
 
-    private final String TITLE = "Title";
-    private final String ISBN = "Isbn";
-
-    public BookApi(){}
+    public BookApi() {
+    }
     //public BookApi(@NonNull View itemView) {     super(itemView);    }
 
     public String getKey() {
@@ -109,26 +105,14 @@ public class BookApi implements Serializable {
         this.cover = cover;
     }
 
-    public ApiResponse searchBookApi(String param, String search) {
+    public ApiResponse SearchByIsbn(String search) {
+        ApiThread apiThread = new ApiThread(GET, ISBN + "/" + search, null);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+
+    public ApiResponse SearchByTitle(String search) {
         ApiThread apiThread;
-        switch (param) {
-            case TITLE:
-                apiThread = new ApiThread(GET, TITLE + "/" + search, null);
-                break;
-            case ISBN:
-                apiThread = new ApiThread(GET, ISBN + "/" + search, null);
-                break;
-            default:
-                return new ApiResponse();
-        }
-        ;
-        Thread thread = new Thread(apiThread);
-        thread.start();
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        return apiThread.getJson();
+        apiThread = new ApiThread(GET, TITLE + "/" + search, null);
+        return apiThread.CreateThread(apiThread).getJson();
     }
 }
