@@ -1,8 +1,9 @@
 package com.polarys.appleitour.interfaces;
 
 import com.polarys.appleitour.api.ApiThread;
+import com.polarys.appleitour.model.ApiResponse;
 
 public interface userApi {
-    String Login(String user);
-    String Register(String user);
+    ApiResponse Login();
+    ApiResponse Register();
 }

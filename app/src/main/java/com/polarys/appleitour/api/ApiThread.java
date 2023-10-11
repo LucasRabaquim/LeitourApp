@@ -1,15 +1,11 @@
 package com.polarys.appleitour.api;
 
-import static com.polarys.appleitour.api.ApiUtil.DELETE;
-import static com.polarys.appleitour.api.ApiUtil.GET;
-import static com.polarys.appleitour.api.ApiUtil.POST;
-import static com.polarys.appleitour.api.ApiUtil.SIGN;
-import static com.polarys.appleitour.api.ApiUtil.UPDATE;
-
-import com.polarys.appleitour.api.ApiUtil;
-
-import java.io.IOException;
-
+import static com.polarys.appleitour.api.ApiRequest.DELETE;
+import static com.polarys.appleitour.api.ApiRequest.GET;
+import static com.polarys.appleitour.api.ApiRequest.POST;
+import static com.polarys.appleitour.api.ApiRequest.SIGN;
+import static com.polarys.appleitour.api.ApiRequest.UPDATE;
+import com.polarys.appleitour.model.ApiResponse;
 
 public class ApiThread implements Runnable {
 
@@ -17,7 +13,7 @@ public class ApiThread implements Runnable {
     private static String url;
     private static String json;
     private static String token;
-    private volatile String result;
+    private volatile ApiResponse result;
 
     public ApiThread(String method,String url,String json){
         this.method = method;
@@ -32,50 +28,31 @@ public class ApiThread implements Runnable {
         this.token = token;
     }
 
-
-
     @Override
     public void run() {
-        ApiUtil api = new ApiUtil();
+        ApiRequest api = new ApiRequest();
         switch (method) {
             case GET:
-                try {
-                    result = api.get(url,token);
-                } catch (IOException e) {
-                    result = e.toString();
-                }
+                result = api.get(url,token);
                 break;
-
             case POST:
-                try {
-                    result = api.post(url,json,token);
-                } catch (IOException e) {
-                    result = e.toString();
-                }
+                result = api.post(url,json,token);
                 break;
             case SIGN:
                 result = api.sign(url,json);
                 break;
             case UPDATE:
-                try {
-                    result = api.update(url,json,token);
-                } catch (IOException e) {
-                    result = e.toString();
-                }
+                result = api.update(url,json,token);
                 break;
             case DELETE:
-                try {
-                    result = api.delete(url,token);
-                } catch (IOException e) {
-                    result = e.toString();
-                }
+                result = api.delete(url,token);
+                break;
             default:
                 System.out.println("Invalid day of the week");
-                break;
         }
     }
 
-    public String getJson() {
+    public ApiResponse getJson() {
         return result;
     }
 }

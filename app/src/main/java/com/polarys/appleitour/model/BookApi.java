@@ -1,11 +1,17 @@
 package com.polarys.appleitour.model;
 
+import static com.polarys.appleitour.api.ApiRequest.GET;
+
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BookApi implements Serializable{
+import com.polarys.appleitour.api.ApiThread;
+
+import java.io.Serializable;
+
+public class BookApi implements Serializable {
     private String key;
     private String title;
     private String authors;
@@ -17,12 +23,11 @@ public class BookApi implements Serializable{
     private String language;
     private String cover;
 
-    private String TITLE = "Title";
-    private String ISBN = "Isbn";
+    private final String TITLE = "Title";
+    private final String ISBN = "Isbn";
 
-    public BookApi(@NonNull View itemView) {
-        super(itemView);
-    }
+    public BookApi(){}
+    //public BookApi(@NonNull View itemView) {     super(itemView);    }
 
     public String getKey() {
         return key;
@@ -104,18 +109,19 @@ public class BookApi implements Serializable{
         this.cover = cover;
     }
 
-    public String searchBookApi(String param, String search){
-        ApiThread apiThread; 
-        switch(param){
-            case TITLE: 
-                apiThread = new ApiThread(GET,TITLE+"/"+search);
+    public ApiResponse searchBookApi(String param, String search) {
+        ApiThread apiThread;
+        switch (param) {
+            case TITLE:
+                apiThread = new ApiThread(GET, TITLE + "/" + search, null);
                 break;
             case ISBN:
-                apiThread = new ApiThread(GET,isbn+"/"+search);
+                apiThread = new ApiThread(GET, ISBN + "/" + search, null);
                 break;
             default:
-                return "";
-        };
+                return new ApiResponse();
+        }
+        ;
         Thread thread = new Thread(apiThread);
         thread.start();
         try {
@@ -124,4 +130,5 @@ public class BookApi implements Serializable{
             throw new RuntimeException(e);
         }
         return apiThread.getJson();
+    }
 }

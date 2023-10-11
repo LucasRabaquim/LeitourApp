@@ -1,24 +1,20 @@
 package com.polarys.appleitour.view;
 
-import static com.polarys.appleitour.api.ApiUtil.JsonToObject;
-import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
+import static com.polarys.appleitour.api.ApiUtil.verifyConectivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.polarys.appleitour.R;
-import com.polarys.appleitour.model.SharedSettings;
+import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.model.User;
 import com.polarys.appleitour.viewmodel.LoginViewModel;
 
-import org.json.JSONObject;
+import org.json.JSONException;
 
 public class LoginDummyActivity extends AppCompatActivity {
 
@@ -40,17 +36,21 @@ public class LoginDummyActivity extends AppCompatActivity {
         edit_password.setText(viewModel.getPassword());
 
         btn_Login.setOnClickListener(v -> {
-            String email = "lucas@gmail.com";//edit_Username.getText().toString();
-            String password = "12345";//edit_Username.getText().toString();
-            User logginUser = new User("lucas@gmail.com", "12345");
+            String email = edit_Username.getText().toString();
+            String password = edit_Username.getText().toString();
+            User logginUser = new User(email, password);
+            viewModel.setUser(logginUser);
             viewModel.setContext(this);
-            String result = viewModel.login(logginUser);
-            if(result == "")
+            String result;
+            if(!verifyConectivity(this))
                 return;
-            this.finish();
-            Intent intent = new Intent(this, PlaceHolderActivity.class);
-            intent.putExtra("USER", result);
-            startActivity(intent);
+            try{
+                viewModel.login();
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+            IntentHelper intentHelper = new IntentHelper(this,IntentHelper.USER_SHARED);
+            intentHelper.nextActivity(PlaceHolderActivity.class);
         });
     }
 }

@@ -1,24 +1,22 @@
 package com.polarys.appleitour.model;
 
-import static com.polarys.appleitour.api.ApiUtil.GET;
-import static com.polarys.appleitour.api.ApiUtil.POST;
-import static com.polarys.appleitour.api.ApiUtil.SIGN;
+import static com.polarys.appleitour.api.ApiRequest.SIGN;
+import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 
 import com.polarys.appleitour.api.ApiThread;
-import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.interfaces.userApi;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class User implements userApi, Serializable {
-    private int id;
-    private String nameUser;
+public class User implements userApi {
+    private int id = 0;
+    private String nameUser = "null";
     private String email;
     private String password;
-    private String profilePhoto;
-    private String access;
-    private Date createdDate;
+    private String profilePhoto = "";
+    private String access = "Comum";
+    private Date createdDate = null;
 
     private static final String path = "User";
 
@@ -35,23 +33,14 @@ public class User implements userApi, Serializable {
     }
 
     public User(String email, String password) {
-        this.id = 0;
-        this.nameUser = "d";
         this.email = email;
         this.password = password;
-        this.profilePhoto = "";
-        this.access = "Comum";
-        this.createdDate = null;
     }
 
     public User(String username, String email, String password) {
-        this.id = 0;
         this.nameUser = username;
         this.email = email;
         this.password = password;
-        this.profilePhoto = "";
-        this.access = "Comum";
-        this.createdDate = null;
     }
 
     public int getId() {
@@ -109,8 +98,9 @@ public class User implements userApi, Serializable {
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
-    public String Login(String user){
-        ApiThread apiThread = new ApiThread(SIGN,path+"/login",user);
+    public ApiResponse Login(){
+        User user = new User(this.email,this.password);
+        ApiThread apiThread = new ApiThread(SIGN,path+"/login",ObjectToString(user));
         Thread thread = new Thread(apiThread);
         thread.start();
         try {
@@ -120,8 +110,9 @@ public class User implements userApi, Serializable {
         }
         return apiThread.getJson();
     }
-    public String Register(String user){
-        ApiThread apiThread = new ApiThread(SIGN,path+"/register",user);
+    public ApiResponse Register(){
+        User user = new User(this.nameUser,this.email,this.password);
+        ApiThread apiThread = new ApiThread(SIGN,path+"/register",ObjectToString(user));
         Thread thread = new Thread(apiThread);
         thread.start();
         try {

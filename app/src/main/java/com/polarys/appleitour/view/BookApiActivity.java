@@ -1,4 +1,4 @@
-package com.example.appleitour.Controller;
+package com.polarys.appleitour.view;
 
         import android.appwidget.AppWidgetManager;
         import android.content.ComponentName;
@@ -16,26 +16,22 @@ package com.example.appleitour.Controller;
         import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
 
-        import com.example.appleitour.Adapter.SavedAdapter;
-        import com.example.appleitour.Api.NetWorkUtils.AsyncResponse;
-        import com.example.appleitour.Api.NetWorkUtils.NetworkTask;
-        import com.example.appleitour.Api.NetWorkUtils.NetworkUtils;
-        import com.example.appleitour.Model.Book;
-        import com.example.appleitour.R;
-        import com.example.appleitour.SimpleAppWidget;
-        import com.google.android.material.bottomnavigation.BottomNavigationView;
-        import com.google.gson.Gson;
+
+        import com.polarys.appleitour.R;
+        import com.polarys.appleitour.model.BookApi;
+        import com.polarys.appleitour.view.adapter.ApiBookAdapter;
+
         import org.json.JSONArray;
         import java.util.ArrayList;
 
 public class BookApiActivity extends AppCompatActivity {
     private EditText searchBar;
     private RecyclerView recyclerView;
-    private SavedAdapter savedAdapter;
+    private ApiBookAdapter apiBookAdapter;
     private TextView errorMessage;
     private ProgressBar loadingBar;
     private BookApi bookObj;
-    private ArrayList<Book> books;
+    private ArrayList<BookApi> books;
     private Button btnSearchBook;
     private static final int BOOK_SEARCH_LOADER = 1;
     private static final String BOOK_QUERY_TAG = "query";
@@ -45,15 +41,15 @@ public class BookApiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         books = new ArrayList<>();
-        recyclerView = findViewById(R.id.recycler_returned_books);
-        savedAdapter = new SavedAdapter(MainActivity.this,books);
+        //recyclerView = findViewById(R.id.recycler_returned_books);
+       // apiBookAdapter = new ApiBookAdapter(BookApiActivity.class,books);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(savedAdapter);
+        recyclerView.setAdapter(apiBookAdapter);
 
-        loadingBar = findViewById(R.id.loadingBar);
+     /*   loadingBar = findViewById(R.id.loadingBar);
         errorMessage = findViewById(R.id.errorMessage);
         searchBar = findViewById(R.id.searchBookBar);
-        btnSearchBook = findViewById(R.id.btn_SearchBook);
+        btnSearchBook = findViewById(R.id.btn_SearchBook);*/
 
         /*AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
 
@@ -71,7 +67,7 @@ public class BookApiActivity extends AppCompatActivity {
         btnSearchBook.setOnClickListener(view ->{
             bookObj = new BookApi();
             String bookQuery = searchBar.getText().toString();
-            String apiResponse = bookObj.search(bookQuery);
+          //  String apiResponse = bookObj.search(bookQuery);
             
         });
     }
