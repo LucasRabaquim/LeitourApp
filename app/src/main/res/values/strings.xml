@@ -7,4 +7,10 @@
     <string name="long_placeholder">I AM A VERY LONG PLACE HOLDER FRIEND</string>
     <string name="likes">Likes</string>
     <string name="add_like">Curtir</string>
+    <string name="userName">Nome do usuário</string>
+    <string name="userEmail">Email do usuário</string>
+    <string name="userPassword">Senha do usuário</string>
+    <string name="publicationMessage">Message</string>
+    <string name="publicationShare">Compartilhar</string>
+
 </resources>

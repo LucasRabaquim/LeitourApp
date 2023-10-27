@@ -1,0 +1,6 @@
+<resources>
+    <declare-styleable name="attr_image_circle">
+        <attr name="image_url" format="string" />
+        <attr name="exampleColor" format="color" />
+    </declare-styleable>
+</resources>

@@ -1,5 +1,8 @@
 package com.polarys.appleitour.view.adapter;
 
+import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
+
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.helper.IntentHelper;
+import com.polarys.appleitour.model.Annotation;
 import com.polarys.appleitour.model.Comment;
 import com.polarys.appleitour.model.Post;
 
@@ -43,16 +48,17 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
             holder.user.setText(post.getUserName());
             holder.text.setText(post.getMessagePost());
             holder.date.setText(post.getLikes());
+            holder.mainLayout.setOnClickListener(view -> {
+                IntentHelper intentHelper = new IntentHelper((Activity) context, POST_SHARED);
+                intentHelper.nextActivityObj(Comment.class,post);
+            });
         }
         else {
             Comment comment = (Comment) data.get(position);
             holder.user.setText(comment.getUserName());
             holder.text.setText(comment.getMessagePost());
         }
-        /*holder.mainLayout.setOnClickListener(view -> {
-            IntentHelper intentHelper = new IntentHelper((Activity) context, BOOK_SHARED);
-            intentHelper.nextActivityObj(BookInfoActivity.class,book);
-        });*/
+
 
     }
 
@@ -78,7 +84,7 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
     @Override
     public int getItemViewType(int position) {
         Comparable element = (Comparable) data.get(position);
-        if (element instanceof AnnotationAdapter)
+        if (element instanceof Annotation)
             return TYPE_ANNOTATION;
         if (element instanceof Post)
             return TYPE_POST;

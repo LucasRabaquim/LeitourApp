@@ -14,27 +14,19 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    sourceSets {
-        named("main") {
-            manifest.srcFile("src/main/AndroidManifest.xml")
-            java.srcDirs("src/main/java", "apt_generated")
-            aidl.srcDirs("src/main.aidl", "apt_generated")
-            assets.srcDirs("src/main/assets")
-            res.srcDirs(
-                    "src/main/res/layout/activity",
-                    "src/main/res/layout/fragment",
-                    "src/main/res/layout/dialog",
-                    "src/main/res/layout/adapter",
-                    "src/main/res"
-            )
-        }
+    sourceSets.getByName("main") {
+        java.srcDir("src/main/res/layouts/activities")
+        java.srcDir("src/main/res/layouts/fragments")
+        java.srcDir("src/main/res/layouts/adapters")
+        java.srcDir("src/main/res/layouts/customviews")
+        java.srcDir("src/main/res/layouts")
+        java.srcDir("src/main/res")
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -64,5 +56,6 @@ dependencies {
     implementation ("androidx.appcompat:appcompat:1.6.1")
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.picasso:picasso:2.71828")
-    implementation("com.fasterxml.jackson.core:jackson-annotations")
+    implementation("com.github.abdularis:circularimageview:1.5")
+  //  implementation("com.fasterxml.jackson.core:jackson-annotations")
 }

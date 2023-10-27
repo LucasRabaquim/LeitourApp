@@ -22,8 +22,7 @@ public class SignViewModel extends ViewModel {
     private Activity context;
     private boolean keepLogged;
 
-    public SignViewModel() {
-    }
+    public SignViewModel() {}
 
     public void setUser(User user) {
         this.user = user;
@@ -35,7 +34,6 @@ public class SignViewModel extends ViewModel {
     public String getEmail() {
         return user.getEmail();
     }//user.getEmail();}
-
     public String getPassword() {
         return user.getPassword();
     }//user.getPassword();}

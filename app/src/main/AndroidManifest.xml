@@ -18,6 +18,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.adapter.MadddddinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PublicationEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.SeePostActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.SavedBookActivity"
             android:exported="false" />
         <activity

@@ -8,12 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.Serializable;
 
 public class IntentHelper extends AppCompatActivity {
-    public final static String USER_SHARED = "USER";
-    public final static String BOOK_SHARED = "BOOK";
-    public final static String BOOK_KEY_SHARED = "BOOK_KEY";
-    public final static String SAVED_SHARED = "SAVED_BOOK";
-    public final static String POST_SHARED = "POST";
-    public final static String COMMENT_SHARED = "COMMENT";
+    public final static String USER_SHARED = "USER_SHARED";
+    public final static String BOOK_SHARED = "BOOK_SHARED";
+    public final static String BOOK_KEY_SHARED = "BOOK_KEY_SHARED";
+    public final static String SAVED_SHARED = "SAVED_BOOK_SHARED";
+    public final static String POST_SHARED = "POST_SHARED";
+    public final static String PUBLICATION_SHARED = "PUBLICATION_SHARED";
+    public final static String EDIT_SHARED = "EDIT_SHARED";
+    public final static String COMMENT_SHARED = "COMMENT_SHARED";
     static String EXTRA_KEY;
 
     private Activity activity;
