@@ -15,7 +15,7 @@ import okhttp3.Response;
 
 public class ApiRequest {
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-    static final String API_URL = "http://192.168.15.31:80/api/";
+    static final String API_URL = "http://192.168.15.31:5126/api/";
     static final String TOKEN = "token";
     static final String USER_TOKEN = null;
     public static final String GET = "GET";

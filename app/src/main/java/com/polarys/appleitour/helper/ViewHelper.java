@@ -38,4 +38,10 @@ public final class ViewHelper extends AppCompatActivity {
             Toast.makeText(activity,"Preencha o campo "+field,Toast.LENGTH_SHORT).show();
         return (data == "");
     }
+    public boolean isDifferent(String data, String field, String compare, String fieldCompare){
+        if(data != compare)
+            Toast.makeText(activity,"Preencha o campo "+field+" precisa ser igual ao campo "+
+                    fieldCompare,Toast.LENGTH_SHORT).show();
+        return (data != compare);
+    }
 }

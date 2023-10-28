@@ -1,12 +1,15 @@
-package com.polarys.appleitour.view;
+package com.polarys.appleitour.view.fragment;
 
         import android.os.Bundle;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ProgressBar;
         import android.widget.TextView;
 
-        import androidx.appcompat.app.AppCompatActivity;
+        import androidx.fragment.app.Fragment;
         import androidx.lifecycle.ViewModelProviders;
         import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
@@ -19,30 +22,30 @@ package com.polarys.appleitour.view;
 
         import java.util.ArrayList;
 
-public class BookApiActivity extends AppCompatActivity {
+public class BookApiFragment extends Fragment {
     private EditText searchBar;
     private RecyclerView recyclerView;
     private ApiBookAdapter apiBookAdapter;
     private BookApiViewModel viewModel;
-    private TextView errorMessage;
-    private ProgressBar loadingBar;
     private ArrayList<BookApi> books;
     private Button btnSearchBook;
-    private static final int BOOK_SEARCH_LOADER = 1;
-    private static final String BOOK_QUERY_TAG = "query";
+
+    public BookApiFragment(){}
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        return inflater.inflate(R.layout.activity_main,container,false);
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(BookApiViewModel.class);
-        viewModel.setContext(this);
         books = new ArrayList<>();
-        recyclerView = findViewById(R.id.recycler_returned_books);
-        apiBookAdapter = new ApiBookAdapter(books,this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = getActivity().findViewById(R.id.recycler_returned_books);
+        apiBookAdapter = new ApiBookAdapter(books,getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(apiBookAdapter);
-        btnSearchBook = findViewById(R.id.btn_SearchBook);
+        btnSearchBook = getActivity().findViewById(R.id.btn_SearchBook);
         btnSearchBook.setOnClickListener(view ->{
             String bookQuery = "Harry Potter";//searchBar.getText().toString();
             ArrayList<BookApi> bookList = viewModel.search("Title",bookQuery);

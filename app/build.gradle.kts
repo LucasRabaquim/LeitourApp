@@ -1,6 +1,7 @@
 
 plugins {
     id("com.android.application")
+
 }
 
 android {
@@ -20,14 +21,14 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    sourceSets.getByName("main") {
-        java.srcDir("src/main/res/layouts/activities")
-        java.srcDir("src/main/res/layouts/fragments")
-        java.srcDir("src/main/res/layouts/adapters")
-        java.srcDir("src/main/res/layouts/customviews")
-        java.srcDir("src/main/res/layouts")
+   /* sourceSets.getByName("main") {
+        // java.srcDir("src/main/res/layouts/activities")
+        // java.srcDir("src/main/res/layouts/fragments")
+        // java.srcDir("src/main/res/layouts/adapters")
+        // java.srcDir("src/main/res/layouts/customviews")
+        //java.srcDir("src/main/res/layouts")
         java.srcDir("src/main/res")
-    }
+    }*/
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -41,9 +42,9 @@ android {
 dependencies {
 
     annotationProcessor ("android.arch.lifecycle:compiler:1.1.1")
-    implementation ("android.arch.lifecycle:viewmodel:1.1.0")
+    implementation ("android.arch.lifecycle:viewmodel:1.1.1")
     implementation ("android.arch.lifecycle:extensions:1.1.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
@@ -57,5 +58,6 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.github.abdularis:circularimageview:1.5")
+    implementation("com.google.android.material:material:1.10.0")
   //  implementation("com.fasterxml.jackson.core:jackson-annotations")
 }

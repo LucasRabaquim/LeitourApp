@@ -12,15 +12,16 @@ import androidx.annotation.Nullable;
 
 import com.polarys.appleitour.R;
 
-public class PublicationView extends LinearLayout{
-    public PublicationView(Context context) {
+public class IconCustomView extends LinearLayout {
+
+    public IconCustomView(Context context) {
         super(context);
         init(null);
         //   setOnClickListener(this);
 
     }
 
-    public PublicationView(Context context, AttributeSet attrs){
+    public IconCustomView(Context context, AttributeSet attrs){
         super(context);
         init(attrs);
     }
@@ -31,12 +32,12 @@ public class PublicationView extends LinearLayout{
 
 
     private void init(@Nullable AttributeSet attrs) {
-        inflate(getContext(), R.layout.adapter_item_publication, this);
-      /*  icon = findViewById(R.id.icon_button_image_view);
+        inflate(getContext(), R.layout.custom_icon, this);
+        icon = findViewById(R.id.icon_button_image_view);
         icon.setImageDrawable(getResources().getDrawable(R.drawable.placeholder));
         TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.attr_custom_icon);
         //imageCircle.setImageDrawable(attributes.getDrawable(R.styleable.BenefitView_image));
-        attributes.recycle();*/
+        attributes.recycle();
 /*
         imageCircle.setOnClickListener(view -> {
 

@@ -27,14 +27,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class BookApiViewModel extends ViewModel {
-    private Activity context;
 
-    public BookApiViewModel() {
-    }
-
-    public void setContext(Activity context) {
-        this.context = context;
-    }
+    public BookApiViewModel() {}
 
     public ArrayList<BookApi> search(String title, String query){
         ApiResponse apiResponse;
@@ -51,13 +45,10 @@ public class BookApiViewModel extends ViewModel {
             default:
                 return null;
         }
-        Toast.makeText(context, apiResponse.getBody(), Toast.LENGTH_SHORT).show();
-
         try {
             return ApiUtil.JsonToArrayObject(BookApi[].class, apiResponse.getBody());
         }
         catch(Exception e){
-            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
             return null;
         }
     }

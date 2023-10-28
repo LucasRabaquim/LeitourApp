@@ -18,6 +18,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.PlaceholderActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.adapter.MadddddinActivity"
             android:exported="false" />
         <activity
@@ -30,7 +33,7 @@
             android:name=".view.SavedBookActivity"
             android:exported="false" />
         <activity
-            android:name=".view.SocialActivity"
+            android:name=".view.fragment.SocialFragment"
             android:exported="false" />
         <activity android:name=".helper.SharedHelper" />
         <activity
@@ -40,7 +43,7 @@
             android:name=".view.BookInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".view.BookApiActivity"
+            android:name=".view.fragment.BookApiFragment"
             android:exported="false" />
         <activity
             android:name=".view.PlaceHolderActivity"

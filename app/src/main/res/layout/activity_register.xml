@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.RegisterActivity">
 
 
@@ -14,28 +15,37 @@
         android:layout_marginTop="52dp"
         android:hint="Full Name"
         android:inputType="text"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/etFullName"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintTop_toBottomOf="@+id/etFullName" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail"
-        tools:layout_editor_absoluteX="-52dp" />
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+    <EditText
+        android:id="@+id/etRepeatPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <CheckBox
+        android:id="@+id/cbKeepLogged"
+        android:layout_width="wrap_content"
+        android:text="Continuar Logado"
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btnRegister"
@@ -52,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:text="Switch to login"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etRepeatPassword"
         tools:layout_editor_absoluteX="0dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -1,0 +1,9 @@
+
+    <resources>
+        <declare-styleable name="attr_custom_icon">
+            <attr name="icon_path" format="string" />
+            <attr name="icon_text" format="string" />
+            <attr name="icon_color" format="color" />
+
+        </declare-styleable>
+    </resources>

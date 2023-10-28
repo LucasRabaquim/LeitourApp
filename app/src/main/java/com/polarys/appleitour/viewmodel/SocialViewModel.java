@@ -25,12 +25,10 @@ public class SocialViewModel extends ViewModel {
     public ArrayList<Post> loadPosts(){
         ApiResponse apiResponse;
         apiResponse = new Post().GetPosts();
-        Toast.makeText(context, apiResponse.getBody(), Toast.LENGTH_SHORT).show();
         try {
             return ApiUtil.JsonToArrayObject(Post[].class, apiResponse.getBody());
         }
         catch(Exception e){
-            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
             return null;
         }
     }
@@ -38,12 +36,10 @@ public class SocialViewModel extends ViewModel {
     public ArrayList<Comment> loadComments(int id){
         ApiResponse apiResponse;
         apiResponse = new Comment().GetComments(id);
-        Toast.makeText(context, apiResponse.getBody(), Toast.LENGTH_SHORT).show();
         try {
             return ApiUtil.JsonToArrayObject(Comment[].class, apiResponse.getBody());
         }
         catch(Exception e){
-            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
             return null;
         }
     }

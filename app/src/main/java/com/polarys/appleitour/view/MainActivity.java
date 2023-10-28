@@ -2,11 +2,11 @@ package com.polarys.appleitour.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.IntentHelper;
+import com.polarys.appleitour.view.fragment.BookApiFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         IntentHelper intentHelper = new IntentHelper(this);
-        intentHelper.nextActivity(BookApiActivity.class);
+        intentHelper.nextActivity(LoginDummyActivity.class);
         /*
 //        TextView txt = findViewById(R.id.test);
 

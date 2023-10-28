@@ -70,11 +70,11 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
         LinearLayout mainLayout;
         public PublicationHolder(@NonNull View view){
             super(view);
-            this.user= view.findViewById(R.id.publication_username);
+         /*   this.user= view.findViewById(R.id.publication_username);
             this.text= view.findViewById(R.id.publication_text);
             this.date= view.findViewById(R.id.publication_date);
             this.likes= view.findViewById(R.id.publication_likes);
-            this.btnLike =  view.findViewById(R.id.publication_like_button);
+            this.btnLike =  view.findViewById(R.id.publication_like_button);*/
             mainLayout = view.findViewById(R.id.item_publication_layout);
         }
     }

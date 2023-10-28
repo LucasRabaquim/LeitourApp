@@ -33,8 +33,6 @@ import java.util.ArrayList;
 
 public class BookInfoActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private AnnotationAdapter annotationAdapter;
     private FloatingActionButton saveBook;
     private BookInfoViewModel viewModel;
     private BookApi book;
@@ -53,7 +51,7 @@ public class BookInfoActivity extends AppCompatActivity {
         saveBook = findViewById(R.id.btn_save_book);
         saveBook.setOnClickListener(v ->{
             SharedHelper sharedHelper = new SharedHelper(this);
-            int userId = 1;//sharedHelper.GetUser().getId();
+            int userId = sharedHelper.GetUser().getId();
             String token = sharedHelper.GetToken();
             SavedBook savedBook = new SavedBook();
             ApiResponse apiResponse = savedBook.SetBook(book,userId,token);
@@ -73,9 +71,6 @@ public class BookInfoActivity extends AppCompatActivity {
         viewHelper.setTextOfView(R.id.book_language,book.getLanguage());
         viewHelper.setTextOfView(R.id.book_pages,String.valueOf(book.getPages()));
         viewHelper.setTextOfView(R.id.book_year,book.getPublishedDate());
-        viewHelper.setTextOfView(R.id.book_year,book.getPublishedDate());
-        viewHelper.setTextOfView(R.id.book_year,book.getPublishedDate());
-        viewHelper.setTextOfView(R.id.book_year,book.getPublishedDate());
-//            Picasso.get().load(book.getCover()).into(bookCover);
+        Picasso.get().load(book.getCover()).into(bookCover);
     }
 }

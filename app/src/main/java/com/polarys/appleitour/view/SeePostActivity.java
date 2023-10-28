@@ -29,7 +29,6 @@ public class SeePostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_see_post);
         Post post = (Post) getIntent().getSerializableExtra(POST_SHARED);
         viewModel = ViewModelProviders.of(this).get(SocialViewModel.class);
-        viewModel.setContext(this);
         ArrayList<Comment> comments = new ArrayList<>();
         recyclerView = findViewById(R.id.recycler_social);
         adapter = new PublicationAdapter(comments,this);
