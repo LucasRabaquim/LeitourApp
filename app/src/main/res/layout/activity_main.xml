@@ -51,7 +51,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
 
-            android:padding="10dp"/>
+            android:padding="10dp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

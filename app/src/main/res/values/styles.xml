@@ -35,5 +35,11 @@
         <item name="android:textColor">#00FF00</item>/>
     </style>
 
+    <style name="gradiente">
+
+        <item name="android:startColor">#145CEC</item>
+        <item name="android:endColor">#0255F9</item>
+
+    </style>
 
 </resources>
