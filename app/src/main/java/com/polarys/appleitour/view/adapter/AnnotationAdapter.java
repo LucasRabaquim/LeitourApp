@@ -1,11 +1,12 @@
 package com.polarys.appleitour.view.adapter;
 
+import static com.polarys.appleitour.helper.IntentHelper.ANNOTATION_SHARED;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,9 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.model.Annotation;
-import com.polarys.appleitour.model.BookApi;
-import com.polarys.appleitour.view.BookInfoActivity;
-import com.squareup.picasso.Picasso;
+import com.polarys.appleitour.view.activity.AnnotationActivity;
 
 import java.util.ArrayList;
 
@@ -44,8 +43,8 @@ public class AnnotationAdapter extends RecyclerView.Adapter<AnnotationAdapter.An
         holder.title.setText(annotation.getAnnotationText());
       //  holder.author.setText(annotations.getAuthors());
         holder.mainLayout.setOnClickListener(view -> {
-            IntentHelper intentHelper = new IntentHelper((Activity) context, "BOOK_KEY");
-      //      intentHelper.nextActivityObj(BookInfoActivity.class,book);
+            IntentHelper intentHelper = new IntentHelper((Activity) context, ANNOTATION_SHARED);
+            intentHelper.nextActivityObj(AnnotationActivity.class,annotation);
         });
 
     }

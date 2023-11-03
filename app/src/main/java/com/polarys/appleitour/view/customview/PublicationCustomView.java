@@ -12,19 +12,19 @@ import androidx.annotation.Nullable;
 
 import com.polarys.appleitour.R;
 
-public class PublicationView extends LinearLayout{
-    public PublicationView(Context context) {
+public class PublicationCustomView extends LinearLayout{
+    public PublicationCustomView(Context context) {
         super(context);
         init(null);
         //   setOnClickListener(this);
 
     }
 
-    public PublicationView(Context context, AttributeSet attrs){
+    public PublicationCustomView(Context context, AttributeSet attrs){
         super(context);
         init(attrs);
     }
-    private ImageView subtract;
+    private ImageView imageCircle;
     private EditText quantity;
     private ImageView icon;
     private TextView text;
@@ -32,14 +32,11 @@ public class PublicationView extends LinearLayout{
 
     private void init(@Nullable AttributeSet attrs) {
         inflate(getContext(), R.layout.adapter_item_publication, this);
-      /*  icon = findViewById(R.id.icon_button_image_view);
-        icon.setImageDrawable(getResources().getDrawable(R.drawable.placeholder));
-        TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.attr_custom_icon);
+        imageCircle = findViewById(R.id.imageCircle_imageView);
+        imageCircle.setImageDrawable(getResources().getDrawable(R.drawable.placeholder));
+        TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.attr_image_circle);
         //imageCircle.setImageDrawable(attributes.getDrawable(R.styleable.BenefitView_image));
-        attributes.recycle();*/
-/*
-        imageCircle.setOnClickListener(view -> {
+        attributes.recycle();
 
-        });*/
     }
 }

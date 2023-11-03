@@ -1,4 +1,4 @@
-package com.polarys.appleitour.view;
+package com.polarys.appleitour.view.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,8 +9,7 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.polarys.appleitour.R;
-import com.polarys.appleitour.helper.IntentHelper;
-import com.polarys.appleitour.view.fragment.BookApiFragment;
+import com.polarys.appleitour.view.fragment.BookSearchFragment;
 import com.polarys.appleitour.view.fragment.SocialFragment;
 
 public class PlaceholderActivity extends AppCompatActivity {
@@ -24,19 +23,19 @@ public class PlaceholderActivity extends AppCompatActivity {
         toolbar = getSupportActionBar();
         BottomNavigationView bottomNavigationView1 = findViewById(R.id.bottom_navigationview);
       //  bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-        loadFragment(new BookApiFragment());
+        loadFragment(new BookSearchFragment());
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationview);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if(item.getItemId() == R.id.nav_saved) // saved bok
-                loadFragment(new BookApiFragment());
+                loadFragment(new BookSearchFragment());
             else if(item.getItemId() == R.id.nav_search)
-                loadFragment(new BookApiFragment());
+                loadFragment(new BookSearchFragment());
             else if(item.getItemId() == R.id.nav_social)
                 loadFragment(new SocialFragment());
             else if(item.getItemId() == R.id.nav_user) //user page
-                loadFragment(new BookApiFragment());
+                loadFragment(new BookSearchFragment());
             return true;
         });
     }

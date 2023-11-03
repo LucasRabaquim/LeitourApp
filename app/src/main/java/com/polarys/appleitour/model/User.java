@@ -1,5 +1,6 @@
 package com.polarys.appleitour.model;
 
+import static com.polarys.appleitour.api.ApiRequest.AUTOLOGIN;
 import static com.polarys.appleitour.api.ApiRequest.SIGN;
 import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 
@@ -98,6 +99,12 @@ public class User implements UserApiInterface {
         ApiThread apiThread = new ApiThread(SIGN,path+"/login",ObjectToString(user));
         return apiThread.CreateThread(apiThread).getJson();
     }
+    public ApiResponse AutoLogin(String token){
+        User user = new User(this.email,this.password);
+        ApiThread apiThread = new ApiThread(AUTOLOGIN,path+"/autologin",null,token);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+
     public ApiResponse Register(){
         User user = new User(this.nameUser,this.email,this.password);
         ApiThread apiThread = new ApiThread(SIGN,path+"/register",ObjectToString(user));

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,9 +26,9 @@ public class IconCustomView extends LinearLayout {
         super(context);
         init(attrs);
     }
-    private ImageView subtract;
+    private ImageButton subtract;
     private EditText quantity;
-    private ImageView icon;
+    private ImageButton icon;
     private TextView text;
 
 
@@ -38,9 +39,6 @@ public class IconCustomView extends LinearLayout {
         TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.attr_custom_icon);
         //imageCircle.setImageDrawable(attributes.getDrawable(R.styleable.BenefitView_image));
         attributes.recycle();
-/*
-        imageCircle.setOnClickListener(view -> {
-
-        });*/
+/* imageCircle.setOnClickListener(view -> { });*/
     }
 }

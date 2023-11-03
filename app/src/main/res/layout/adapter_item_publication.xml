@@ -41,14 +41,14 @@
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:orientation="horizontal">
-                     <Button
-                         android:layout_width="300px"
-                         android:layout_height="200px"
-                         android:text="@string/short_placeholder"/>
-                     <Button
-                         android:layout_width="300px"
-                         android:layout_height="200px"
-                         android:text="@string/short_placeholder"/>
+                     <com.polarys.appleitour.view.customview.IconCustomView
+                         android:id="@+id/publication_likes"
+                         android:layout_width="150dp"
+                         android:layout_height="wrap_content" />
+                     <com.polarys.appleitour.view.customview.IconCustomView
+                         android:id="@+id/publication_like_button"
+                         android:layout_width="150dp"
+                         android:layout_height="wrap_content" />
 
                  </LinearLayout>
              </LinearLayout>

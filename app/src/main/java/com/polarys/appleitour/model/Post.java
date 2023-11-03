@@ -6,28 +6,30 @@ import static com.polarys.appleitour.api.ApiRequest.POST;
 import static com.polarys.appleitour.api.ApiRequest.GETPUBLIC;
 import static com.polarys.appleitour.api.ApiRequest.UPDATE;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 //import com.fasterxml.jackson.annotation.JsonProperty;
 import com.polarys.appleitour.api.ApiThread;
 
-public class Post {
+public class Post implements Serializable {
     private int id;
     private int userId;
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String userName;
+    private String userName = "";
     private String messagePost;
-   // @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private int likes;
-    private Date postDate;
-    private Date alteratedDate;
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private int likes = 0;
+
+    private String postDate = null;
+    private String alteratedDate = null;
 
     public Post() { }
 
-    public Post(int id, int userId, String messagePost, int likes, Date postDate, Date alteratedDate) {
+    public Post(int id, int userId, String messagePost, int likes, String postDate, String alteratedDate) {
         this.id = id;
         this.userId = userId;
         this.messagePost = messagePost;
-        this.likes = likes;
+       // this.likes = likes;
         this.postDate = postDate;
         this.alteratedDate = alteratedDate;
     }
@@ -43,9 +45,9 @@ public class Post {
     public int getUserId() {
         return userId;
     }
-    public String getUserName() {
+   /*public String getUserName() {
         return userName;
-    }
+    }*/
 
     public void setUserId(int userId) {
         this.userId = userId;
@@ -54,54 +56,60 @@ public class Post {
     public String getMessagePost() {
         return messagePost;
     }
+    public String getUserName() {
+        return userName;
+    }
+    public int getLikes() {
+        return likes;
+    }
 
     public void setMessagePost(String messagePost) {
         this.messagePost = messagePost;
     }
 
-    public int getLikes() {
+    /*public int getLikes() {
         return likes;
     }
 
     public void setLikes(int likes) {
         this.likes = likes;
-    }
+    }*/
 
-    public Date getPostDate() {
+    public String getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(Date postDate) {
+    public void setPostDate(String postDate) {
         this.postDate = postDate;
     }
 
-    public Date getAlteratedDate() {
+    public String getAlteratedDate() {
         return alteratedDate;
     }
 
-    public void setAlteratedDate(Date alteratedDate) {
+    public void setAlteratedDate(String alteratedDate) {
         this.alteratedDate = alteratedDate;
     }
 
 
     public ApiResponse GetPosts() {
         ApiThread apiThread;
-        apiThread = new ApiThread(GETPUBLIC, "Post", null);
+        apiThread = new ApiThread(GETPUBLIC, "Posts", null);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse PostPost(String json, String token) {
         ApiThread apiThread;
-        apiThread = new ApiThread(POST, "Post", json,token);
+        apiThread = new ApiThread(POST, "Posts", json,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse UpdatePost(int id,String json, String token) {
         ApiThread apiThread;
-        apiThread = new ApiThread(UPDATE, "Post/"+id, json,token);
+        apiThread = new ApiThread(UPDATE, "Posts/"+id, json,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse DeletePost(int id,String json, String token) {
         ApiThread apiThread;
-        apiThread = new ApiThread(DELETE, "Post/"+id, json,token);
+        apiThread = new ApiThread(DELETE, "Posts/"+id, json,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

@@ -18,16 +18,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".view.PlaceholderActivity"
+            android:name=".view.activity.AnnotationActivity"
             android:exported="false" />
         <activity
-            android:name=".view.adapter.MadddddinActivity"
+            android:name=".activity_saved_book_info"
             android:exported="false" />
         <activity
-            android:name=".PublicationEditActivity"
+            android:name=".view.activity.PlaceholderActivity"
             android:exported="false" />
         <activity
-            android:name=".view.SeePostActivity"
+            android:name=".view.activity.PublicationEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.SeePostActivity"
             android:exported="false" />
         <activity
             android:name=".view.SavedBookActivity"
@@ -37,22 +40,16 @@
             android:exported="false" />
         <activity android:name=".helper.SharedHelper" />
         <activity
-            android:name=".view.RegisterActivity"
+            android:name=".view.activity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".view.BookInfoActivity"
+            android:name=".view.activity.BookInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".view.fragment.BookApiFragment"
+            android:name=".view.fragment.BookSearchFragment"
             android:exported="false" />
         <activity
-            android:name=".view.PlaceHolderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.LoginDummyActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.MainScreenActivity"
+            android:name=".view.activity.LoginDummyActivity"
             android:exported="false" />
 
         <service
@@ -61,7 +58,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

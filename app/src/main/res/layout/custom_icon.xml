@@ -15,7 +15,7 @@
         app:cardCornerRadius="250dp"
         android:layout_gravity="center">
 
-        <ImageView
+        <ImageButton
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:id="@+id/icon_button_image_view"

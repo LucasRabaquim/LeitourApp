@@ -12,14 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.model.BookApi;
-import com.polarys.appleitour.view.BookInfoActivity;
-import com.squareup.picasso.Picasso;
+import com.polarys.appleitour.view.activity.BookInfoActivity;
 
 import java.util.ArrayList;
 public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookHolder> {

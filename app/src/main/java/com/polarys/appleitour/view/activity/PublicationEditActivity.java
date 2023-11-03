@@ -1,4 +1,4 @@
-package com.polarys.appleitour;
+package com.polarys.appleitour.view.activity;
 
 import static com.polarys.appleitour.helper.IntentHelper.EDIT_SHARED;
 import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.Annotation;
 import com.polarys.appleitour.model.Comment;
@@ -44,7 +45,6 @@ public class PublicationEditActivity extends AppCompatActivity {
 
        // Post post = (Post) getIntent().getSerializableExtra(POST_SHARED);
         viewModel = ViewModelProviders.of(this).get(PublicationEditViewModel.class);
-        viewModel.SetContext(this);
         viewModel.SetToken(new SharedHelper(this).GetToken());
 
         /*Set Data*/

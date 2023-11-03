@@ -36,7 +36,7 @@ public class SavedBookAdapter extends RecyclerView.Adapter<SavedBookAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SavedBook book = books.get(position);
         Picasso.get().load(book.getBookCover()).into(holder.cover);
-        holder.title.setText(book.getBookTitle());
+    /*    holder.title.setText(book.getBookTitle());
         holder.author.setText("");
 
  /*       Picasso.get().load(book.getCover()).into(holder.cover);
