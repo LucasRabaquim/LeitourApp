@@ -1,46 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".view.activity.LoginDummyActivity"
     android:orientation="vertical">
+=======
+    android:background="@drawable/gradiente"
+    android:orientation="vertical"
+    tools:context=".view.LoginDummyActivity"
+    tools:visibility="visible">
+>>>>>>> 780fdb0110f2ff64b3bc773e92bef0e34e1ca272
 
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="149dp"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="228dp"
+        android:gravity="top"
+        android:text="Seja Bem-vindo"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="215dp"
+        android:layout_marginEnd="282dp"
+        android:textColor="@color/white"
+        android:text="Email" />
 
     <EditText
         android:id="@+id/etUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:layout_width="312dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="242dp"
+        android:layout_marginEnd="50dp"
         android:hint="Email"
         android:inputType="text"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="12sp"
+        app:cornerRadius="15dp"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="123dp"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername"
-        tools:layout_editor_absoluteX="-16dp" />
+        android:layout_below="@+id/etPassword"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="58dp"
+        android:layout_marginLeft="225dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="254dp"
+        android:layout_toEndOf="@+id/cbKeepLogged"
+        android:gravity="top"
+        android:text="Esqueceu a senha?"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
 
     <CheckBox
         android:id="@+id/cbKeepLogged"
         android:layout_width="wrap_content"
-        android:text="Continuar Logado"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etPassword"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="71dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="235dp"
+        android:button="@drawable/img_checkbox"
+        android:text="Lembrar-se"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:buttonIconTint="#145CEC" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="289dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/etUsername"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginEnd="50dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etUsername"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="282dp"
+        android:text="Senha"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="567dp"
+        android:backgroundTint="@color/white"
         android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnToRegister" />
+        android:textColor="#145CEC"
+        android:textSize="16dp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="513dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginBottom="199dp"
+        android:text="Não possui conta? Registre-se"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="-16dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="471dp"
+        android:scaleX="2"
+        app:srcCompat="@drawable/TopLineVector" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="429dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="-42dp"
+        android:layout_marginBottom="2dp"
+        android:scaleX="2"
+        android:scaleY="1"
+        app:srcCompat="@drawable/BotLineVector" />
+
+
+    <!-- app:layout_constraintTop_toBottomOf="@+id/btnToRegister" /> -->!
+
+
+
+    <!--
     <Button
         android:id="@+id/btnToRegister"
         android:layout_width="match_parent"
@@ -49,5 +208,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
         tools:layout_editor_absoluteX="0dp" />
+        -->!
 
-</LinearLayout>
+</RelativeLayout>

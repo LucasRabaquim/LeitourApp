@@ -6,5 +6,12 @@
     <color name="light_blue_600">#FF039BE5</color>
     <color name="gray_400">#FFBDBDBD</color>
     <color name="gray_600">#FF757575</color>
+<<<<<<< HEAD
     <color name="red">#F00F00</color>
+=======
+    <color name="AzulDefault">#145CEC</color>
+    <color name="AzulSecundary">#00CED1</color>
+
+
+>>>>>>> 780fdb0110f2ff64b3bc773e92bef0e34e1ca272
 </resources>
