@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/message"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="message"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/picture"
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:title="picture"
+        app:showAsAction="always|withText" />
+
+    <item
+        android:id="@+id/mode"
+        android:icon="@android:drawable/ic_menu_call"
+        android:title="mode"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/about"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="calculator"
+        app:showAsAction="never|withText" />
+
+    <item
+        android:id="@+id/exit"
+        android:title="exit"
+        app:showAsAction="never" />
+</menu>

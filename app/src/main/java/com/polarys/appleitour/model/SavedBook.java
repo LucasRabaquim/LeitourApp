@@ -65,20 +65,20 @@ public class SavedBook {
         apiThread = new ApiThread(GET, "savedBook/Annotation/"+id, null,token);
         return apiThread.CreateThread(apiThread).getJson();
     }*/
-   public ApiResponse SetBook(BookApi book, int userId,String token){
+   public ApiResponse SaveBook(BookApi book, int userId,String token){
        ApiThread apiThread;
        SavedBook savedBook = new SavedBook(0,userId,false,book.getKey(),book.getTitle(),book.getCover());
        apiThread = new ApiThread(POST, "SavedBooks", ObjectToString(savedBook),token);
        return apiThread.CreateThread(apiThread).getJson();
    }
     public ApiResponse UnsaveBook(int id,String token){
-        ApiThread apiThread;;
+        ApiThread apiThread;
         apiThread = new ApiThread(DELETE, "SavedBooks/"+id,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse GetSavedBooks(String token){
         ApiThread apiThread;
-        apiThread = new ApiThread(GET, "SavedBooks",token);
+        apiThread = new ApiThread(GET, "SavedBooks",null,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

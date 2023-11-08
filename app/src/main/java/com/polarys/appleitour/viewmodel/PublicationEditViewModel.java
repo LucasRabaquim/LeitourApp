@@ -13,31 +13,27 @@ import com.polarys.appleitour.model.Post;
 import java.util.ArrayList;
 
 
-// TODO: Better explain and understand the porpose of this screen
+// TODO: Better explain and understand the purpose of this screen
 public class PublicationEditViewModel extends BaseViewModel {
 
 
     public ArrayList<Post> loadPosts(){
         ApiResponse apiResponse;
         apiResponse = new Post().GetPosts();
-        Toast.makeText(GetContext(), apiResponse.getBody(), Toast.LENGTH_SHORT).show();
         try {
-            return ApiUtil.JsonToArrayObject(Post[].class, apiResponse.getBody());
+            return (ArrayList<Post>) ApiUtil.JsonToArrayObject(new Post().getClass(), apiResponse.getBody());
         }
         catch(Exception e){
-            Toast.makeText(GetContext(), e.toString(), Toast.LENGTH_SHORT).show();
             return null;
         }
     }
     public int CreatePost(Post post){
         ApiResponse apiResponse;
         apiResponse = new Post().PostPost(ApiUtil.ObjectToString(post),GetToken());
-        Toast.makeText(GetContext(), apiResponse.getBody(), Toast.LENGTH_SHORT).show();
         try {
             return apiResponse.getCode();
         }
         catch(Exception e){
-            Toast.makeText(GetContext(), e.toString(), Toast.LENGTH_SHORT).show();
             return -1;
         }
     }
@@ -45,12 +41,10 @@ public class PublicationEditViewModel extends BaseViewModel {
     public int UpdatePost(Post post){
         ApiResponse apiResponse;
         apiResponse = new Post().UpdatePost(post.getId(),ApiUtil.ObjectToString(post),GetToken());
-        Toast.makeText(GetContext(), apiResponse.getBody(), Toast.LENGTH_SHORT).show();
         try {
             return apiResponse.getCode();
         }
         catch(Exception e){
-            Toast.makeText(GetContext(), e.toString(), Toast.LENGTH_SHORT).show();
             return -1;
         }
     }
@@ -58,12 +52,10 @@ public class PublicationEditViewModel extends BaseViewModel {
     public ArrayList<Comment> loadComments(int id){
         ApiResponse apiResponse;
         apiResponse = new Comment().GetComments(id);
-        Toast.makeText(GetContext(), apiResponse.getBody(), Toast.LENGTH_SHORT).show();
         try {
-            return ApiUtil.JsonToArrayObject(Comment[].class, apiResponse.getBody());
+            return (ArrayList<Comment>) ApiUtil.JsonToArrayObject(Comment.class, apiResponse.getBody());
         }
         catch(Exception e){
-            Toast.makeText(GetContext(), e.toString(), Toast.LENGTH_SHORT).show();
             return null;
         }
     }

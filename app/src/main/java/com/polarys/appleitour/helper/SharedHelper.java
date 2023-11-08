@@ -66,6 +66,10 @@ public class SharedHelper extends AppCompatActivity {
         editor.apply();
     }
     public User GetUser(){
-        return (User) JsonToObject(User.class,settings.getString(USER, ""));
+        return (User) JsonToObject(new User(),settings.getString(USER, ""));
+    }
+    public int GetId(){
+        User user = (User) JsonToObject(new User(),settings.getString(USER, ""));
+        return user.getId();
     }
 }

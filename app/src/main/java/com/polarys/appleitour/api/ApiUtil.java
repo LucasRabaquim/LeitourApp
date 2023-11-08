@@ -4,28 +4,24 @@
 
 package com.polarys.appleitour.api;
 
-import java.util.*;
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.widget.Toast;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.polarys.appleitour.model.User;
-
-import org.json.JSONObject;
+import com.polarys.appleitour.model.Annotation;
+import com.polarys.appleitour.model.BookApi;
+import com.polarys.appleitour.model.Post;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-
-import okhttp3.MediaType;
+import java.util.Arrays;
+import java.util.List;
 
 public final class ApiUtil {
     public static boolean verifyConectivity(Context context){
         final ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connMgr == null)
-            Toast.makeText(context, "Verifique sua conexão", Toast.LENGTH_SHORT).show();
         return connMgr != null;
     }
     public static String ObjectToString(Object object){
@@ -38,11 +34,18 @@ public final class ApiUtil {
         return gson.fromJson(json, object.getClass());
     }
 
-    public static <T> ArrayList<T> JsonToArrayObject(Class<T[]> clazz, String json){
+    public static ArrayList<?> JsonToArrayObject(Class<?> cls, String json){
         Gson gson = new Gson();
-        T[] arr = new Gson().fromJson(json, clazz);
-        return new ArrayList<>(Arrays.asList(arr));
+        Type type = TypeToken.getParameterized(ArrayList.class, cls).getType();
+        ArrayList<?> arrayList = gson.fromJson(json, type);
+        return arrayList;
     }
+    /*
+    ArrayItem[] userArray = new Gson().fromJson(jsonSource, ArrayItem[].class);
+
+      Type userListType = new TypeToken<ArrayList<User>>(){}.getType();
+    ArrayList<ArrayItem> list = gson.fromJson(jsonSource, listType);
+    * */
 
 
 }

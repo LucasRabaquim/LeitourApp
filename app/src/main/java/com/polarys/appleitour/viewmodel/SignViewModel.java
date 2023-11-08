@@ -1,18 +1,10 @@
 package com.polarys.appleitour.viewmodel;
 
 import static android.app.PendingIntent.getActivity;
-import static com.polarys.appleitour.api.ApiUtil.JsonToObject;
-import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
-import static com.polarys.appleitour.helper.SharedHelper.getContext;
-
-import android.app.Activity;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
 import com.polarys.appleitour.model.ApiResponse;
-import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.User;
 
 import org.json.JSONException;
@@ -20,51 +12,45 @@ import org.json.JSONObject;
 
 public class SignViewModel extends ViewModel {
 
-    public User user;
-    private Activity context;
-    private boolean keepLogged;
-
+    public final static String SUCCESS = "SUCCESS";
     public SignViewModel() {}
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public void setKeepLogged(Boolean keepLogged) {
-        this.keepLogged = keepLogged;
-    }
-
-    public String getEmail() {
-        return user.getEmail();
-    }//user.getEmail();}
-    public String getPassword() {
-        return user.getPassword();
-    }//user.getPassword();}
-
-    public void setContext(Activity context) {
-        this.context = context;
-    }
-
-    public String[] login() throws JSONException {
+    public String[] login(User user) throws JSONException {
         ApiResponse apiResponse = user.Login();
-        if (apiResponse.getCode() != 200) {
-            Toast.makeText(context, apiResponse.getBody(), Toast.LENGTH_SHORT).show();
-            return null;
-        }
+        if (apiResponse.getCode() != 200)
+            return new String[]{apiResponse.getBody(), null};
         return formatUser(apiResponse.getBody());
     }
 
-    public String[] register() throws JSONException {
+    public String[] register(User user) throws JSONException {
         ApiResponse apiResponse = user.Register();
-        if (apiResponse.getCode() != 200) {
-            Toast.makeText(context, apiResponse.getBody(), Toast.LENGTH_SHORT).show();
-            Log.d("ERRO:", apiResponse.getBody());
-            return null;
-        }
+        if (apiResponse.getCode() != 200)
+            return new String[]{apiResponse.getBody(), null};
         return formatUser(apiResponse.getBody());
     }
     private String[] formatUser(String apiUser) throws JSONException {
         JSONObject jsonResponse = new JSONObject(apiUser);
         JSONObject jsonUser = jsonResponse.getJSONObject("user");
         return new String[]{jsonUser.toString(), jsonResponse.getString("token")};
+    }
+
+    public String VerifyField(String username, String email, String pasword, String passwordCompare){
+        if(username.isEmpty())
+            return "Preencha o campo usuario";
+        String verifyEmailPassword = VerifyField(email, pasword);
+        if(verifyEmailPassword != SUCCESS)
+            return verifyEmailPassword;
+        if(passwordCompare.isEmpty())
+            return "Preencha a senha para ser comparada";
+        if(passwordCompare != passwordCompare)
+            return "As senhas precisam ser iguais";
+        return SUCCESS;
+    }
+    public String VerifyField(String email, String pasword){
+        if(email.isEmpty())
+            return "Preencha o campo email";
+        if(pasword.isEmpty())
+            return "Preencha o campo senha";
+        else
+            return SUCCESS;
     }
 }

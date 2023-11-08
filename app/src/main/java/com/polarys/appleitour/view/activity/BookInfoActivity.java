@@ -1,4 +1,4 @@
-package com.polarys.appleitour.view;
+package com.polarys.appleitour.view.activity;
 
 import static com.polarys.appleitour.api.ApiUtil.JsonToArrayObject;
 import static com.polarys.appleitour.api.ApiUtil.JsonToObject;
@@ -54,7 +54,7 @@ public class BookInfoActivity extends AppCompatActivity {
             int userId = sharedHelper.GetUser().getId();
             String token = sharedHelper.GetToken();
             SavedBook savedBook = new SavedBook();
-            ApiResponse apiResponse = savedBook.SetBook(book,userId,token);
+            ApiResponse apiResponse = savedBook.SaveBook(book,userId,token);
             Toast.makeText(this, apiResponse.getBody(), Toast.LENGTH_SHORT).show();
         });
 
@@ -62,15 +62,14 @@ public class BookInfoActivity extends AppCompatActivity {
     private void setViewData(){
         ImageView backgroundCover = findViewById(R.id.book_background);
         ImageView bookCover = findViewById(R.id.book_cover);
-        ViewHelper viewHelper = new ViewHelper(this);
-        viewHelper.setTextOfView(R.id.book_title,book.getTitle());
-        viewHelper.setTextOfView(R.id.book_author,book.getAuthors());
-        viewHelper.setTextOfView(R.id.book_publisher,book.getPublisher());
-        viewHelper.setTextOfView(R.id.book_year,book.getPublishedDate());
-        viewHelper.setTextOfView(R.id.txt_book_sinopse,book.getDescription());
-        viewHelper.setTextOfView(R.id.book_language,book.getLanguage());
-        viewHelper.setTextOfView(R.id.book_pages,String.valueOf(book.getPages()));
-        viewHelper.setTextOfView(R.id.book_year,book.getPublishedDate());
-        Picasso.get().load(book.getCover()).into(bookCover);
+        ViewHelper.setTextOfView(this,R.id.book_title,book.getTitle());
+        ViewHelper.setTextOfView(this,R.id.book_author,book.getAuthors());
+        ViewHelper.setTextOfView(this,R.id.book_publisher,book.getPublisher());
+        ViewHelper.setTextOfView(this,R.id.book_year,book.getPublishedDate());
+        ViewHelper.setTextOfView(this,R.id.txt_book_sinopse,book.getDescription());
+        ViewHelper.setTextOfView(this,R.id.book_language,book.getLanguage());
+        ViewHelper.setTextOfView(this,R.id.book_pages,String.valueOf(book.getPages()));
+        ViewHelper.setTextOfView(this,R.id.book_year,book.getPublishedDate());
+//        Picasso.get().load(book.getCover()).into(bookCover);
     }
 }

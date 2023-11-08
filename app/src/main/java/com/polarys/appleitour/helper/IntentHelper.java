@@ -14,7 +14,9 @@ public class IntentHelper extends AppCompatActivity {
     public final static String SAVED_SHARED = "SAVED_BOOK_SHARED";
     public final static String POST_SHARED = "POST_SHARED";
     public final static String PUBLICATION_SHARED = "PUBLICATION_SHARED";
+    public final static String ANNOTATION_SHARED = "ANNOTATION_SHARED";
     public final static String EDIT_SHARED = "EDIT_SHARED";
+    public final static String MODE_SHARED = "MODE_SHARED";
     public final static String COMMENT_SHARED = "COMMENT_SHARED";
     static String EXTRA_KEY;
 
@@ -30,19 +32,19 @@ public class IntentHelper extends AppCompatActivity {
     }
 
     public void nextActivity(Class nextScreen){
-        activity.finish();
+//        activity.finish();
         Intent intent = new Intent(activity, nextScreen);
         activity.startActivity(intent);
     }
     public void nextActivity(Class nextScreen,String data){
-        activity.finish();
+  //      activity.finish();
         Intent intent = new Intent(activity, nextScreen);
         intent.putExtra(EXTRA_KEY, data);
         activity.startActivity(intent);
     }
 
     public void nextActivityObj(Class nextScreen,Object data){
-        activity.finish();
+       // activity.finish();
         Intent intent = new Intent(activity, nextScreen);
         intent.putExtra(EXTRA_KEY, (Serializable) data);
         activity.startActivity(intent);

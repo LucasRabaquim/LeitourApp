@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace = "com.polarys.appleitour"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         applicationId = "com.polarys.appleitour"
         minSdk = 29
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -41,6 +41,10 @@ android {
 
 dependencies {
 
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.6.2")
     annotationProcessor ("android.arch.lifecycle:compiler:1.1.1")
     implementation ("android.arch.lifecycle:viewmodel:1.1.1")
     implementation ("android.arch.lifecycle:extensions:1.1.1")
@@ -59,5 +63,6 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.github.abdularis:circularimageview:1.5")
     implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.core:core:1.2.0")
   //  implementation("com.fasterxml.jackson.core:jackson-annotations")
 }

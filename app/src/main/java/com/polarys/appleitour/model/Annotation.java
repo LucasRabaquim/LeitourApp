@@ -1,6 +1,8 @@
 package com.polarys.appleitour.model;
 
 import static com.polarys.appleitour.api.ApiRequest.GET;
+import static com.polarys.appleitour.api.ApiRequest.POST;
+import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +10,7 @@ import android.content.Context;
 import com.polarys.appleitour.api.ApiThread;
 import com.polarys.appleitour.helper.SharedHelper;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import kotlin.jvm.Transient;
@@ -16,12 +19,17 @@ public class Annotation {
     private int annotationId;
     private int savedBookId;
     private String annotationText;
-    private Date createdDate;
-    private Date alteratedDate;
+    private LocalDateTime createdDate = null;
+    private LocalDateTime alteratedDate = null;
 
     public Annotation() {}
 
-    public Annotation(int annotationId, int savedBookId, String annotationText, Date createdDate, Date alteratedDate) {
+    public Annotation(int savedBookId, String annotationText) {
+        this.annotationId = 0;
+        this.savedBookId = savedBookId;
+        this.annotationText = annotationText;
+    }
+    public Annotation(int annotationId, int savedBookId, String annotationText, LocalDateTime createdDate, LocalDateTime alteratedDate) {
         this.annotationId = annotationId;
         this.savedBookId = savedBookId;
         this.annotationText = annotationText;
@@ -53,25 +61,21 @@ public class Annotation {
         this.annotationText = annotationText;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getAlteratedDate() {
-        return alteratedDate;
-    }
-
-    public void setAlteratedDate(Date alteratedDate) {
-        this.alteratedDate = alteratedDate;
-    }
-
     public ApiResponse getAnnotations(int id,String token){
         ApiThread apiThread;
         apiThread = new ApiThread(GET, "savedBook/Annotation/"+id,token);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+
+    public ApiResponse createAnnotation(Annotation annotation,String token){
+        ApiThread apiThread;
+        apiThread = new ApiThread(POST, "api/savedBook/"+annotation.getSavedBookId(),ObjectToString(annotation),token);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+
+    public ApiResponse updateAnnotation(Annotation annotation,String token){
+        ApiThread apiThread;
+        apiThread = new ApiThread(POST, "api/Annotation/"+annotation.getAnnotationId(),ObjectToString(annotation),token);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }
