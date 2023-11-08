@@ -48,9 +48,10 @@ public class BookSearchFragment extends Fragment {
         apiBookAdapter = new ApiBookAdapter(books,getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(apiBookAdapter);
+        searchBar = view.findViewById(R.id.searchBookBar);
         btnSearchBook = view.findViewById(R.id.btn_SearchBook);
         btnSearchBook.setOnClickListener(v ->{
-            String bookQuery = "Harry Potter";//searchBar.getText().toString();
+            String bookQuery = searchBar.getText().toString();
             ArrayList<BookApi> bookList = viewModel.search(TITLE,bookQuery);
             if(bookList == null)
                 return;

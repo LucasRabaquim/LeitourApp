@@ -38,7 +38,7 @@ public class SavedBookFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         viewModel = ViewModelProviders.of(this).get(SavedBookViewModel.class);
         ArrayList<SavedBook> books = new ArrayList<>();
-        recyclerView = view.findViewById(R.id.recycler_social);
+        recyclerView = view.findViewById(R.id.recycler_returned_books);
         adapter = new SavedBookAdapter(getActivity(), books);
         int columns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),columns));

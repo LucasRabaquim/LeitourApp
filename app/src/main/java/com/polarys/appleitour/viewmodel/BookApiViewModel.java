@@ -1,5 +1,6 @@
 package com.polarys.appleitour.viewmodel;
 
+import static com.polarys.appleitour.api.ApiRequest.DEBUG;
 import static com.polarys.appleitour.api.ApiRequest.GET;
 import static com.polarys.appleitour.api.ApiRequest.GETPUBLIC;
 import static com.polarys.appleitour.model.BookApi.TITLE;
@@ -24,7 +25,8 @@ public class BookApiViewModel extends ViewModel {
     public BookApiViewModel() {}
 
     public ArrayList search(String title, String query){
-        ApiResponse apiResponse;
+
+        ApiResponse apiResponse = new BookApi().GetByTitle(query);
         switch (title) {
             case TITLE:
                 apiResponse = new BookApi().GetByTitle(query);
@@ -39,9 +41,9 @@ public class BookApiViewModel extends ViewModel {
                 return null;
         }
         ApiThread apiThread;
-        //apiThread = new ApiThread(GETPUBLIC, "/SearchBy/"+TITLE + "/" + query);
-        ApiRequest api = new ApiRequest();
-        apiResponse = api.get("http://localhost:5126/api/SearchBy/Title/"+query);//apiThread.CreateThread(apiThread).getJson();
+      //  apiThread = new ApiThread(DEBUG, "http://localhost:5126/api/SearchBy/Title/Harry",null);
+       // ApiRequest api = new ApiRequest();
+      //  apiResponse = apiThread.CreateThread(apiThread).getJson();
         Log.d("Antes",apiResponse.getBody());
 
 

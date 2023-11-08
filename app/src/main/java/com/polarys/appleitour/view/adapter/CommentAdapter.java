@@ -4,6 +4,7 @@ import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,8 +33,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
 
     @Override
     public CommentAdapter.CommentHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        PublicationCustomView itemView = new PublicationCustomView(parent.getContext());
-        return new CommentHolder(itemView);
+        return new CommentAdapter.CommentHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.adapter_item_publication, parent, false));
     }
 
     @Override

@@ -70,6 +70,6 @@ public class BookInfoActivity extends AppCompatActivity {
         ViewHelper.setTextOfView(this,R.id.book_language,book.getLanguage());
         ViewHelper.setTextOfView(this,R.id.book_pages,String.valueOf(book.getPages()));
         ViewHelper.setTextOfView(this,R.id.book_year,book.getPublishedDate());
-        Picasso.get().load(book.getCover()).into(bookCover);
+//        Picasso.get().load(book.getCover()).into(bookCover);
     }
 }

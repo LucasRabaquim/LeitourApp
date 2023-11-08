@@ -43,7 +43,7 @@
     
     <style name="checkbox_colorida" parent="Theme.AppCompat.Light">
 
-        <item name="colorAccent">@drawable/gradiente</item>
+        <item name="colorAccent">@drawable/login_gradient</item>
         <item name="android:textColorSecondary">@android:color/white</item>
     </style>
 

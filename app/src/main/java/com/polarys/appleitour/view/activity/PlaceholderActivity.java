@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.view.fragment.BookSearchFragment;
+import com.polarys.appleitour.view.fragment.SavedBookFragment;
 import com.polarys.appleitour.view.fragment.SocialFragment;
 
 public class PlaceholderActivity extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class PlaceholderActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationview);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if(item.getItemId() == R.id.nav_saved) // saved bok
-                loadFragment(new BookSearchFragment());
+                loadFragment(new SavedBookFragment());
             else if(item.getItemId() == R.id.nav_search)
                 loadFragment(new BookSearchFragment());
             else if(item.getItemId() == R.id.nav_social)
@@ -45,5 +46,6 @@ public class PlaceholderActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.placeholder_framelayout,fragment);
         fragmentTransaction.commit();
     }
+
 
 }

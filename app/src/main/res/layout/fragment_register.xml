@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activity.RegisterActivity">
+    tools:context=".view.fragment.RegisterFragment">
 
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/edit_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
@@ -18,28 +18,28 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/edit_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/name"
         android:inputType="textEmailAddress"
         app:layout_constraintTop_toBottomOf="@+id/etFullName" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/edit_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_email" />
 
     <EditText
-        android:id="@+id/etRepeatPassword"
+        android:id="@+id/edit_compare_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/repeat_password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_password" />
 
     <CheckBox
         android:id="@+id/cbKeepLogged"
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:text="Switch to login"
-        app:layout_constraintTop_toBottomOf="@+id/etRepeatPassword"
+        app:layout_constraintTop_toBottomOf="@+id/edit_compare_password"
         tools:layout_editor_absoluteX="0dp" />
 
 </LinearLayout>

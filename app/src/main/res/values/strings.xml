@@ -13,5 +13,14 @@
     <string name="userPassword">Senha do usuário</string>
     <string name="publicationMessage">Message</string>
     <string name="publicationShare">Compartilhar</string>
+    <string name="seja_bem_vindo">Seja Bem-vindo</string>
+    <string name="email">Email</string>
+    <string name="name">Nome</string>
+    <string name="password">Senha</string>
+    <string name="esqueceu_senha">Esqueceu a senha?</string>
+    <string name="lembrar_senha">Continuar Logado</string>
+    <string name="sem_conta">Não possui conta? Registre-se</string>
+    <string name="login">Login</string>
+    <string name="repeat_password">Repita a senha\n</string>
 
 </resources>

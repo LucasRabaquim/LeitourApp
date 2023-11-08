@@ -1,6 +1,7 @@
 package com.polarys.appleitour.api;
 
 import static com.polarys.appleitour.api.ApiRequest.AUTOLOGIN;
+import static com.polarys.appleitour.api.ApiRequest.DEBUG;
 import static com.polarys.appleitour.api.ApiRequest.DELETE;
 import static com.polarys.appleitour.api.ApiRequest.GET;
 import static com.polarys.appleitour.api.ApiRequest.GETPUBLIC;
@@ -72,6 +73,9 @@ public class ApiThread implements Runnable {
                 break;
             case DELETE:
                 result = api.delete(url,token);
+                break;
+            case DEBUG:
+                result = api.debug(url);
                 break;
             default:
                 System.out.println("Invalid day of the week");

@@ -78,7 +78,7 @@ public class SavedBook {
     }
     public ApiResponse GetSavedBooks(String token){
         ApiThread apiThread;
-        apiThread = new ApiThread(GET, "SavedBooks",token);
+        apiThread = new ApiThread(GET, "SavedBooks",null,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

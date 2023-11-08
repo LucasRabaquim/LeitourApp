@@ -117,17 +117,17 @@ public class BookApi implements Serializable, BookApiInterface {
 
     public ApiResponse GetByTitle(String search) {
         ApiThread apiThread;
-        apiThread = new ApiThread(GETPUBLIC, "/SearchBy/"+TITLE + "/" + search, null);
+        apiThread = new ApiThread(GETPUBLIC, "SearchBy/"+TITLE + "/" + search);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse GetByAuthor(String search) {
         ApiThread apiThread;
-        apiThread = new ApiThread(GETPUBLIC, "/SearchBy/"+AUTHOR + "/" + search, null);
+        apiThread = new ApiThread(GETPUBLIC, "SearchBy/"+AUTHOR + "/" + search, null);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse GetByKey(String search) {
         ApiThread apiThread;
-        apiThread = new ApiThread(GET, "/SearchBy/key/" + search, null);
+        apiThread = new ApiThread(GET, "SearchBy/key/" + search, null);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

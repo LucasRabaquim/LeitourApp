@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class ViewHelper extends AppCompatActivity {
 
+
     public static void setTextOfView(Activity activity, int id, String text){
         TextView textView = (TextView) activity.findViewById(id);
         textView.setText(text);

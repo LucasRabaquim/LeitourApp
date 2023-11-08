@@ -1,6 +1,8 @@
 package com.polarys.appleitour.model;
 
+import static com.polarys.appleitour.api.ApiRequest.DEBUG;
 import static com.polarys.appleitour.api.ApiRequest.GETPUBLIC;
+import static com.polarys.appleitour.api.ApiRequest.POST;
 
 
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -11,13 +13,22 @@ public class Comment {
     private int commentId;
     private int userId;
   //  @JsonIgnore
-    private String userName;
+    private String userName ="";
     private int postId;
     private String messagePost;
+    //private String postDate = "";
     private String postDate;
     private String alteratedDate;
 
     public Comment() { }
+    public Comment(int userId, int postId, String messagePost) {
+        this.commentId = 0;
+        this.userId = userId;
+        this.postId = postId;
+        this.messagePost = messagePost;
+        this.postDate = null;
+        this.alteratedDate = null;
+    }
     public Comment(int commentId, int userId, int postId, String messagePost, String postDate, String alteratedDate) {
         this.commentId = commentId;
         this.userId = userId;
@@ -80,7 +91,12 @@ public class Comment {
 
     public ApiResponse GetComments(int id){
         ApiThread apiThread;
-        apiThread = new ApiThread(GETPUBLIC, "Posts/Comment/"+id);
+        apiThread = new ApiThread(DEBUG, "http://localhost:5126/api/Posts/Comment/1");
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+    public ApiResponse PostComment(String json, String token) {
+        ApiThread apiThread;
+        apiThread = new ApiThread(POST, "Comment", json,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

@@ -9,6 +9,7 @@ import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.User;
+import com.polarys.appleitour.view.fragment.LoginFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedHelper sharedHelper = new SharedHelper(this);
         boolean logged = sharedHelper.GetKeepLogged();
+      /*  IntentHelper inteontHelper = new IntentHelper(this);
+        inteontHelper.nextActivity(PlaceholderActivity.class);*/
         if(logged){
             String token = sharedHelper.GetToken();
             ApiResponse response = new User().AutoLogin(token);
@@ -26,9 +29,15 @@ public class MainActivity extends AppCompatActivity {
                 IntentHelper intentHelper = new IntentHelper(this);
                 intentHelper.nextActivity(PlaceholderActivity.class);
                 finish();
+            }else{
+                finish();
+                IntentHelper intentHelper = new IntentHelper(this);
+                intentHelper.nextActivity(SignActivity.class);
             }
-        }
+        }else {
+            finish();
             IntentHelper intentHelper = new IntentHelper(this);
-            intentHelper.nextActivity(LoginDummyActivity.class);
+            intentHelper.nextActivity(SignActivity.class);
+        }
     }
 }

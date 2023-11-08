@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" >
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" android:configChanges="orientation|screenSize|keyboardHidden" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" android:configChanges="orientation|screenSize|keyboardHidden" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" android:configChanges="orientation|screenSize|keyboardHidden" />
 
     <application
         android:allowBackup="true"
@@ -18,60 +18,52 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31" >
         <activity
-            android:name=".Post"
-            android:exported="false" />
-        <activity
             android:name=".view.activity.AnnotationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity_saved_book_info"
-            android:exported="false" />
+            android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".view.activity.PlaceholderActivity"
-            android:exported="false" />
+            android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".view.activity.PublicationEditActivity"
-            android:exported="false" />
+            android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".view.activity.SeePostActivity"
-            android:exported="false" />
+            android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
-            android:name=".view.SavedBookActivity"
-            android:exported="false" />
+            android:name=".view.fragment.SavedBookFragment"
+            android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity
+            android:name=".view.activity.SignActivity"
+            android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".view.fragment.SocialFragment"
-            android:exported="false" />
-        <activity android:name=".helper.SharedHelper" />
+            android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".helper.SharedHelper" android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
-            android:name=".view.activity.RegisterActivity"
-            android:exported="false" />
+            android:name=".view.fragment.RegisterFragment"
+            android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".view.activity.BookInfoActivity"
-            android:exported="false" />
+            android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".view.fragment.BookSearchFragment"
-            android:exported="false" />
+            android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
-            android:name=".view.activity.LoginDummyActivity"
-            android:exported="false" />
+            android:name=".view.fragment.LoginFragment"
+            android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden" />
 
         <service
             android:name=".api.ApiRequest"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true" android:configChanges="orientation|screenSize|keyboardHidden" />
 
         <activity
-<<<<<<< HEAD
             android:name=".view.activity.MainActivity"
             android:exported="true">
-=======
-            android:name=".view.MainActivity"
-            android:exported="true" >
->>>>>>> 780fdb0110f2ff64b3bc773e92bef0e34e1ca272
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" android:configChanges="orientation|screenSize|keyboardHidden" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" android:configChanges="orientation|screenSize|keyboardHidden" />
             </intent-filter>
         </activity>
     </application>

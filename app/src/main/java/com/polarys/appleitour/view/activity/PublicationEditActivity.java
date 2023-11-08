@@ -1,5 +1,6 @@
 package com.polarys.appleitour.view.activity;
 
+import static com.polarys.appleitour.helper.IntentHelper.COMMENT_SHARED;
 import static com.polarys.appleitour.helper.IntentHelper.EDIT_SHARED;
 import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
 import static com.polarys.appleitour.helper.IntentHelper.PUBLICATION_SHARED;
@@ -25,12 +26,16 @@ public class PublicationEditActivity extends AppCompatActivity {
     private Button btn_save_edit;
     private Button btn_cancel;
     private Object publication;
+    Object object;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publication_edit);
+
+            object = getIntent().getSerializableExtra(POST_SHARED);
+
 //        btn_save_edit = findViewById(R.id.btn_save_edit);
   //      btn_cancel = findViewById(R.id.btn_cancel);
         Comparable publication = (Comparable) getIntent().getSerializableExtra(POST_SHARED);

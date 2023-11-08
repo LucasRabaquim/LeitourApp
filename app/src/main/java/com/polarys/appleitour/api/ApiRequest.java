@@ -16,9 +16,11 @@ import okhttp3.Response;
 public class ApiRequest {
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     static final String API_URL = "http://localhost:5126/api/";
+
     static final String TOKEN = "token";
     static final String USER_TOKEN = null;
     public static final String GET = "GET";
+    public static final String DEBUG = "DEBUG";
     public static final String GETPUBLIC = "GETPUBLIC";
     public static final String POST = "POST";
     public static final String SIGN = "SIGN";
@@ -50,6 +52,14 @@ public class ApiRequest {
         Request request = new Request.Builder()
                 .url(API_URL+path)
                 .post(body)
+                .build();
+        return request(request);
+    }
+
+    public ApiResponse debug(String path){
+        Request request = new Request.Builder()
+                .url(path)
+                .get()
                 .build();
         return request(request);
     }
