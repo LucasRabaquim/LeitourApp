@@ -6,20 +6,20 @@
         <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_saved"
-                android:icon="@drawable/placeholder"
-                android:title="Salvo" />
+                android:icon="@drawable/homevector"
+                android:title="Home" />
             <item
-                android:id="@+id/nav_search"
-                android:icon="@drawable/placeholder"
-                android:title="Pesquisa" />
+                android:id="@+id/nav_categoria"
+                android:icon="@drawable/categoriavector"
+                android:title="Categoria" />
             <item
-                android:id="@+id/nav_social"
-                android:icon="@drawable/placeholder"
-                android:title="Social" />
+                android:id="@+id/nav_favoritos"
+                android:icon="@drawable/heartvector"
+                android:title="Favoritos" />
             <item
                 android:id="@+id/nav_user"
-                android:icon="@drawable/placeholder"
-                android:title="usuario" />
+                android:icon="@drawable/uservector"
+                android:title="Perfil" />
         </group>
 
 </menu>
