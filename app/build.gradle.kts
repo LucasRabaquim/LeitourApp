@@ -21,14 +21,16 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-   /* sourceSets.getByName("main") {
-        // java.srcDir("src/main/res/layouts/activities")
-        // java.srcDir("src/main/res/layouts/fragments")
-        // java.srcDir("src/main/res/layouts/adapters")
-        // java.srcDir("src/main/res/layouts/customviews")
-        //java.srcDir("src/main/res/layouts")
-        java.srcDir("src/main/res")
-    }*/
+    sourceSets.getByName("main") {
+        /*java.srcDir("src/main/res/layouts/activities")
+        java.srcDir("src/main/res/layouts/fragments")
+        java.srcDir("src/main/res/layouts/adapters")*/
+     //   java.srcDir("src/main/res/layouts/customviews")
+        java.srcDir("src/main/res/resources")
+      //  java.srcDir("src/main/res/resources/layouts")
+      //  java.srcDir("src/main/res")
+        //
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

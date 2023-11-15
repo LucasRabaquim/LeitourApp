@@ -18,6 +18,9 @@ public class IntentHelper extends AppCompatActivity {
     public final static String EDIT_SHARED = "EDIT_SHARED";
     public final static String MODE_SHARED = "MODE_SHARED";
     public final static String COMMENT_SHARED = "COMMENT_SHARED";
+    public final static String FROM_ACTIVITY_KEY = "FROM_ACTIVITY_KEY";
+    public final static String FROM_BOOKSEARCH = "FROM_BOOKSEARCH";
+    public final static String FROM_SAVEDBOOK = "FROM_SAVEDBOOK";
     static String EXTRA_KEY;
 
     private Activity activity;
