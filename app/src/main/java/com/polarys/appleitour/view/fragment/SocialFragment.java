@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.Post;
 import com.polarys.appleitour.view.adapter.PostAdapter;
 import com.polarys.appleitour.viewmodel.SocialViewModel;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class SocialFragment extends Fragment {
 
     private SocialViewModel viewModel;
+
     private RecyclerView recyclerView;
     private PostAdapter adapter;
     public SocialFragment(){}
@@ -40,7 +42,10 @@ public class SocialFragment extends Fragment {
         viewModel = ViewModelProviders.of(this).get(SocialViewModel.class);
         ArrayList<Post> posts = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recycler_social);
-        adapter = new PostAdapter(posts,getActivity());
+        SharedHelper sharedHelper = new SharedHelper(getContext());
+        String token = sharedHelper.GetToken();
+        int id = sharedHelper.GetId();
+        adapter = new PostAdapter(posts,getActivity(),id,token);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         ArrayList<Post> arrayList = viewModel.loadPosts();

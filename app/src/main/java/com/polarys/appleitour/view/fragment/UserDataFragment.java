@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.User;
+import com.polarys.appleitour.viewmodel.UserDataViewModel;
 
 public class UserDataFragment extends Fragment {
 

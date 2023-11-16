@@ -57,6 +57,10 @@ public class BookApi implements Serializable, BookApiInterface {
     public String getPublisher() {
         return publisher;
     }
+    public String getIsbn10() {
+        return isbn10;
+    }
+
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
@@ -127,7 +131,7 @@ public class BookApi implements Serializable, BookApiInterface {
     }
     public ApiResponse GetByKey(String search) {
         ApiThread apiThread;
-        apiThread = new ApiThread(GET, "SearchBy/key/" + search, null);
+        apiThread = new ApiThread(GETPUBLIC, "SearchBy/Key/" + search);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

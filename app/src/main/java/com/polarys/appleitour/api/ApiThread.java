@@ -10,6 +10,7 @@ import static com.polarys.appleitour.api.ApiRequest.SIGN;
 import static com.polarys.appleitour.api.ApiRequest.UPDATE;
 import com.polarys.appleitour.model.ApiResponse;
 
+
 import org.json.JSONObject;
 
 public class ApiThread implements Runnable {
@@ -19,6 +20,7 @@ public class ApiThread implements Runnable {
     private static String json;
     private static String token;
     private volatile ApiResponse result;
+  //  private JProgressBar progressBar;
 
     public ApiThread(String method,String url){
         this.method = method;
@@ -40,6 +42,7 @@ public class ApiThread implements Runnable {
     }
 
     public ApiThread CreateThread(ApiThread apiThread){
+  //      progressBar.setIndeterminate(true);
         Thread thread = new Thread(apiThread);
         thread.start();
         try {
@@ -51,6 +54,7 @@ public class ApiThread implements Runnable {
     }
     @Override
     public void run() {
+
         ApiRequest api = new ApiRequest();
         switch (method) {
             case GETPUBLIC:
@@ -80,9 +84,13 @@ public class ApiThread implements Runnable {
             default:
                 System.out.println("Invalid day of the week");
         }
-    }
 
+    }
+ /*   private void updateProgressBar(int value) {
+        SwingUtilities.invokeLater(() -> progressBar.setValue(value));
+    }*/
     public ApiResponse getJson() {
         return result;
     }
+
 }

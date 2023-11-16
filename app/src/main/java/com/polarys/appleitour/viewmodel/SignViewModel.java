@@ -4,6 +4,7 @@ import static android.app.PendingIntent.getActivity;
 
 import androidx.lifecycle.ViewModel;
 
+import com.polarys.appleitour.helper.RegexHelper;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.User;
 
@@ -36,6 +37,9 @@ public class SignViewModel extends ViewModel {
     public String VerifyField(String username, String email, String pasword, String passwordCompare){
         if(username.isEmpty())
             return "Preencha o campo usuario";
+      /*  RegexHelper regexHelper = new RegexHelper();
+        if(!regexHelper.verifyUserName(username))
+            return "O nome só pode conter letras, números underscore e ponto";*/
         String verifyEmailPassword = VerifyField(email, pasword);
         if(verifyEmailPassword != SUCCESS)
             return verifyEmailPassword;
@@ -45,12 +49,15 @@ public class SignViewModel extends ViewModel {
             return "As senhas precisam ser iguais";
         return SUCCESS;
     }
-    public String VerifyField(String email, String pasword){
+    public String VerifyField(String email, String password){
+     //   RegexHelper regexHelper = new RegexHelper();
         if(email.isEmpty())
             return "Preencha o campo email";
-        if(pasword.isEmpty())
+     //   if(!regexHelper.verifyEmail(email))
+    //        return "Digite um email válido";
+        if(password.isEmpty())
             return "Preencha o campo senha";
-        else
-            return SUCCESS;
+   //     return regexHelper.verifyPassword(password);
+        return SUCCESS;
     }
 }

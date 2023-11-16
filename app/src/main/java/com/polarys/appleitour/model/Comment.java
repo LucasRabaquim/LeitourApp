@@ -91,7 +91,7 @@ public class Comment {
 
     public ApiResponse GetComments(int id){
         ApiThread apiThread;
-        apiThread = new ApiThread(DEBUG, "http://localhost:5126/api/Posts/Comment/1");
+        apiThread = new ApiThread(GETPUBLIC, "Posts/Comment/"+id);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse PostComment(String json, String token) {

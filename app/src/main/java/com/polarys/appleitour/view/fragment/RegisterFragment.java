@@ -7,12 +7,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.polarys.appleitour.R;
@@ -36,7 +38,7 @@ public class RegisterFragment extends Fragment {
     private String password;
     private String passwordCompare;
     private CheckBox checkBox;
-    private Button btn_Login;
+    private TextView btn_Login;
     private Button btn_register;
     private SignViewModel viewModel;
 
@@ -52,7 +54,7 @@ public class RegisterFragment extends Fragment {
         super.onCreate(savedInstanceState);
         viewModel = ViewModelProviders.of(this).get(SignViewModel.class);
         checkBox = view.findViewById(R.id.cbKeepLogged);
-        btn_Login = view.findViewById(R.id.btnToLogin);
+        btn_Login = view.findViewById(R.id.txt_login);
         btn_register = view.findViewById(R.id.btnRegister);
         edit_Username = view.findViewById(R.id.edit_username);
         edit_Email = view.findViewById(R.id.edit_email);
@@ -83,6 +85,7 @@ public class RegisterFragment extends Fragment {
                 SharedHelper settings = new SharedHelper(getContext());
                 settings.SetKeepLogged(checkBox.isChecked());
                 settings.SetToken(response[1]);
+                Log.d("TAG", "onViewCreated: "+settings.GetToken());
                 User user = (User) JsonToObject(new User(),response[0]);
                 settings.SetUser(user);
                 Toast.makeText(getContext(), "Seja bem-vindo(a): " + user.getNameUser(), Toast.LENGTH_SHORT).show();

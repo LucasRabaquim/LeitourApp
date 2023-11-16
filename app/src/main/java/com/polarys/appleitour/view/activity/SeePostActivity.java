@@ -39,10 +39,11 @@ public class SeePostActivity extends AppCompatActivity {
     private SocialViewModel viewModel;
     private RecyclerView recyclerView;
     private CommentAdapter adapter;
-    private FloatingActionButton btn_create_comment;
+    private Button btn_create_comment;
     private LinearLayout textAreaCustomView;
     private TextView txt_name;
     private TextView txt_message;
+    private TextView txt_likes;
     private Button botao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,19 +53,24 @@ public class SeePostActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(SocialViewModel.class);
         txt_name = findViewById(R.id.txt_publication_username);
         txt_message = findViewById(R.id.txt_publication_message);
+        txt_likes = findViewById(R.id.publication_likes);
         txt_name.setText(post.getUserName());
         txt_message.setText(post.getMessagePost());
+        txt_likes.setText(post.getLikes() + "likes");
+
+        SharedHelper sharedHelper = new SharedHelper(this);
+        int id = sharedHelper.GetId();
+        String token = sharedHelper.GetToken();
 
         ArrayList<Comment> comments = new ArrayList<Comment>(){};
         recyclerView = this.findViewById(R.id.recycler_social);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CommentAdapter(comments,this);
+        adapter = new CommentAdapter(comments,this,id,token);
         recyclerView.setAdapter(adapter);
 
         if(post.getId() != 0) {
             ArrayList<Comment> loadComments = viewModel.loadComments(post.getId());
             if(loadComments != null) {
-                Toast.makeText(this,"Cade?",Toast.LENGTH_SHORT).show();
                 comments.clear();
                 comments.addAll(loadComments);
                 adapter.notifyDataSetChanged();
@@ -87,12 +93,11 @@ public class SeePostActivity extends AppCompatActivity {
         });
         botao = findViewById(R.id.btn_send_text);
         botao.setOnClickListener(v ->{
-            Toast.makeText(this,"Clica!",Toast.LENGTH_SHORT).show();
             EditText edit = findViewById(R.id.edit_message);
             String message = edit.getText().toString();
-            SharedHelper sharedHelper = new SharedHelper(this);
-            Comment comment = new Comment(sharedHelper.GetId(), post.getId(), message);
-            ApiResponse response = new Comment().PostComment(ObjectToString(comment),sharedHelper.GetToken());
+
+            Comment comment = new Comment(id, post.getId(), message);
+            ApiResponse response = new Comment().PostComment(ObjectToString(comment),token);
             if(response.getCode() == 200 | response.getCode() == 201){
                 comments.add(comment);
                 adapter.notifyDataSetChanged();

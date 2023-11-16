@@ -1,9 +1,7 @@
 
 plugins {
     id("com.android.application")
-
 }
-
 android {
     namespace = "com.polarys.appleitour"
     compileSdk = 34
@@ -26,7 +24,7 @@ android {
         java.srcDir("src/main/res/layouts/fragments")
         java.srcDir("src/main/res/layouts/adapters")*/
      //   java.srcDir("src/main/res/layouts/customviews")
-        java.srcDir("src/main/res/resources")
+    //    java.srcDir("src/main/res/resources")
       //  java.srcDir("src/main/res/resources/layouts")
       //  java.srcDir("src/main/res")
         //
@@ -54,6 +52,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    implementation("com.google.guava:guava:31.0-jre")
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")

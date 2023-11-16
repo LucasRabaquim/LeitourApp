@@ -18,12 +18,11 @@ public class SavedBookViewModel extends ViewModel {
     public ArrayList<SavedBook> loadSaved(String token){
         ApiResponse apiResponse;
         apiResponse = new SavedBook().GetSavedBooks(token);
-        return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(SavedBook.class, apiResponse.getBody());
-    /*    try {
-            return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(new SavedBook(), apiResponse.getBody());
+        try {
+            return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(new SavedBook().getClass(), apiResponse.getBody());
         }
         catch(Exception e){
             return null;
-        }*/
+        }
     }
 }

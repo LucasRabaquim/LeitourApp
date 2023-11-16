@@ -21,7 +21,7 @@ public class IntentHelper extends AppCompatActivity {
     public final static String FROM_ACTIVITY_KEY = "FROM_ACTIVITY_KEY";
     public final static String FROM_BOOKSEARCH = "FROM_BOOKSEARCH";
     public final static String FROM_SAVEDBOOK = "FROM_SAVEDBOOK";
-    static String EXTRA_KEY;
+    public static String EXTRA_KEY;
 
     private Activity activity;
     private Intent intent;
@@ -50,6 +50,13 @@ public class IntentHelper extends AppCompatActivity {
        // activity.finish();
         Intent intent = new Intent(activity, nextScreen);
         intent.putExtra(EXTRA_KEY, (Serializable) data);
+        activity.startActivity(intent);
+    }
+    public void nextActivityObj(Class nextScreen,Object data,String fromScreen){
+        // activity.finish();
+        Intent intent = new Intent(activity, nextScreen);
+        intent.putExtra(EXTRA_KEY, (Serializable) data);
+        intent.putExtra(FROM_ACTIVITY_KEY, fromScreen);
         activity.startActivity(intent);
     }
 

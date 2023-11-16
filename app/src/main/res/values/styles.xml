@@ -7,6 +7,41 @@
     <style name="Theme.AppLeitour" parent="Base.Theme.AppLeitour" />
 
 
+    <style name="BoldStyle">
+        <item name="android:fontFamily">@font/outfit_bold</item>
+        <item name="android:textColor">@color/AzulDefault</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="SignField">
+        <item name="android:layout_width">312dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/AzulDefault</item>
+        <item name="android:textColorHint">@color/AzulDefault</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@drawable/border</item>
+        <item name="android:fontFamily">@font/outfit_bold</item>
+    </style>
+
+    <style name="SignFieldOutline" parent="@style/SignField">
+        <item name="android:background">@drawable/border2</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+
+    <style name="ButtonBlue">
+        <item name="android:background">@color/AzulDefault</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:fontFamily">@font/outfit_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+
 
     <style name="TitleFontStyle">
         <item name="android:layout_width">fill_parent</item>
@@ -32,17 +67,14 @@
         <item name="android:capitalize">characters</item>
         <item name="android:typeface">monospace</item>
         <item name="android:textSize">12pt</item>
-        <item name="android:textColor">#00FF00</item>/>
     </style>
 
     <style name="gradiente">
-
         <item name="android:startColor">#145CEC</item>
         <item name="android:endColor">#0255F9</item>
     </style>
     
     <style name="checkbox_colorida" parent="Theme.AppCompat.Light">
-
         <item name="colorAccent">@drawable/login_gradient</item>
         <item name="android:textColorSecondary">@android:color/white</item>
     </style>

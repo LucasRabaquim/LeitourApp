@@ -63,7 +63,7 @@ public class Annotation {
 
     public ApiResponse getAnnotations(int id,String token){
         ApiThread apiThread;
-        apiThread = new ApiThread(GET, "savedBook/Annotation/"+id,token);
+        apiThread = new ApiThread(GET, "savedBook/Annotation/"+id,null,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
 

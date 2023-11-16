@@ -7,9 +7,10 @@ import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 
 import com.polarys.appleitour.api.ApiThread;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SavedBook {
+public class SavedBook implements Serializable {
     private int id;
     private int userId;
     private boolean isPublic;

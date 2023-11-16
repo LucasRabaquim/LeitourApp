@@ -1,6 +1,7 @@
 package com.polarys.appleitour.view.adapter;
 
 import static com.polarys.appleitour.helper.IntentHelper.BOOK_SHARED;
+import static com.polarys.appleitour.helper.IntentHelper.FROM_BOOKSEARCH;
 
 import android.app.Activity;
 import android.content.Context;
@@ -43,7 +44,7 @@ public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookH
         holder.author.setText(book.getAuthors());
         holder.mainLayout.setOnClickListener(view -> {
             IntentHelper intentHelper = new IntentHelper((Activity) context, BOOK_SHARED);
-            intentHelper.nextActivityObj(BookInfoActivity.class,book);
+            intentHelper.nextActivityObj(BookInfoActivity.class,book,FROM_BOOKSEARCH);
         });
 
     }

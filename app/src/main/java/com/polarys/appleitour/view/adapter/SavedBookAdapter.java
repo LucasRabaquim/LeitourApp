@@ -1,5 +1,6 @@
 package com.polarys.appleitour.view.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.model.SavedBook;
+import com.polarys.appleitour.view.activity.BookInfoActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -36,15 +39,13 @@ public class SavedBookAdapter extends RecyclerView.Adapter<SavedBookAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SavedBook book = books.get(position);
         Picasso.get().load(book.getBookCover()).into(holder.cover);
-    /*    holder.title.setText(book.getBookTitle());
+        holder.title.setText(book.getBookTitle());
         holder.author.setText("");
-
- /*       Picasso.get().load(book.getCover()).into(holder.cover);
+        Picasso.get().load(book.getBookCover()).into(holder.cover);
         holder.mainLayout.setOnClickListener(view -> {
-           /* Intent intent = new Intent(context, BookActivity.class);
-            intent.putExtra(BOOK_KEY_SHARED, book);
-            context.startActivity(intent);
-        });*/
+            IntentHelper intentHelper = new IntentHelper((Activity) context);
+            intentHelper.nextActivityObj(BookInfoActivity.class,book,IntentHelper.FROM_SAVEDBOOK);
+        });
     }
 
     @Override

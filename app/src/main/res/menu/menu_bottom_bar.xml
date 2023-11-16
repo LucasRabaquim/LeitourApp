@@ -5,17 +5,22 @@
 
         <group android:checkableBehavior="single">
             <item
-                android:id="@+id/nav_saved"
+                android:id="@+id/nav_favorites"
+                android:icon="@drawable/heartvector"
+                android:title="Favoritos" />
+            <item
+                android:id="@+id/nav_seach_book"
+                android:icon="@drawable/icon_search"
+                android:title="Pesquisar" />
+            <item
+                android:id="@+id/nav_social"
                 android:icon="@drawable/homevector"
                 android:title="Home" />
             <item
-                android:id="@+id/nav_categoria"
+                android:id="@+id/nav_post"
                 android:icon="@drawable/categoriavector"
-                android:title="Categoria" />
-            <item
-                android:id="@+id/nav_favoritos"
-                android:icon="@drawable/heartvector"
-                android:title="Favoritos" />
+                android:title="Postar" />
+
             <item
                 android:id="@+id/nav_user"
                 android:icon="@drawable/uservector"

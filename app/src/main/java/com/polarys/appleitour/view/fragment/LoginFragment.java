@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,7 @@ public class LoginFragment extends Fragment {
         edit_password = view.findViewById(R.id.edit_password);
         checkBox = view.findViewById(R.id.cbKeepLogged);
         btn_Login = view.findViewById(R.id.btnLogin);
-        link_register = view.findViewById(R.id.link_register);
+        link_register = view.findViewById(R.id.txt_register);
 
         if(savedInstanceState != null){
             edit_email.setText(savedInstanceState.getString(EDIT_EMAIL));
@@ -93,6 +94,7 @@ public class LoginFragment extends Fragment {
                 SharedHelper settings = new SharedHelper(getContext());
                 settings.SetKeepLogged(checkBox.isChecked());
                 settings.SetToken(response[1]);
+                Log.d("TAG", "onViewCreated: "+settings.GetToken());
                 User user = (User) JsonToObject(new User(), response[0]);
                 settings.SetUser(user);
                 Toast.makeText(getContext(), "Seja bem-vindo(a): " + user.getNameUser(), Toast.LENGTH_SHORT).show();

@@ -20,18 +20,24 @@ public class Post implements Serializable {
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int likes = 0;
 
-    private String postDate = null;
-    private String alteratedDate = null;
+    private String postDate;
+    private String alteratedDate;
 
     public Post() { }
 
+    public Post(int userId, String messagePost) {
+        this.userId = userId;
+        this.messagePost = messagePost;
+        this.postDate = LocalDateTime.now()+"Z";
+        this.alteratedDate = LocalDateTime.now()+"Z";
+    }
     public Post(int id, int userId, String messagePost, int likes, String postDate, String alteratedDate) {
         this.id = id;
         this.userId = userId;
         this.messagePost = messagePost;
        // this.likes = likes;
-        this.postDate = postDate;
-        this.alteratedDate = alteratedDate;
+        this.postDate = null;
+        this.alteratedDate = null;
     }
 
     public int getId() {
@@ -110,6 +116,12 @@ public class Post implements Serializable {
     public ApiResponse DeletePost(int id,String json, String token) {
         ApiThread apiThread;
         apiThread = new ApiThread(DELETE, "Posts/"+id, json,token);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+
+    public ApiResponse like(int id, String token) {
+        ApiThread apiThread;
+        apiThread = new ApiThread(GET, "Posts/like/"+id,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

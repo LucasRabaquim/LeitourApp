@@ -1,4 +1,4 @@
-package com.polarys.appleitour.view.fragment;
+package com.polarys.appleitour.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 

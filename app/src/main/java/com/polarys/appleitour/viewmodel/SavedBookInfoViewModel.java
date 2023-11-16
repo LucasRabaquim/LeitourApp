@@ -1,5 +1,7 @@
 package com.polarys.appleitour.viewmodel;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.polarys.appleitour.api.ApiUtil;
@@ -16,7 +18,7 @@ public class SavedBookInfoViewModel extends ViewModel {
 
     public ArrayList<Annotation> showAnnotations(int id, String token){
         ApiResponse apiResponse = new Annotation().getAnnotations(id,token);
-        return (ArrayList<Annotation>) ApiUtil.JsonToArrayObject(Annotation.class, apiResponse.getBody());
+        return (ArrayList<Annotation>) ApiUtil.JsonToArrayObject(new Annotation().getClass(), apiResponse.getBody());
     }
 
 }

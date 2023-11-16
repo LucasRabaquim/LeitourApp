@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_publication_layout"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- User Data-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+             <com.polarys.appleitour.view.customview.ImageCircleCustomView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="vertical">
+
+                     <TextView
+                         android:id="@+id/txt_publication_username"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="@string/userName" />
+
+                     <TextView
+                         android:id="@+id/txt_publication_message"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="@string/publicationMessage"></TextView>
+                 </LinearLayout>
+             </LinearLayout>
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal">
+                     <Button
+                         android:id="@+id/publication_likes"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                     <Button
+                         android:id="@+id/publication_edit"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Editar"
+                         style="@style/ButtonBlue"
+                         android:visibility="gone"/>
+
+                 </LinearLayout>
+             </LinearLayout>
+     </LinearLayout>
