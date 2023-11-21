@@ -25,19 +25,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Dados do Livro"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@+id/book_background"
-                app:layout_constraintEnd_toEndOf="@+id/book_background"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="@+id/book_background"
-                app:layout_constraintTop_toTopOf="@+id/book_background"
-                app:layout_constraintVertical_bias="0.152" />
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="left"
+                    android:id="@+id/btn_return"
+                    android:src="@drawable/bot_o_novo_de_voltar"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Dados do Livro"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/book_background"
+                    app:layout_constraintEnd_toEndOf="@+id/book_background"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="@+id/book_background"
+                    app:layout_constraintTop_toTopOf="@+id/book_background"
+                    app:layout_constraintVertical_bias="0.152" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/book_title"
@@ -76,25 +93,24 @@
                 android:layout_height="41dp"
                 android:layout_marginTop="131dp"
                 android:layout_marginBottom="30dp"
-                android:src="@drawable/botaosave"
+                android:src="@drawable/heartvector"
                 app:layout_constraintBottom_toTopOf="@+id/book_data"
                 app:layout_constraintEnd_toStartOf="@+id/btn_create_annotation"
                 app:layout_constraintStart_toEndOf="@+id/book_title"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/btn_create_annotation"
                 android:layout_width="50dp"
                 android:layout_height="41dp"
                 android:layout_marginTop="131dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="30dp"
-                android:src="@drawable/botaosave"
+                android:visibility="gone"
+                android:src="@drawable/categoriavector"
                 app:layout_constraintBottom_toTopOf="@+id/book_data"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_save_book"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintStart_toEndOf="@+id/btn_save_book" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/book_data"
@@ -191,20 +207,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/txt_book_sinopse" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <ImageButton
-                android:id="@+id/btn_return"
-                android:layout_width="58dp"
-                android:layout_height="49dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="72dp"
-                android:layout_marginBottom="188dp"
-                app:layout_constraintBottom_toTopOf="@+id/book_data"
-                app:layout_constraintEnd_toStartOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/bot_o_novo_de_voltar" />
+            
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

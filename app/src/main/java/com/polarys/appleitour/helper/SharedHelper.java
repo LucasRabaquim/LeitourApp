@@ -23,9 +23,7 @@ public class SharedHelper extends AppCompatActivity {
     SharedPreferences settings;
     private static Application instance;
 
-    public static Context getContext() {
-        return instance.getApplicationContext();
-    }
+
 
     public SharedHelper(Context context){
         this.settings = context.getSharedPreferences(SHARED_NAME, 0);
@@ -70,6 +68,6 @@ public class SharedHelper extends AppCompatActivity {
     }
     public int GetId(){
         User user = (User) JsonToObject(new User(),settings.getString(USER, ""));
-        return user.getId();
+        return user.GetId();
     }
 }

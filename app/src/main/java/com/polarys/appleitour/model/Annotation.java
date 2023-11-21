@@ -1,13 +1,14 @@
 package com.polarys.appleitour.model;
 
-import static com.polarys.appleitour.api.ApiRequest.GET;
-import static com.polarys.appleitour.api.ApiRequest.POST;
+
+import static com.polarys.appleitour.api.ApiThread.POST;
 import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 
 import android.app.Activity;
 import android.content.Context;
 
 import com.polarys.appleitour.api.ApiThread;
+import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.helper.SharedHelper;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ import java.util.Date;
 import kotlin.jvm.Transient;
 
 public class Annotation {
+
     private int annotationId;
     private int savedBookId;
     private String annotationText;
@@ -29,6 +31,7 @@ public class Annotation {
         this.savedBookId = savedBookId;
         this.annotationText = annotationText;
     }
+
     public Annotation(int annotationId, int savedBookId, String annotationText, LocalDateTime createdDate, LocalDateTime alteratedDate) {
         this.annotationId = annotationId;
         this.savedBookId = savedBookId;
@@ -61,21 +64,4 @@ public class Annotation {
         this.annotationText = annotationText;
     }
 
-    public ApiResponse getAnnotations(int id,String token){
-        ApiThread apiThread;
-        apiThread = new ApiThread(GET, "savedBook/Annotation/"+id,null,token);
-        return apiThread.CreateThread(apiThread).getJson();
-    }
-
-    public ApiResponse createAnnotation(Annotation annotation,String token){
-        ApiThread apiThread;
-        apiThread = new ApiThread(POST, "api/savedBook/"+annotation.getSavedBookId(),ObjectToString(annotation),token);
-        return apiThread.CreateThread(apiThread).getJson();
-    }
-
-    public ApiResponse updateAnnotation(Annotation annotation,String token){
-        ApiThread apiThread;
-        apiThread = new ApiThread(POST, "api/Annotation/"+annotation.getAnnotationId(),ObjectToString(annotation),token);
-        return apiThread.CreateThread(apiThread).getJson();
-    }
 }

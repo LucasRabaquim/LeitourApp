@@ -1,11 +1,14 @@
 package com.polarys.appleitour.viewmodel;
 
+import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
+
 import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
+import com.polarys.appleitour.api.ApiPost;
 import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.helper.ViewHelper;
 import com.polarys.appleitour.model.ApiResponse;
@@ -18,28 +21,16 @@ public class SocialViewModel extends ViewModel {
     private Activity context;
 
     public SocialViewModel() { }
+    ApiPost apiPost = new ApiPost();
 
     public ArrayList<Post> loadPosts(){
         ApiResponse apiResponse;
-        apiResponse = new Post().GetPosts();
+        apiResponse = apiPost.GetPosts();
         Log.d("Teste",apiResponse.getBody());
        try {
             return (ArrayList<Post>) ApiUtil.JsonToArrayObject(new Post().getClass(), apiResponse.getBody());
         }
         catch(Exception e){
-            return null;
-        }
-    }
-
-    public ArrayList<Comment> loadComments(int id){
-        ApiResponse apiResponse;
-        apiResponse = new Comment().GetComments(id);
-        Log.d("Comentarios",apiResponse.getBody());
-        try {
-            return (ArrayList<Comment>) ApiUtil.JsonToArrayObject(new Comment().getClass(), apiResponse.getBody());
-        }
-        catch(Exception e){
-            Log.d("Teste",e.toString());
             return null;
         }
     }

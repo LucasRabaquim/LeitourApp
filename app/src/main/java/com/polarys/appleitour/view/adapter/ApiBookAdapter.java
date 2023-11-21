@@ -1,6 +1,7 @@
 package com.polarys.appleitour.view.adapter;
 
 import static com.polarys.appleitour.helper.IntentHelper.BOOK_SHARED;
+import static com.polarys.appleitour.helper.IntentHelper.EXTRA_KEY;
 import static com.polarys.appleitour.helper.IntentHelper.FROM_BOOKSEARCH;
 
 import android.app.Activity;
@@ -18,6 +19,7 @@ import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.model.BookApi;
 import com.polarys.appleitour.view.activity.BookInfoActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookHolder> {
@@ -39,11 +41,16 @@ public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookH
     public void onBindViewHolder(@NonNull ApiBookHolder holder, int position) {
 
         BookApi book = books.get(position);
-      //  Picasso.get().load(book.getCover()).into(holder.cover);
+        try {
+            Picasso.get().load(book.getCover()).into(holder.cover);
+        }
+        catch(Exception e){
+
+        }
         holder.title.setText(book.getTitle());
         holder.author.setText(book.getAuthors());
         holder.mainLayout.setOnClickListener(view -> {
-            IntentHelper intentHelper = new IntentHelper((Activity) context, BOOK_SHARED);
+            IntentHelper intentHelper = new IntentHelper((Activity) context, EXTRA_KEY);
             intentHelper.nextActivityObj(BookInfoActivity.class,book,FROM_BOOKSEARCH);
         });
 

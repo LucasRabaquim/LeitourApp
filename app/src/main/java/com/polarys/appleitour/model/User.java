@@ -1,28 +1,40 @@
 package com.polarys.appleitour.model;
 
-import static com.polarys.appleitour.api.ApiRequest.AUTOLOGIN;
-import static com.polarys.appleitour.api.ApiRequest.SIGN;
+import static com.polarys.appleitour.api.ApiThread.AUTOLOGIN;
+import static com.polarys.appleitour.api.ApiThread.SIGN;
+import static com.polarys.appleitour.api.ApiThread.UPDATE;
 import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 
+import com.google.gson.annotations.SerializedName;
 import com.polarys.appleitour.api.ApiThread;
-import com.polarys.appleitour.interfaces.UserApiInterface;
+import com.polarys.appleitour.api.ApiUtil;
+import com.polarys.appleitour.interfaces.IUser;
 
-import java.time.Instant;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
-public class User implements UserApiInterface {
+public class User implements Serializable {
+
+    @SerializedName("id")
     private int id = 0;
+    @SerializedName("nameUser")
     private String nameUser = "null";
+    @SerializedName("email")
     private String email;
+    @SerializedName("password")
     private String password;
+    @SerializedName("profilePhoto")
     private String profilePhoto = "";
+    @SerializedName("access")
     private String access = "Comum";
+    @SerializedName("createdLocalDateTime")
     private LocalDateTime createdLocalDateTime = null;
 
-    private static final String path = "User";
 
-    public User() { }
+
+    public User() {
+    }
 
     public User(int id, String nameUser, String email, String password, String profilePhoto, String access, LocalDateTime createdLocalDateTime) {
         this.id = id;
@@ -45,69 +57,51 @@ public class User implements UserApiInterface {
         this.password = password;
     }
 
-    public int getId() {
+    public int GetId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void SetId(int id) {
         this.id = id;
     }
 
-    public String getNameUser() {
+    public String GetNameUser() {
         return nameUser;
     }
 
-    public void setNameUser(String nameUser) {
+    public void SetNameUser(String nameUser) {
         this.nameUser = nameUser;
     }
 
-    public String getEmail() {
+    public String GetEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void SetEmail(String email) {
         this.email = email;
     }
 
-    public String getPassword() {
+    public String GetPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void SetPassword(String password) {
         this.password = password;
     }
 
-    public String getProfilePhoto() {
+    public String GetProfilePhoto() {
         return profilePhoto;
     }
 
-    public void setProfilePhoto(String profilePhoto) {
+    public void SetProfilePhoto(String profilePhoto) {
         this.profilePhoto = profilePhoto;
     }
 
-    public String getAccess() {
+    public String GetAccess() {
         return access;
     }
 
-    public void setAccess(String access) {
+    public void SetAccess(String access) {
         this.access = access;
-    }
-
-
-    public ApiResponse Login(){
-        User user = new User(this.email,this.password);
-        ApiThread apiThread = new ApiThread(SIGN,path+"/login",ObjectToString(user));
-        return apiThread.CreateThread(apiThread).getJson();
-    }
-    public ApiResponse AutoLogin(String token){
-        User user = new User(this.email,this.password);
-        ApiThread apiThread = new ApiThread(AUTOLOGIN,path+"/autologin",null,token);
-        return apiThread.CreateThread(apiThread).getJson();
-    }
-
-    public ApiResponse Register(){
-        User user = new User(this.nameUser,this.email,this.password);
-        ApiThread apiThread = new ApiThread(SIGN,path+"/register",ObjectToString(user));
-        return apiThread.CreateThread(apiThread).getJson();
     }
 }

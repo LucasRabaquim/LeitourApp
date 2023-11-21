@@ -2,19 +2,22 @@ package com.polarys.appleitour.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
+import com.polarys.appleitour.api.ApiAnnotation;
 import com.polarys.appleitour.model.Annotation;
 import com.polarys.appleitour.model.ApiResponse;
 
 public class AnnotationViewModel extends ViewModel{
     public AnnotationViewModel(){}
+    ApiAnnotation apiAnnotation = new ApiAnnotation();
 
-    public boolean addAnnotation(Annotation annotation, String token){
-        ApiResponse success = new Annotation().createAnnotation(annotation,token);
-        return success.getCode() == 200;
+    public ApiResponse CreateAnnotation(Annotation annotation, String token){
+        return apiAnnotation.CreateAnnotation(annotation,token);
     }
 
-    public boolean updateAnnotation(Annotation annotation, String token){
-        ApiResponse success = new Annotation().updateAnnotation(annotation,token);
-        return success.getCode() == 200;
+    public ApiResponse UpdateAnnotation(Annotation annotation, String token){
+        return apiAnnotation.UpdateAnnotation(annotation,token);
+    }
+    public ApiResponse DeleteAnnotation(Annotation annotation,String token) {
+        return apiAnnotation.DeleteAnnotation(annotation,token);
     }
 }

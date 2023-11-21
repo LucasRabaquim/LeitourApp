@@ -1,18 +1,15 @@
 package com.polarys.appleitour.model;
 
-import static com.polarys.appleitour.api.ApiRequest.GET;
-import static com.polarys.appleitour.api.ApiRequest.GETPUBLIC;
+
+
+import static com.polarys.appleitour.api.ApiThread.GETPUBLIC;
 
 import com.polarys.appleitour.api.ApiThread;
-import com.polarys.appleitour.interfaces.BookApiInterface;
 
 import java.io.Serializable;
 
-public class BookApi implements Serializable, BookApiInterface {
+public class BookApi implements Serializable {
 
-    public static final String TITLE = "Title";
-    public static final String AUTHOR = "Author";
-    public static final String ISBN = "Isbn";
     private String key;
     private String title;
     private String authors;
@@ -20,7 +17,7 @@ public class BookApi implements Serializable, BookApiInterface {
     private String publishedDate;
     private String description;
     private int pages;
-    private String categories;
+    private String category;
     private String isbn10;
     private String isbn13;
     private String language;
@@ -28,8 +25,6 @@ public class BookApi implements Serializable, BookApiInterface {
 
     public BookApi() {
     }
-    //public BookApi(@NonNull View itemView) {     super(itemView);    }
-
     public String getKey() {
         return key;
     }
@@ -91,11 +86,11 @@ public class BookApi implements Serializable, BookApiInterface {
     }
 
     public String getCategories() {
-        return categories;
+        return category;
     }
 
     public void setCategories(String categories) {
-        this.categories = categories;
+        this.category = categories;
     }
 
     public String getLanguage() {
@@ -112,26 +107,5 @@ public class BookApi implements Serializable, BookApiInterface {
 
     public void setCover(String cover) {
         this.cover = cover;
-    }
-
-    public ApiResponse GetByIsbn(String search) {
-        ApiThread apiThread = new ApiThread(GETPUBLIC, "/SearchBy/"+ISBN + "/" + search, null);
-        return apiThread.CreateThread(apiThread).getJson();
-    }
-
-    public ApiResponse GetByTitle(String search) {
-        ApiThread apiThread;
-        apiThread = new ApiThread(GETPUBLIC, "SearchBy/"+TITLE + "/" + search);
-        return apiThread.CreateThread(apiThread).getJson();
-    }
-    public ApiResponse GetByAuthor(String search) {
-        ApiThread apiThread;
-        apiThread = new ApiThread(GETPUBLIC, "SearchBy/"+AUTHOR + "/" + search, null);
-        return apiThread.CreateThread(apiThread).getJson();
-    }
-    public ApiResponse GetByKey(String search) {
-        ApiThread apiThread;
-        apiThread = new ApiThread(GETPUBLIC, "SearchBy/Key/" + search);
-        return apiThread.CreateThread(apiThread).getJson();
     }
 }

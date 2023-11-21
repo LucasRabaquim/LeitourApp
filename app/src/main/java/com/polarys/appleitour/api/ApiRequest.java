@@ -1,5 +1,7 @@
 package com.polarys.appleitour.api;
 
+import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
+
 import com.google.gson.Gson;
 import com.polarys.appleitour.model.ApiResponse;
 
@@ -16,17 +18,7 @@ import okhttp3.Response;
 public class ApiRequest {
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     static final String API_URL = "http://localhost:5126/api/";
-
     static final String TOKEN = "token";
-    static final String USER_TOKEN = null;
-    public static final String GET = "GET";
-    public static final String DEBUG = "DEBUG";
-    public static final String GETPUBLIC = "GETPUBLIC";
-    public static final String POST = "POST";
-    public static final String SIGN = "SIGN";
-    public static final String AUTOLOGIN = "AUTOLOGIN";
-    public static final String UPDATE = "PUT";
-    public static final String DELETE = "DELETE";
     final OkHttpClient client = new OkHttpClient();
 
 
@@ -47,7 +39,8 @@ public class ApiRequest {
         return request(request);
     }
 
-    public ApiResponse sign(String path, String json){
+    public ApiResponse sign(String path, Object object){
+        String json = ObjectToString(object);
         RequestBody body = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
                 .url(API_URL+path)
@@ -72,7 +65,8 @@ public class ApiRequest {
                 .build();
         return request(request);
     }
-    public ApiResponse post(String path, String json, String token){
+    public ApiResponse post(String path, Object object, String token){
+        String json = ObjectToString(object);
         RequestBody body = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
                 .url(API_URL+path)
@@ -81,7 +75,8 @@ public class ApiRequest {
                 .build();
         return request(request);
     }
-    public ApiResponse update(String path, String json, String token){
+    public ApiResponse update(String path, Object object, String token){
+        String json = ObjectToString(object);
         RequestBody body = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
                 .url(API_URL+path)

@@ -6,6 +6,7 @@ import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,11 +21,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.api.ApiPost;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.Comment;
 import com.polarys.appleitour.model.Post;
+import com.polarys.appleitour.view.activity.PlaceholderActivity;
+import com.polarys.appleitour.view.activity.SignActivity;
 import com.polarys.appleitour.view.adapter.PostAdapter;
+import com.polarys.appleitour.viewmodel.PostViewModel;
 import com.polarys.appleitour.viewmodel.SocialViewModel;
 
 import java.util.ArrayList;
@@ -32,7 +37,7 @@ import java.util.Objects;
 
 public class PostFragment extends Fragment {
 
-    private SocialViewModel viewModel;
+    private PostViewModel viewModel;
     private Button btn_post,btn_delete;
     private EditText edit_post;
     private TextView txt_cancelar;
@@ -53,7 +58,7 @@ public class PostFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        viewModel = ViewModelProviders.of(this).get(SocialViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(PostViewModel.class);
         btn_post = view.findViewById(R.id.btnPost);
         edit_post = view.findViewById(R.id.edit_post);
         btn_delete = view.findViewById(R.id.btnDeletePost);
@@ -66,34 +71,33 @@ public class PostFragment extends Fragment {
         if(bundle != null){
             edit_mode = true;
             post = (Post) bundle.get(POST_SHARED);
-            edit_post.setText(post.getMessagePost());
+            edit_post.setText(post.GetMessagePost());
             btn_delete.setVisibility(View.VISIBLE);
         }
         txt_cancelar.setOnClickListener(v-> requireActivity().getSupportFragmentManager().popBackStackImmediate());
 
-        btn_delete.setOnClickListener(v -> {new Post().DeletePost(post.getId(),ObjectToString(post),token);});
+        btn_delete.setOnClickListener(v -> {
+            String result =  viewModel.DeletePost(post,token);
+            Toast.makeText(getContext(),result,Toast.LENGTH_SHORT).show();
+            ((PlaceholderActivity) getActivity()).loadFragment(new SocialFragment());
+        });
+
         btn_post.setOnClickListener(v->{
             String message = edit_post.getText().toString();
-            post = new Post(userId, message);
             if(message.length() <= 5){
                 Toast.makeText(getContext(),"Escreva um pouco mais",Toast.LENGTH_SHORT).show();
                 return;
             }
+            String postResult;
             if(edit_mode){
-                ApiResponse response = new Post().UpdatePost(post.getId(),ObjectToString(post),token);
-                if(response.getCode() == 200 | response.getCode() == 201)
-                    Toast.makeText(getContext(),"Post alterado",Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(getContext(),response.getBody(),Toast.LENGTH_SHORT).show();
-
+                post.SetMessagePost(message);
+                postResult = viewModel.UpdatePost(post,token);
             }
             else {
-                ApiResponse response = new Post().PostPost(ObjectToString(post), token);
-                if (response.getCode() == 200 | response.getCode() == 201)
-                    Toast.makeText(getContext(), "Post Criado", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(getContext(), response.getBody(), Toast.LENGTH_SHORT).show();
+                post = new Post(userId, message);
+                postResult = viewModel.CreatePost(post,token);
             }
+            Toast.makeText(getContext(), postResult, Toast.LENGTH_SHORT).show();
         });
     }
 }

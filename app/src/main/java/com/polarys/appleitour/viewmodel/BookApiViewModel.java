@@ -1,55 +1,54 @@
 package com.polarys.appleitour.viewmodel;
 
-import static com.polarys.appleitour.api.ApiRequest.DEBUG;
-import static com.polarys.appleitour.api.ApiRequest.GET;
-import static com.polarys.appleitour.api.ApiRequest.GETPUBLIC;
-import static com.polarys.appleitour.model.BookApi.TITLE;
-import static com.polarys.appleitour.model.BookApi.AUTHOR;
-import static com.polarys.appleitour.model.BookApi.ISBN;
+import static com.polarys.appleitour.api.ApiBook.AUTHOR;
+import static com.polarys.appleitour.api.ApiBook.ISBN;
+import static com.polarys.appleitour.api.ApiBook.TITLE;
 
 import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.polarys.appleitour.api.ApiRequest;
-import com.polarys.appleitour.api.ApiThread;
+import com.polarys.appleitour.api.ApiBook;
 import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.BookApi;
-import com.polarys.appleitour.model.Post;
 
 import java.util.ArrayList;
 
 public class BookApiViewModel extends ViewModel {
-
+    ApiBook apiBook = new ApiBook();
     public BookApiViewModel() {}
 
-    public ArrayList search(String title, String query){
-
-        ApiResponse apiResponse = new BookApi().GetByTitle(query);
+    public ArrayList search(String title, String query) {
+        ApiResponse apiResponse;
         switch (title) {
             case TITLE:
-                apiResponse = new BookApi().GetByTitle(query);
+                apiResponse = apiBook.GetByTitle(query);
                 break;
             case ISBN:
-                apiResponse = new BookApi().GetByIsbn(query);
+                apiResponse = apiBook.GetByIsbn(query);
                 break;
             case AUTHOR:
-                apiResponse = new BookApi().GetByAuthor(query);
+                apiResponse = apiBook.GetByAuthor(query);
                 break;
             default:
                 return null;
         }
-        ApiThread apiThread;
-      //  apiThread = new ApiThread(DEBUG, "http://localhost:5126/api/SearchBy/Title/Harry",null);
-       // ApiRequest api = new ApiRequest();
-      //  apiResponse = apiThread.CreateThread(apiThread).getJson();
-        Log.d("Antes",apiResponse.getBody());
-
-
         try {
-            return  ApiUtil.JsonToArrayObject(new BookApi().getClass(), apiResponse.getBody());        }
+            return ApiUtil.JsonToArrayObject(new BookApi().getClass(), apiResponse.getBody());
+        } catch (Exception e) {
+            Log.e("String",e.toString());
+            return null;
+        }
+    }
+    public BookApi GetByKey(String key){
+        ApiResponse apiResponse = apiBook.GetByKey(key);
+        try {
+            return (BookApi) ApiUtil.JsonToObject(new BookApi(), apiResponse.getBody());
+        }
         catch(Exception e){
+            Log.d("From SavedBOok",apiResponse.getBody().toString());
+            Log.d("From SavedBOok",e.toString());
             return null;
         }
     }

@@ -2,6 +2,7 @@ package com.polarys.appleitour.view.fragment;
 
 import static com.polarys.appleitour.api.ApiUtil.JsonToObject;
 import static com.polarys.appleitour.api.ApiUtil.verifyConectivity;
+import static com.polarys.appleitour.viewmodel.SignViewModel.SIGN_KEY_BUNDLE;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -37,22 +38,10 @@ public class LoginFragment extends Fragment {
     private Button btn_Login;
     private TextView link_register;
     private SignViewModel viewModel;
-    private final String EDIT_EMAIL = "EDIT_EMAIL";
-    private final String EDIT_PASSWORD = "EDIT_PASSWORD";
+    private User user;
     public LoginFragment(){}
+    public LoginFragment(SignViewModel viewModel){this.viewModel = viewModel;}
 
-
-   /* @Override
-    protected void onSavedInstanceState(Bundle outState){
-        super.onSaveInstanceState(outState);
-        outState.putString(EDIT_EMAIL,email);
-        outState.putString(EDIT_EMAIL,password);
-    }
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        onCreate(savedInstanceState);
-    }*/
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -62,21 +51,26 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(SignViewModel.class);
         edit_email = view.findViewById(R.id.edit_email);
         edit_password = view.findViewById(R.id.edit_password);
         checkBox = view.findViewById(R.id.cbKeepLogged);
         btn_Login = view.findViewById(R.id.btnLogin);
         link_register = view.findViewById(R.id.txt_register);
 
-        if(savedInstanceState != null){
-            edit_email.setText(savedInstanceState.getString(EDIT_EMAIL));
-            edit_password.setText(savedInstanceState.getString(EDIT_PASSWORD));
+        try {
+            user = viewModel.GetUser();
         }
+        catch (Exception e){
+            user = null;
+        }
+        if(user != null){
+            edit_email.setText(user.GetEmail());
+            edit_password.setText(user.GetPassword());
+        }
+
         btn_Login.setOnClickListener(v -> {
-            email = edit_email.getText().toString();
-            password = edit_password.getText().toString();
-            String result = viewModel.VerifyField(email,password);
+            user = GetUserData();
+            String result = viewModel.VerifyFields(user);
             if(result != viewModel.SUCCESS) {
                 Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
                 return;
@@ -86,7 +80,7 @@ public class LoginFragment extends Fragment {
                 return;
             }
             try{
-                String[] response = viewModel.login(new User(email,password));
+                String[] response = viewModel.login(user);
                 if(response[1] == null) {
                     Toast.makeText(getContext(), "Erro: " + response[0], Toast.LENGTH_SHORT).show();
                     return;
@@ -97,7 +91,7 @@ public class LoginFragment extends Fragment {
                 Log.d("TAG", "onViewCreated: "+settings.GetToken());
                 User user = (User) JsonToObject(new User(), response[0]);
                 settings.SetUser(user);
-                Toast.makeText(getContext(), "Seja bem-vindo(a): " + user.getNameUser(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Seja bem-vindo(a): " + user.GetNameUser(), Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
                 throw new RuntimeException(e);
@@ -108,7 +102,15 @@ public class LoginFragment extends Fragment {
         });
 
         link_register.setOnClickListener(v -> {
-            ((SignActivity) getActivity()).loadFragment(new RegisterFragment());
+            viewModel.SetUser(GetUserData());
+            ((SignActivity) getActivity()).loadFragment(new RegisterFragment(viewModel));
         });
+    }
+    private User GetUserData(){
+        String email = edit_email.getText().toString();
+        String password = edit_password.getText().toString();
+      //  edit_email.clearFocus();
+      //  edit_password.clearFocus();
+        return new User(email,password);
     }
 }

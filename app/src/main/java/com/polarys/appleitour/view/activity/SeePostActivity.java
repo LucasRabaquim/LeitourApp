@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.api.ApiComment;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.ApiResponse;
@@ -30,13 +31,14 @@ import com.polarys.appleitour.view.adapter.CommentAdapter;
 import com.polarys.appleitour.view.adapter.PostAdapter;
 import com.polarys.appleitour.view.customview.PublicationCustomView;
 import com.polarys.appleitour.view.customview.TextAreaCustomView;
+import com.polarys.appleitour.viewmodel.CommentViewModel;
 import com.polarys.appleitour.viewmodel.SocialViewModel;
 
 import java.util.ArrayList;
 
 public class SeePostActivity extends AppCompatActivity {
 
-    private SocialViewModel viewModel;
+    private CommentViewModel viewModel;
     private RecyclerView recyclerView;
     private CommentAdapter adapter;
     private Button btn_create_comment;
@@ -50,13 +52,13 @@ public class SeePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_post);
         Post post = (Post) getIntent().getSerializableExtra(POST_SHARED);
-        viewModel = ViewModelProviders.of(this).get(SocialViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(CommentViewModel.class);
         txt_name = findViewById(R.id.txt_publication_username);
         txt_message = findViewById(R.id.txt_publication_message);
         txt_likes = findViewById(R.id.publication_likes);
-        txt_name.setText(post.getUserName());
-        txt_message.setText(post.getMessagePost());
-        txt_likes.setText(post.getLikes() + "likes");
+        txt_name.setText(post.GetUserName());
+        txt_message.setText(post.GetMessagePost());
+        txt_likes.setText(post.GetLikes() + "likes");
 
         SharedHelper sharedHelper = new SharedHelper(this);
         int id = sharedHelper.GetId();
@@ -68,15 +70,14 @@ public class SeePostActivity extends AppCompatActivity {
         adapter = new CommentAdapter(comments,this,id,token);
         recyclerView.setAdapter(adapter);
 
-        if(post.getId() != 0) {
-            ArrayList<Comment> loadComments = viewModel.loadComments(post.getId());
+        if(post.GetId() != 0) {
+            ArrayList<Comment> loadComments = viewModel.loadComments(post.GetId());
             if(loadComments != null) {
                 comments.clear();
                 comments.addAll(loadComments);
                 adapter.notifyDataSetChanged();
             }
         }
-
 
         textAreaCustomView = findViewById(R.id.textarea);//new TextAreaCustomView(this);
         btn_create_comment = findViewById(R.id.btn_create_comment);
@@ -96,8 +97,8 @@ public class SeePostActivity extends AppCompatActivity {
             EditText edit = findViewById(R.id.edit_message);
             String message = edit.getText().toString();
 
-            Comment comment = new Comment(id, post.getId(), message);
-            ApiResponse response = new Comment().PostComment(ObjectToString(comment),token);
+            Comment comment = new Comment(id, post.GetId(), message);
+            ApiResponse response = viewModel.CreateComment(comment,token);
             if(response.getCode() == 200 | response.getCode() == 201){
                 comments.add(comment);
                 adapter.notifyDataSetChanged();

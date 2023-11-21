@@ -4,12 +4,18 @@ import static com.polarys.appleitour.helper.IntentHelper.COMMENT_SHARED;
 import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -52,27 +58,38 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
             holder.text.setText(comment.getMessagePost());
             holder.like.setVisibility(View.GONE);
 
-        if (comment.getUserId() == id) {
+       /* if (comment.getUserId() == id) {
             holder.btnEdit.setVisibility(View.VISIBLE);
             holder.btnEdit.setOnClickListener(v -> {
-           /*     Ac
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(COMMENT_SHARED, post);
-                PostFragment fragment = new PostFragment();
-                fragment.setArguments(bundle);
-                ((AppCompatActivity) context).getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.placeholder_framelayout, fragment)
-                        .commit();*/
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                final EditText edittext = new EditText(context);
+                alert.setMessage("Enter Your Message");
+                alert.setTitle("Enter Your Title");
+
+                alert.setView(edittext);
+
+                alert.setPositiveButton("Yes Option", (dialog, whichButton) -> {
+
+                    String YouEditTextValue = edittext.getText().toString();
+                    Log.d("TAG", "onBindViewHolder: "+YouEditTextValue);
+                });
+
+                alert.setNegativeButton("No Option", (dialog, whichButton) -> {
+                    what ever you want to do with No option.
+                });
+
+                alert.show();
             });
-        }
+        }*/
     }
 
 
 
     public class CommentHolder extends RecyclerView.ViewHolder{
         TextView user, text;
-        Button like,btnEdit;
+            ImageButton btnEdit;
+            Button like;
         LinearLayout mainLayout;
         public CommentHolder(@NonNull View view){
             super(view);
@@ -81,7 +98,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
             this.btnEdit = view.findViewById(R.id.publication_edit);
           //  this.date= view.findViewById(R.id.publication_date);
           //  this.likes= view.findViewById(R.id.publication_likes);
-            this.like =  view.findViewById(R.id.publication_likes);
+            this.like =  view.findViewById(R.id.publication_btn_like);
             mainLayout = view.findViewById(R.id.item_publication_layout);
         }
     }

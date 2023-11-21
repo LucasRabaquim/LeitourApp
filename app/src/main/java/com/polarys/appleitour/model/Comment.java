@@ -1,13 +1,5 @@
 package com.polarys.appleitour.model;
 
-import static com.polarys.appleitour.api.ApiRequest.DEBUG;
-import static com.polarys.appleitour.api.ApiRequest.GETPUBLIC;
-import static com.polarys.appleitour.api.ApiRequest.POST;
-
-
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-//import com.fasterxml.jackson.databind.ObjectMapper;
-import com.polarys.appleitour.api.ApiThread;
 
 public class Comment {
     private int commentId;
@@ -89,14 +81,5 @@ public class Comment {
         this.alteratedDate = alteratedDate;
     }
 
-    public ApiResponse GetComments(int id){
-        ApiThread apiThread;
-        apiThread = new ApiThread(GETPUBLIC, "Posts/Comment/"+id);
-        return apiThread.CreateThread(apiThread).getJson();
-    }
-    public ApiResponse PostComment(String json, String token) {
-        ApiThread apiThread;
-        apiThread = new ApiThread(POST, "Comment", json,token);
-        return apiThread.CreateThread(apiThread).getJson();
-    }
+
 }

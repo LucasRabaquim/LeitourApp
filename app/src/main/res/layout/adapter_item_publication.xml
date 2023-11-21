@@ -1,57 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/item_publication_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:id="@+id/item_publication_layout"
     android:layout_height="200dp"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/userAnonimoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.polarys.appleitour.view.customview.ImageCircleCustomView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:orientation="vertical">
 
-            <!-- User Data-->
-        <LinearLayout
-            android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txt_publication_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome"
+                android:textColor="#4d4d4e"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/txt_publication_useremail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nick"
+                android:textColor="#a5a5a5"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_publication_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nick"
+                android:textColor="#a5a5a5"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <ImageButton
+            android:id="@+id/publication_options"
+            android:layout_width="36dp"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_publication_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="Placeholder"
+        android:textColor="#7b7373"
+        android:textSize="24sp" />
+
+
+    <LinearLayout
+        android:id="@+id/backLineLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+
+        <Button
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-             <com.polarys.appleitour.view.customview.ImageCircleCustomView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content" />
+            android:text="1.179"
+            android:id="@+id/publication_comments_number"
+            android:textColor="#a5a5a5"
+            android:textSize="10sp"
+            app:icon="@drawable/categoriavector" />
 
-                 <LinearLayout
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:orientation="vertical">
 
-                     <TextView
-                         android:id="@+id/txt_publication_username"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="@string/userName" />
+        <Button
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/publication_btn_like"
+            android:text="1.179"
+            android:textColor="#a5a5a5"
+            android:textSize="10sp"
+            app:icon="@drawable/heartvector" />
 
-                     <TextView
-                         android:id="@+id/txt_publication_message"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:text="@string/publicationMessage"></TextView>
-                 </LinearLayout>
-             </LinearLayout>
-                 <LinearLayout
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:orientation="horizontal">
-                     <Button
-                         android:id="@+id/publication_likes"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content" />
-                     <Button
-                         android:id="@+id/publication_edit"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text="Editar"
-                         style="@style/ButtonBlue"
-                         android:visibility="gone"/>
-
-                 </LinearLayout>
-             </LinearLayout>
-     </LinearLayout>
+        <Button
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compartilhar"
+            android:textColor="#a5a5a5"
+            android:textSize="10sp"
+            android:id="@+id/publication_btn_share"
+            app:icon="@drawable/placeholder" />
+    </LinearLayout>
+</LinearLayout>

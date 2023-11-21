@@ -9,7 +9,6 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.polarys.appleitour.R;
-import com.polarys.appleitour.model.Post;
 import com.polarys.appleitour.view.fragment.BookSearchFragment;
 import com.polarys.appleitour.view.fragment.PostFragment;
 import com.polarys.appleitour.view.fragment.SavedBookFragment;
@@ -28,7 +27,6 @@ public class PlaceholderActivity extends AppCompatActivity {
       //  bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         loadFragment(new SocialFragment());
 
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationview);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if(item.getItemId() == R.id.nav_favorites) // saved bok
@@ -45,7 +43,7 @@ public class PlaceholderActivity extends AppCompatActivity {
         });
     }
 
-    private void loadFragment(Fragment fragment){
+    public void loadFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.placeholder_framelayout,fragment);
         fragmentTransaction.commit();

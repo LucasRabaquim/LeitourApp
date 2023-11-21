@@ -1,40 +1,37 @@
 package com.polarys.appleitour.api;
 
-import static com.polarys.appleitour.api.ApiRequest.AUTOLOGIN;
-import static com.polarys.appleitour.api.ApiRequest.DEBUG;
-import static com.polarys.appleitour.api.ApiRequest.DELETE;
-import static com.polarys.appleitour.api.ApiRequest.GET;
-import static com.polarys.appleitour.api.ApiRequest.GETPUBLIC;
-import static com.polarys.appleitour.api.ApiRequest.POST;
-import static com.polarys.appleitour.api.ApiRequest.SIGN;
-import static com.polarys.appleitour.api.ApiRequest.UPDATE;
+
 import com.polarys.appleitour.model.ApiResponse;
 
 
 import org.json.JSONObject;
 
 public class ApiThread implements Runnable {
+    private static String method = null;
+    private static String url = null;
+    private static Object json = null;
+    private static String token = null;
 
-    private static String method;
-    private static String url;
-    private static String json;
-    private static String token;
+    public static final String GET = "GET";
+    public static final String DEBUG = "DEBUG";
+    public static final String GETPUBLIC = "GETPUBLIC";
+    public static final String POST = "POST";
+    public static final String SIGN = "SIGN";
+    public static final String AUTOLOGIN = "AUTOLOGIN";
+    public static final String UPDATE = "PUT";
+    public static final String DELETE = "DELETE";
     private volatile ApiResponse result;
-  //  private JProgressBar progressBar;
 
     public ApiThread(String method,String url){
         this.method = method;
         this.url = url;
-        this.json = null;
-        this.token = null;
     }
-    public ApiThread(String method,String url,String json){
+    public ApiThread(String method,String url,Object json){
         this.method = method;
         this.url = url;
         this.json = json;
-        this.token = null;
     }
-    public ApiThread(String method,String url,String json,String token){
+    public ApiThread(String method,String url,Object json,String token){
         this.method = method;
         this.url = url;
         this.json = json;
@@ -42,7 +39,6 @@ public class ApiThread implements Runnable {
     }
 
     public ApiThread CreateThread(ApiThread apiThread){
-  //      progressBar.setIndeterminate(true);
         Thread thread = new Thread(apiThread);
         thread.start();
         try {
@@ -54,7 +50,6 @@ public class ApiThread implements Runnable {
     }
     @Override
     public void run() {
-
         ApiRequest api = new ApiRequest();
         switch (method) {
             case GETPUBLIC:
@@ -82,13 +77,10 @@ public class ApiThread implements Runnable {
                 result = api.debug(url);
                 break;
             default:
-                System.out.println("Invalid day of the week");
+                break;
         }
 
     }
- /*   private void updateProgressBar(int value) {
-        SwingUtilities.invokeLater(() -> progressBar.setValue(value));
-    }*/
     public ApiResponse getJson() {
         return result;
     }

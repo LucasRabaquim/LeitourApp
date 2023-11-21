@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.api.ApiUser;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.ApiResponse;
@@ -20,11 +21,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedHelper sharedHelper = new SharedHelper(this);
         boolean logged = sharedHelper.GetKeepLogged();
-      /*  IntentHelper inteontHelper = new IntentHelper(this);
+   /*     IntentHelper intentHelper = new IntentHelper(this);
+        intentHelper.nextActivity(PlaceholderActivity.class);
+        finish();
+        IntentHelper inteontHelper = new IntentHelper(this);
         inteontHelper.nextActivity(PlaceholderActivity.class);*/
-        if(logged){
+       if(logged){
             String token = sharedHelper.GetToken();
-            ApiResponse response = new User().AutoLogin(token);
+            ApiResponse response = new ApiUser().AutoLogin(token);
             if(response.getCode() == 200){
                 IntentHelper intentHelper = new IntentHelper(this);
                 intentHelper.nextActivity(PlaceholderActivity.class);

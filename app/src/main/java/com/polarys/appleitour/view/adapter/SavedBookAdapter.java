@@ -2,6 +2,7 @@ package com.polarys.appleitour.view.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,9 +42,14 @@ public class SavedBookAdapter extends RecyclerView.Adapter<SavedBookAdapter.View
         Picasso.get().load(book.getBookCover()).into(holder.cover);
         holder.title.setText(book.getBookTitle());
         holder.author.setText("");
-        Picasso.get().load(book.getBookCover()).into(holder.cover);
+        try {
+            Picasso.get().load(book.getBookCover()).into(holder.cover);
+        }
+        catch (Exception e){
+            Log.e("Erro do adapter",e.toString());
+        }
         holder.mainLayout.setOnClickListener(view -> {
-            IntentHelper intentHelper = new IntentHelper((Activity) context);
+            IntentHelper intentHelper = new IntentHelper((Activity) context,IntentHelper.EXTRA_KEY);
             intentHelper.nextActivityObj(BookInfoActivity.class,book,IntentHelper.FROM_SAVEDBOOK);
         });
     }
