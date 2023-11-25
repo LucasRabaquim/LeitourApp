@@ -25,8 +25,10 @@ public class SocialFragment extends Fragment {
     private SocialViewModel viewModel;
 
     private RecyclerView recyclerView;
+    private User user = null;
     private PostAdapter adapter;
     public SocialFragment(){}
+    public SocialFragment(User user){this.user = user;}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -48,7 +50,11 @@ public class SocialFragment extends Fragment {
         adapter = new PostAdapter(posts,getActivity(),id,token);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-        ArrayList<Post> arrayList = viewModel.loadPosts();
+        ArrayList<Post> arrayList;
+        if(user == null)
+            viewModel.loadPosts(0);
+        else
+            viewModel.loadPostsByEmail(user.getEmail(),0);
         if(arrayList != null) {
             posts.clear();
             posts.addAll(arrayList);

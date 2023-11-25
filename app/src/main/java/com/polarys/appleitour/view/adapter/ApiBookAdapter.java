@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookHolder> {
     private final ArrayList<BookApi> books;
     private Context context;
+    private String token;
 
     public ApiBookAdapter(ArrayList apiBooks, Context context) {
         books = apiBooks;
@@ -50,8 +51,13 @@ public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookH
         holder.title.setText(book.getTitle());
         holder.author.setText(book.getAuthors());
         holder.mainLayout.setOnClickListener(view -> {
-            IntentHelper intentHelper = new IntentHelper((Activity) context, EXTRA_KEY);
-            intentHelper.nextActivityObj(BookInfoActivity.class,book,FROM_BOOKSEARCH);
+            IntentHelper intentHelper = new IntentHelper((Activity) context,EXTRA_KEY);
+            ApiResponse bookRequest = new ApiSaved().GetByKey(savedBook.getBookKey(),token);
+            SavedBook savedBook = (SavedBook) ApiUtil.JsonToObject(new BookApi(),bookRequest.getBody());
+            bundle.putSerializable(SAVED_SHARED,savedBook);
+            bundle.putSerializable(BOOK_SHARED,book);
+            intentHelper.nextActivityObj(BookInfoActivity.class,bundle);
+
         });
 
     }

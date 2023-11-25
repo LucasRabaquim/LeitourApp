@@ -23,7 +23,9 @@ public class SavedBookFragment extends Fragment {
     private SavedBookViewModel viewModel;
     private RecyclerView recyclerView;
     private SavedBookAdapter adapter;
+    private User user;
     public SavedBookFragment(){}
+    public SavedBookFragment(User user){this.user = user;}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -43,7 +45,11 @@ public class SavedBookFragment extends Fragment {
         int columns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),columns));
         recyclerView.setAdapter(adapter);
-        ArrayList<SavedBook> arrayList = viewModel.loadSaved(new SharedHelper(getActivity()).GetToken());
+        ArrayList<SavedBook> arrayList;
+        if(user == null)
+            arrayList = viewModel.loadSaved(new SharedHelper(getActivity()).GetToken());
+        else
+            arrayList = viewModel.loadSavedFromEmail(user.getEmail());
         if(arrayList != null) {
             books.clear();
             books.addAll(arrayList);

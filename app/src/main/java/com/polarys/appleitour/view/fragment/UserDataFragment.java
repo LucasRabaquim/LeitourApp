@@ -57,13 +57,13 @@ public class UserDataFragment extends Fragment {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getActivity().getMenuInflater().inflate(R.menu.menu_user_configuration, menu);
+        getActivity().getMenuInflater().inflate(R.menu.menu_publication_options, menu);
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.message)
+      //  if(id == R.id.message)
             Toast.makeText(getContext(), "Shows share icon", Toast.LENGTH_SHORT).show();
         /*switch (item.getItemId()) {
             case R.id.message:

@@ -2,16 +2,12 @@ package com.polarys.appleitour.view.adapter;
 
 import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -42,8 +38,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     private Post post;
 
 
-
-    public PostAdapter(ArrayList<Post> data, Context context, int id,String token) {
+    public PostAdapter(ArrayList<Post> data, Context context, int id, String token) {
         this.data = data;
         this.context = context;
         this.id = id;
@@ -53,13 +48,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     @Override
     public PostAdapter.PostHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new PostAdapter.PostHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.adapter_item_publication, parent, false));
+        return new PostAdapter.PostHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_item_publication, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull PostAdapter.PostHolder holder, int position) {
-
 
 
         post = data.get(position);
@@ -67,8 +60,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         holder.text.setText(post.GetMessagePost());
         holder.btnLike.setText("likes:" + post.GetLikes());
         holder.btnLike.setOnClickListener(v -> {
-            ApiResponse response = new ApiPost().Like(post.GetId(),new SharedHelper(context).GetToken());
-            Toast.makeText(context,response.getBody(),Toast.LENGTH_SHORT).show();
+            ApiResponse response = new ApiPost().Like(post.GetId(), new SharedHelper(context).GetToken());
+            Toast.makeText(context, response.getBody(), Toast.LENGTH_SHORT).show();
         });
         holder.mainLayout.setOnClickListener(view -> {
             IntentHelper intentHelper = new IntentHelper((Activity) context, POST_SHARED);
@@ -76,37 +69,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         });
 
         holder.btnOptions.setOnClickListener(view -> {
-
             PopupMenu popupMenu = new PopupMenu(context, view);
-            popupMenu.inflate(R.menu.menu_publication_options); // Use your own menu resource file
-
-            // Set up the click listener for menu items
+            popupMenu.inflate(R.menu.menu_publication_options);
             popupMenu.setOnMenuItemClickListener(menuItem -> {
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.publication_edit) {
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable(POST_SHARED, post);
-                        PostFragment fragment = new PostFragment();
-                        fragment.setArguments(bundle);
-                        ((AppCompatActivity) context).getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.placeholder_framelayout, fragment)
-                                .commit();
-                    return true;
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(POST_SHARED, post);
+                    PostFragment fragment = new PostFragment();
+                    fragment.setArguments(bundle);
+                    ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.placeholder_framelayout, fragment).commit();
                 } else if (itemId == 2) {
-                    return true;
-                }//default intent
+                }
                 return true;
             });
-
-            // Show the PopupMenu
             popupMenu.show();
-
-
-        }
-        );
-
-
+        });
     }
 
     @Override
@@ -118,8 +96,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     public int getItemViewType(int position) {
         return 0;
     }
-
-
 
 
     public class PostHolder extends RecyclerView.ViewHolder {

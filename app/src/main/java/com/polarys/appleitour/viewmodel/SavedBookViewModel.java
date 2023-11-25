@@ -18,11 +18,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class SavedBookViewModel extends ViewModel {
-
     public SavedBookViewModel(){};
     ApiSavedBook apiSavedBook = new ApiSavedBook();
     ApiAnnotation apiAnnotation = new ApiAnnotation();
-
     public Object[] GetBookAndAnnotation(String key, String token) {
         ApiResponse apiResponse = apiSavedBook.GetSavedBookAnnotation(key,token);
         try {
@@ -42,13 +40,16 @@ public class SavedBookViewModel extends ViewModel {
     public ApiResponse SaveBook(BookApi book, int userId, String token){
         return apiSavedBook.SaveBook(book, userId, token);
     }
-
     public ArrayList<SavedBook> loadSaved(String token){
         ApiResponse apiResponse = apiSavedBook.GetSavedBooks(token);
         Log.d("T",apiResponse.getBody());
         return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(new SavedBook().getClass(), apiResponse.getBody());
     }
-
+    public ArrayList<SavedBook> loadSavedFromEmail(String email){
+        ApiResponse apiResponse = apiSavedBook.GetSavedBooks(token);
+        Log.d("T",apiResponse.getBody());
+        return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(new SavedBook().getClass(), apiResponse.getBody());
+    }
     public ArrayList<Annotation> showAnnotations(int id, String token){
         ApiResponse apiResponse = apiAnnotation.GetAnnotations(id,token);
         Log.d("Só anotacao",apiResponse.getBody());

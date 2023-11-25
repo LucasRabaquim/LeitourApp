@@ -1,8 +1,11 @@
 package com.polarys.appleitour.view.adapter;
 
+import static com.polarys.appleitour.helper.IntentHelper.BOOK_SHARED;
+import static com.polarys.appleitour.helper.IntentHelper.SAVED_SHARED;
+
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.api.ApiBook;
+import com.polarys.appleitour.api.ApiSavedBook;
+import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.helper.IntentHelper;
+import com.polarys.appleitour.model.ApiResponse;
+import com.polarys.appleitour.model.BookApi;
 import com.polarys.appleitour.model.SavedBook;
 import com.polarys.appleitour.view.activity.BookInfoActivity;
 import com.squareup.picasso.Picasso;
@@ -38,19 +46,18 @@ public class SavedBookAdapter extends RecyclerView.Adapter<SavedBookAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        SavedBook book = books.get(position);
-        Picasso.get().load(book.getBookCover()).into(holder.cover);
-        holder.title.setText(book.getBookTitle());
-        holder.author.setText("");
-        try {
-            Picasso.get().load(book.getBookCover()).into(holder.cover);
-        }
-        catch (Exception e){
-            Log.e("Erro do adapter",e.toString());
-        }
+        SavedBook savedBook = books.get(position);
+        Picasso.get().load(savedBook.getBookCover()).into(holder.cover);
+        holder.title.setText(savedBook.getBookTitle());
+        Picasso.get().load(savedBook.getBookCover()).into(holder.cover);
+        Bundle bundle = new Bundle();
         holder.mainLayout.setOnClickListener(view -> {
-            IntentHelper intentHelper = new IntentHelper((Activity) context,IntentHelper.EXTRA_KEY);
-            intentHelper.nextActivityObj(BookInfoActivity.class,book,IntentHelper.FROM_SAVEDBOOK);
+            IntentHelper intentHelper = new IntentHelper((Activity) context);
+            ApiResponse bookRequest = new ApiBook().GetByKey(savedBook.getBookKey());
+            BookApi book = (BookApi) ApiUtil.JsonToObject(new BookApi(),bookRequest.getBody());
+            bundle.putSerializable(SAVED_SHARED,savedBook);
+            bundle.putSerializable(BOOK_SHARED,book);
+            intentHelper.nextActivityObj(BookInfoActivity.class,bundle);
         });
     }
 

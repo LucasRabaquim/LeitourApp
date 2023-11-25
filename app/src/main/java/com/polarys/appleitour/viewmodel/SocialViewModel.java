@@ -23,15 +23,14 @@ public class SocialViewModel extends ViewModel {
     public SocialViewModel() { }
     ApiPost apiPost = new ApiPost();
 
-    public ArrayList<Post> loadPosts(){
-        ApiResponse apiResponse;
-        apiResponse = apiPost.GetPosts();
+    public ArrayList<Post> loadPosts(int offset){
+        ApiResponse apiResponse = apiPost.GetPosts(offset);
         Log.d("Teste",apiResponse.getBody());
-       try {
-            return (ArrayList<Post>) ApiUtil.JsonToArrayObject(new Post().getClass(), apiResponse.getBody());
-        }
-        catch(Exception e){
-            return null;
-        }
+        return (ArrayList<Post>) ApiUtil.JsonToArrayObject(new Post().getClass(), apiResponse.getBody());
+    }
+    public ArrayList<Post> loadPostsByEmail(email,int offset){
+        ApiResponse apiResponse = apiPost.GetPostsByEmail(email,offset);
+        Log.d("Teste",apiResponse.getBody());
+        return (ArrayList<Post>) ApiUtil.JsonToArrayObject(new Post().getClass(), apiResponse.getBody());
     }
 }

@@ -1,52 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22c89501-3bcf-48a5-beef-eabe05810900" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/PostFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/border.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_post.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/kotlinScripting.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/helper/IntentHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/helper/IntentHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/model/BookApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/model/BookApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/model/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/model/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/model/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/model/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/model/SavedBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/model/SavedBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/activity/AnnotationActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/activity/AnnotationActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/activity/BookInfoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/activity/BookInfoActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/activity/PlaceholderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/activity/PlaceholderActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/activity/PublicationEditActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/activity/SavedBookInfoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/activity/SavedBookInfoActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/activity/SeePostActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/activity/SeePostActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/AnnotationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/AnnotationAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiSavedBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiSavedBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/interfaces/IPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/interfaces/IPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/interfaces/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/interfaces/IUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/perfil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/perfil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/ApiBookAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/ApiBookAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/CommentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/CommentAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/PostAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/PostAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/SavedBookAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/SavedBookAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/customview/PublicationCustomView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/customview/PublicationCustomView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/LoginFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/RegisterFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/RegisterFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/SavedBookFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/SavedBookFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/SocialFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/SocialFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/UserDataFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/UserDataFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/UserDataViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/UserDataViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/BookApiViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/BookApiViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/BookInfoViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/BookInfoViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/PublicationEditViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/SavedBookInfoViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/SavedBookInfoViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/SavedBookViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/SavedBookViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/SocialViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/SocialViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/login_gradient.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/gradient.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_book_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_book_info.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_publication_edit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_see_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_see_post.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/adapter_item_publication.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/adapter_item_publication.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/UserDataViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/UserDataViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_register.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/menu/menu_bottom_bar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/menu/menu_bottom_bar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/menu/menu_user_configuration.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,12 +38,27 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2Y9EKPfCYnKtZBKS4c5XmIvBnFV" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -73,7 +68,9 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
     "android.gradle.sync.needed": "true",
+    "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/home/lucas/Code_Projects/AppLeitour",
     "settings.editor.selected.configurable": "configurable.group.appearance"
@@ -92,5 +89,16 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="dependencySupport" implementationName="executable:docker" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

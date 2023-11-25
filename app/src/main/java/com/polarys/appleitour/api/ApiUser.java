@@ -46,4 +46,16 @@ public class ApiUser implements IUser {
         ApiThread apiThread = new ApiThread(UPDATE, PATH + "/deactivate", null, token);
         return apiThread.CreateThread(apiThread).getJson();
     }
+
+    @Override
+    public ApiResponse GetFollowing(String email, int offset) {
+        ApiThread apiThread = new ApiThread(GETPUBLIC, PATH + "/followingList/"+email);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+
+    @Override
+    public ApiResponse GetFollowers(String email, int offset) {
+        ApiThread apiThread = new ApiThread(GETPUBLIC, PATH + "/followerList/"+email);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
 }
