@@ -1,6 +1,7 @@
 package com.polarys.appleitour.api;
 
 import static com.polarys.appleitour.api.ApiThread.AUTOLOGIN;
+import static com.polarys.appleitour.api.ApiThread.GETPUBLIC;
 import static com.polarys.appleitour.api.ApiThread.SIGN;
 import static com.polarys.appleitour.api.ApiThread.UPDATE;
 
@@ -39,7 +40,7 @@ public class ApiUser implements IUser {
     }
 
     public ApiResponse UpdateUser(String token, User user) {
-        ApiThread apiThread = new ApiThread(UPDATE, PATH + "/alter", user);
+        ApiThread apiThread = new ApiThread(UPDATE, PATH + "/alter", user,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse Deactivate(String token) {

@@ -64,12 +64,16 @@ public class AnnotationActivity extends AppCompatActivity {
         String token = sharedHelper.GetToken();
         Annotation savedAnnotation = null;
         SavedBook savedBook = null;
+        int savedI;
         try {
             savedAnnotation = (Annotation) getIntent().getSerializableExtra(EXTRA_KEY);
+            savedI = savedAnnotation.getSavedBookId();
         }catch(Exception e) {
+            Log.d("Anno", "onCreate: "+e);
             savedBook = (SavedBook) getIntent().getSerializableExtra(EXTRA_KEY);
+            savedI = savedBook.getId();
         }
-        final int savedId = savedBook.getId();
+        final int savedId = savedI;
         if(savedAnnotation != null){
             edit_mode = true;
             annotation = savedAnnotation;

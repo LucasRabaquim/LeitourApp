@@ -46,7 +46,7 @@ public class SavedBookViewModel extends ViewModel {
         return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(new SavedBook().getClass(), apiResponse.getBody());
     }
     public ArrayList<SavedBook> loadSavedFromEmail(String email){
-        ApiResponse apiResponse = apiSavedBook.GetSavedBooks(token);
+        ApiResponse apiResponse = apiSavedBook.GetSavedBookByEmail(email);
         Log.d("T",apiResponse.getBody());
         return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(new SavedBook().getClass(), apiResponse.getBody());
     }

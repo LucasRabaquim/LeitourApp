@@ -2,6 +2,7 @@ package com.polarys.appleitour.api;
 
 import static com.polarys.appleitour.api.ApiThread.DELETE;
 import static com.polarys.appleitour.api.ApiThread.GET;
+import static com.polarys.appleitour.api.ApiThread.GETPUBLIC;
 import static com.polarys.appleitour.api.ApiThread.POST;
 import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 
@@ -28,8 +29,7 @@ public class ApiSavedBook implements ISavedBook {
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse GetSavedBook(String key, String token){
-        ApiThread apiThread;
-        apiThread = new ApiThread(GET, "SavedBooks/"+key,null,token);
+        ApiThread apiThread = new ApiThread(GET, "SavedBooks/"+key,null,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse GetSavedBookAnnotation(String key, String token){
@@ -38,7 +38,7 @@ public class ApiSavedBook implements ISavedBook {
     }
     public ApiResponse GetSavedBookByEmail(String email){
         ApiThread apiThread;
-        apiThread = new ApiThread(GET, "SavedBooks/User/"+email,null,token);
+        apiThread = new ApiThread(GETPUBLIC, "SavedBooks/User/"+email);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

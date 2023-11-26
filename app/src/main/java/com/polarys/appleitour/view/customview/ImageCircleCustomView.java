@@ -5,6 +5,7 @@ import static androidx.databinding.DataBindingUtil.setContentView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,12 +19,16 @@ public class ImageCircleCustomView extends LinearLayout {
 
     public ImageCircleCustomView(Context context) {
         super(context);
-        init(null);
+       // init(null);
      //   setOnClickListener(this);
 
     }
 
     public ImageCircleCustomView(Context context, AttributeSet attrs){
+        super(context);
+        init(attrs);
+    }
+    public ImageCircleCustomView(Context context, Bitmap attrs){
         super(context);
         init(attrs);
     }
@@ -43,5 +48,11 @@ public class ImageCircleCustomView extends LinearLayout {
         /*imageCircle.setOnClickListener(view -> {
 
         });*/
+    }
+
+    public void init(@Nullable Bitmap bitmap) {
+        inflate(getContext(), R.layout.custom_image_circle, this);
+        imageCircle = findViewById(R.id.imageCircle_imageView);
+        imageCircle.setImageBitmap(bitmap);
     }
 }

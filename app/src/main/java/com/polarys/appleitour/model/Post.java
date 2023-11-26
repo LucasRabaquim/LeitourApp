@@ -8,11 +8,7 @@ import static com.polarys.appleitour.api.ApiThread.UPDATE;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-//import com.fasterxml.jackson.annotation.JsonProperty;
-import com.polarys.appleitour.api.ApiThread;
-import com.polarys.appleitour.api.ApiUtil;
-import com.polarys.appleitour.interfaces.IApi;
-import com.polarys.appleitour.interfaces.IPost;
+
 
 public class Post implements Serializable{
     private int id;

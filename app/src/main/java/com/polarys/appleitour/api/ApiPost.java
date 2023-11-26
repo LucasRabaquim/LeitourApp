@@ -1,13 +1,15 @@
 package com.polarys.appleitour.api;
 
-import static com.polarys.appleitour.api.ApiRequest.DELETE;
-import static com.polarys.appleitour.api.ApiRequest.GET;
-import static com.polarys.appleitour.api.ApiRequest.GETPUBLIC;
-import static com.polarys.appleitour.api.ApiRequest.POST;
-import static com.polarys.appleitour.api.ApiRequest.UPDATE;
+
+import static com.polarys.appleitour.api.ApiThread.DELETE;
+import static com.polarys.appleitour.api.ApiThread.GET;
+import static com.polarys.appleitour.api.ApiThread.GETPUBLIC;
+import static com.polarys.appleitour.api.ApiThread.POST;
+import static com.polarys.appleitour.api.ApiThread.UPDATE;
 
 import com.polarys.appleitour.interfaces.IPost;
 import com.polarys.appleitour.model.ApiResponse;
+import com.polarys.appleitour.model.Post;
 
 public class ApiPost implements IPost {
 
@@ -18,19 +20,26 @@ public class ApiPost implements IPost {
         ApiThread apiThread = new ApiThread(GETPUBLIC, PATH, null);
         return apiThread.CreateThread(apiThread).getJson();
     }
-    public ApiResponse CreatePost(Object object, String token) {
-        ApiThread apiThread;
-        apiThread = new ApiThread(POST, PATH, object,token);
+
+    @Override
+    public ApiResponse GetPostsByEmail(String email) {
+        return null;
+    }
+
+
+    public ApiResponse CreatePost(Post post, String token) {
+        ApiThread apiThread = new ApiThread(POST, PATH, post,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
-    public ApiResponse UpdatePost(int id,Object object, String token) {
+
+    public ApiResponse UpdatePost(Post post, String token) {
         ApiThread apiThread;
-        apiThread = new ApiThread(UPDATE, PATH+"/"+id, object,token);
+        apiThread = new ApiThread(UPDATE, PATH+"/"+post.GetId(), post,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
-    public ApiResponse DeletePost(int id,Object object, String token) {
+    public ApiResponse DeletePost(Post post, String token) {
         ApiThread apiThread;
-        apiThread = new ApiThread(DELETE, PATH+"/"+id, object,token);
+        apiThread = new ApiThread(DELETE, PATH+"/"+post.GetId(), post,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
 

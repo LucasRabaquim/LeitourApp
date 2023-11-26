@@ -21,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.api.ApiComment;
+import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.Comment;
 import com.polarys.appleitour.view.fragment.PostFragment;
 
@@ -31,6 +33,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
     private final String token;
     private final ArrayList<Comment> data;
     private final Context context;
+    private ApiComment apiComment = new ApiComment();
 
     public CommentAdapter(ArrayList<Comment> data, Context context, int id, String token) {
         this.data = data;
@@ -71,15 +74,31 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
                     alert.setPositiveButton("Yes Option", (dialog, whichButton) -> {
 
                         String YouEditTextValue = edittext.getText().toString();
-                        Log.d("TAG", "onBindViewHolder: "+YouEditTextValue);
+                        comment.setMessagePost(YouEditTextValue);
+                        ApiResponse api = apiComment.UpdateComment(comment,token);
+                        Log.d("TAG", "onBindViewHolder: "+api.getBody());
+
                     });
 
                     alert.setNegativeButton("No Option", (dialog, whichButton) -> {
 
                     });
                     alert.show();
-                } else if (itemId == 2) {
+                } else if (itemId == R.id.publication_delete) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                    final EditText edittext = new EditText(context);
+                    alert.setMessage("Enter Your Message");
+                    alert.setTitle("Enter Your Title");
+                    alert.setPositiveButton("Yes Option", (dialog, whichButton) -> {
 
+                        apiComment.DeleteComment(comment,token);
+
+                    });
+
+                    alert.setNegativeButton("No Option", (dialog, whichButton) -> {
+
+                    });
+                    alert.show();
                 }//default intent
                 return true;
             });

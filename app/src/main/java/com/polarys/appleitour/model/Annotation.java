@@ -11,18 +11,19 @@ import com.polarys.appleitour.api.ApiThread;
 import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.helper.SharedHelper;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 import kotlin.jvm.Transient;
 
-public class Annotation {
+public class Annotation implements Serializable {
 
     private int annotationId;
     private int savedBookId;
     private String annotationText;
-    private LocalDateTime createdDate = null;
-    private LocalDateTime alteratedDate = null;
+    private String createdDate;
+    private String alteratedDate;
 
     public Annotation() {}
 
@@ -30,14 +31,15 @@ public class Annotation {
         this.annotationId = 0;
         this.savedBookId = savedBookId;
         this.annotationText = annotationText;
+        this.createdDate = LocalDateTime.now()+"Z";
+        this.alteratedDate = LocalDateTime.now()+"Z";
     }
 
     public Annotation(int annotationId, int savedBookId, String annotationText, LocalDateTime createdDate, LocalDateTime alteratedDate) {
         this.annotationId = annotationId;
         this.savedBookId = savedBookId;
         this.annotationText = annotationText;
-        this.createdDate = createdDate;
-        this.alteratedDate = alteratedDate;
+
     }
 
     public int getAnnotationId() {

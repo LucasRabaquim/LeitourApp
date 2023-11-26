@@ -13,6 +13,15 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="SignText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">60dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:fontFamily">@font/outfit_bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="SignField">
         <item name="android:layout_width">312dp</item>
         <item name="android:layout_height">48dp</item>
@@ -21,6 +30,8 @@
         <item name="android:textColor">@color/AzulDefault</item>
         <item name="android:textColorHint">@color/AzulDefault</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:paddingEnd">12sp</item>
+        <item name="android:paddingStart">12sp</item>
         <item name="android:background">@drawable/border</item>
         <item name="android:fontFamily">@font/outfit_bold</item>
     </style>

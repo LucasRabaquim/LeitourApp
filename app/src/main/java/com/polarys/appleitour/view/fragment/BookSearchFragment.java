@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.BookApi;
 import com.polarys.appleitour.view.adapter.ApiBookAdapter;
 import com.polarys.appleitour.viewmodel.BookApiViewModel;
@@ -47,7 +48,7 @@ public class BookSearchFragment extends Fragment {
         viewModel = ViewModelProviders.of(this).get(BookApiViewModel.class);
         books = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recycler_returned_books);
-        apiBookAdapter = new ApiBookAdapter(books, getActivity());
+        apiBookAdapter = new ApiBookAdapter(books, getActivity(),new SharedHelper(getContext()).GetToken());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(apiBookAdapter);
         searchBar = view.findViewById(R.id.searchBookBar);

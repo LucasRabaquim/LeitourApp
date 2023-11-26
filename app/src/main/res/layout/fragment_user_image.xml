@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_user_image"
+    android:background="@color/AzulDefault">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:cardCornerRadius="250dp"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/img_user"
+            app:cardCornerRadius="250dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/placeholder"
+            android:scaleType="centerCrop"/>
+
+    </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/btn_send_image"
+        android:text="imagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        style="@style/ButtonBlue"/>
+
+
+    <Button
+        android:id="@+id/btn_skip_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="pular"
+        android:layout_marginBottom="50dp"
+        style="@style/ButtonBlue"/>
+
+</LinearLayout>

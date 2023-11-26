@@ -4,29 +4,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22c89501-3bcf-48a5-beef-eabe05810900" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="22c89501-3bcf-48a5-beef-eabe05810900" name="Changes" comment="[Feat] Progresso na tela de usuário">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiSavedBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiSavedBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/api/ApiUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/interfaces/IPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/interfaces/IPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/interfaces/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/interfaces/IUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/perfil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/perfil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/ApiBookAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/ApiBookAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/CommentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/CommentAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/PostAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/PostAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/SavedBookAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/adapter/SavedBookAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/SavedBookFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/SavedBookFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/SocialFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/SocialFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/UserDataFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/view/fragment/UserDataFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/SavedBookViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/SavedBookViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/SocialViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/SocialViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/UserDataViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/polarys/appleitour/viewmodel/UserDataViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/menu/menu_user_configuration.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +51,7 @@
     "android.gradle.sync.needed": "true",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/lucas/Code_Projects/AppLeitour",
+    "last_opened_file_path": "/home/lucas/Code_Projects/20- Backup AppLeitour (copy)",
     "settings.editor.selected.configurable": "configurable.group.appearance"
   }
 }]]></component>
@@ -85,6 +64,14 @@
       <option name="presentableId" value="Default" />
       <updated>1699929331925</updated>
     </task>
+    <task id="LOCAL-00001" summary="[Feat] Progresso na tela de usuário">
+      <created>1700884802667</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700884802667</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -100,5 +87,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[Feat] Progresso na tela de usuário" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feat] Progresso na tela de usuário" />
   </component>
 </project>

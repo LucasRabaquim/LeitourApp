@@ -1,9 +1,12 @@
 package com.polarys.appleitour.view.activity;
 
+import static com.polarys.appleitour.helper.IntentHelper.BOOK_SHARED;
 import static com.polarys.appleitour.helper.IntentHelper.EXTRA_KEY;
 import static com.polarys.appleitour.helper.IntentHelper.FROM_ACTIVITY_KEY;
 import static com.polarys.appleitour.helper.IntentHelper.FROM_BOOKSEARCH;
 import static com.polarys.appleitour.helper.IntentHelper.FROM_SAVEDBOOK;
+import static com.polarys.appleitour.helper.IntentHelper.SAVED_SHARED;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,41 +41,29 @@ public class BookInfoActivity extends AppCompatActivity {
     private Object[] SavedResponse;
     private RecyclerView recyclerView;
     private AnnotationAdapter adapter;
-    private ArrayList<Annotation> annotations = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_info);
-        String fromActivity = getIntent().getStringExtra(FROM_ACTIVITY_KEY);
+
         SharedHelper sharedHelper = new SharedHelper(this);
         String token = sharedHelper.GetToken();
-        
+        Bundle bundle = getIntent().getExtras();
         SavedViewModel = new ViewModelProvider(this).get(SavedBookViewModel.class);
         bookApiViewModel = new ViewModelProvider(this).get(BookApiViewModel.class);
         
         btn_create_annotation = findViewById(R.id.btn_create_annotation);
-        
-        findViewById(R.id.btn_return).setOnClickListener(v -> finish());
+        ArrayList<Annotation> annotations = new ArrayList<>();
+        recyclerView = findViewById(R.id.recycler_annotation);
+        adapter = new AnnotationAdapter(annotations, this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
-        BookApi book = null;
-        SavedBook savedBook = null;
-        ArrayList<Annotation> apiAnnotation = null;
-        Object obj = getIntent().getSerializableExtra(EXTRA_KEY);
-        
-        switch (fromActivity){
-            case FROM_BOOKSEARCH:
-                book = (BookApi) obj;
-                SavedResponse = SavedViewModel.GetBookAndAnnotation(book.getKey(), token);
-                savedBook = (SavedBook) SavedResponse[0];
-                apiAnnotation = (ArrayList<Annotation>) SavedResponse[1];
-                break;
-                case FROM_SAVEDBOOK:
-                    savedBook = (SavedBook) obj;
-                    apiAnnotation = SavedViewModel.showAnnotations(savedBook.getId(),token);
-                    book = bookApiViewModel.GetByKey(savedBook.getBookKey());
-                break;
-        }
+        findViewById(R.id.btn_return).setOnClickListener(v -> finish());
+        BookApi book = (BookApi) bundle.getSerializable(BOOK_SHARED);
+        SavedBook savedBook = (SavedBook) bundle.getSerializable(SAVED_SHARED);
 
         if (book != null)
             setViewData(book);
@@ -89,18 +80,16 @@ public class BookInfoActivity extends AppCompatActivity {
 
         if(savedBook != null) {
             btn_create_annotation.setVisibility(View.VISIBLE);
-
             try {
-                Log.d("Anotacao",SavedResponse[1].toString());
-                apiAnnotation = (ArrayList<Annotation>) SavedResponse[1];
-                recyclerView = findViewById(R.id.recycler_annotation);
-                adapter = new AnnotationAdapter(annotations, this);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                recyclerView.setAdapter(adapter);
-                annotations.clear();
-                if(apiAnnotation != null)
+
+                ArrayList<Annotation> apiAnnotation = SavedViewModel.showAnnotations(savedBook.getId(),token);
+                Log.d("Anotacao",apiAnnotation.toString());
+
+                if(apiAnnotation != null) {
+                    annotations.clear();
                     annotations.addAll(apiAnnotation);
-                adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
+                }
 
             }catch(Exception e){Log.d("Anotacao",e.toString()); }
             btn_create_annotation.setOnClickListener(v->{

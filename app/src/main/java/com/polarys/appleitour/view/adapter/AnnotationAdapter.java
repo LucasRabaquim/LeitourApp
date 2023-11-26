@@ -7,6 +7,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,7 +33,7 @@ public class AnnotationAdapter extends RecyclerView.Adapter<AnnotationAdapter.An
     @Override
     public AnnotationAdapter.AnnotationHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new AnnotationAdapter.AnnotationHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.adapter_item_book, parent, false));
+                .inflate(R.layout.adapter_item_annotation, parent, false));
     }
 
     @Override
@@ -40,12 +41,17 @@ public class AnnotationAdapter extends RecyclerView.Adapter<AnnotationAdapter.An
 
         Annotation annotation = annotations.get(position);
        // Picasso.get().load(annotations.getCover()).into(holder.cover);
+
         holder.title.setText(annotation.getAnnotationText());
       //  holder.author.setText(annotations.getAuthors());
-        holder.mainLayout.setOnClickListener(view -> {
+        holder.btnEdit.setOnClickListener(view -> {
             IntentHelper intentHelper = new IntentHelper((Activity) context, ANNOTATION_SHARED);
             intentHelper.nextActivityObj(AnnotationActivity.class,annotation);
         });
+        holder.btnDiscard.setOnClickListener(view -> {
+
+        });
+
 
     }
 
@@ -55,11 +61,14 @@ public class AnnotationAdapter extends RecyclerView.Adapter<AnnotationAdapter.An
     }
     public class AnnotationHolder extends RecyclerView.ViewHolder{
         TextView title, author;
+        Button btnEdit, btnDiscard;
         LinearLayout mainLayout;
         public AnnotationHolder(@NonNull View view){
             super(view);
             this.title= view.findViewById(R.id.item_annotation_book);
             this.author= view.findViewById(R.id.item_annotation_author);
+            btnEdit = view.findViewById(R.id.btn_annotation_edit);
+            btnDiscard = view.findViewById(R.id.btn_annotation_discard);
             mainLayout = view.findViewById(R.id.item_annotation_layout);
         }
     }

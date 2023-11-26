@@ -7,6 +7,7 @@ import static com.polarys.appleitour.api.ApiThread.UPDATE;
 
 import com.polarys.appleitour.interfaces.IComment;
 import com.polarys.appleitour.model.ApiResponse;
+import com.polarys.appleitour.model.Comment;
 
 public class ApiComment implements IComment {
 
@@ -17,19 +18,18 @@ public class ApiComment implements IComment {
         apiThread = new ApiThread(GETPUBLIC, "Posts/Comment/"+id);
         return apiThread.CreateThread(apiThread).getJson();
     }
-    public ApiResponse PostComment(Object object, String token) {
+    public ApiResponse PostComment(Comment comment, String token) {
         ApiThread apiThread;
-        apiThread = new ApiThread(POST, "Comment", object,token);
+        apiThread = new ApiThread(POST, "Posts/Comment", comment,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
-    public ApiResponse UpdateComment(int id,Object object, String token) {
-        ApiThread apiThread;
-        apiThread = new ApiThread(UPDATE, "Comment/"+id, object,token);
+    public ApiResponse UpdateComment(Comment comment, String token) {
+        ApiThread apiThread = new ApiThread(UPDATE, "Posts/Comment/"+comment.getCommentId(), comment,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
-    public ApiResponse DeleteComment(int id,Object object, String token) {
+    public ApiResponse DeleteComment(Comment comment, String token) {
         ApiThread apiThread;
-        apiThread = new ApiThread(DELETE, "Comment/"+id, object,token);
+        apiThread = new ApiThread(DELETE, "Posts/Comment/"+comment.getCommentId(), comment,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

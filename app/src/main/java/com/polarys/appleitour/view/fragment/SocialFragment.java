@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.Post;
+import com.polarys.appleitour.model.User;
 import com.polarys.appleitour.view.adapter.PostAdapter;
 import com.polarys.appleitour.viewmodel.SocialViewModel;
 
@@ -52,9 +53,9 @@ public class SocialFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         ArrayList<Post> arrayList;
         if(user == null)
-            viewModel.loadPosts(0);
+            arrayList = viewModel.loadPosts(0);
         else
-            viewModel.loadPostsByEmail(user.getEmail(),0);
+            arrayList = viewModel.loadPostsByEmail(user.GetEmail(),0);
         if(arrayList != null) {
             posts.clear();
             posts.addAll(arrayList);

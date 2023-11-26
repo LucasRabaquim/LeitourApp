@@ -21,9 +21,6 @@ public class SharedHelper extends AppCompatActivity {
     final static String USER = "User";
     final static String KEEP_LOGGED = "Keep_Logged";
     SharedPreferences settings;
-    private static Application instance;
-
-
 
     public SharedHelper(Context context){
         this.settings = context.getSharedPreferences(SHARED_NAME, 0);

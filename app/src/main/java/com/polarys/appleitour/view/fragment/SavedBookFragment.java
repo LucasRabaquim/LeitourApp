@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.SavedBook;
+import com.polarys.appleitour.model.User;
 import com.polarys.appleitour.view.adapter.SavedBookAdapter;
 import com.polarys.appleitour.viewmodel.SavedBookViewModel;
 
@@ -49,7 +50,7 @@ public class SavedBookFragment extends Fragment {
         if(user == null)
             arrayList = viewModel.loadSaved(new SharedHelper(getActivity()).GetToken());
         else
-            arrayList = viewModel.loadSavedFromEmail(user.getEmail());
+            arrayList = viewModel.loadSavedFromEmail(user.GetEmail());
         if(arrayList != null) {
             books.clear();
             books.addAll(arrayList);

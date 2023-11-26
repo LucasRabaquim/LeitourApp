@@ -28,7 +28,7 @@
         android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/outfit_medium"
         android:gravity="top"
         android:text="Seja Bem-vindo"
@@ -37,7 +37,7 @@
         android:textSize="30sp" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="60dp"
@@ -45,23 +45,17 @@
         android:textColor="@color/white"
         android:text="Email" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/AzulDefault"
-        app:passwordToggleEnabled="false"
-        app:passwordToggleDrawable="@drawable/iconuser">
+    <EditText
+        android:id="@+id/edit_email"
+        style="@style/SignField"
+        android:inputType="textEmailAddress"
+        android:drawableEnd="@drawable/iconuser"
+        android:drawableTint="@color/gray_600" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_email"
-            style="@style/SignField"
-            android:inputType="textEmailAddress"/>
-    </com.google.android.material.textfield.TextInputLayout>
 
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="40dp"
@@ -119,9 +113,9 @@
         android:id="@+id/txt_register"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="105dp"
         android:layout_marginBottom="20dp"
         android:text="Não possui conta? Registre-se"
+        android:layout_gravity="center"
         android:textColor="@color/white"
         android:textSize="14sp" />
 
@@ -145,7 +139,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="13dp"
         android:layout_marginEnd="276dp"
         android:layout_marginBottom="13dp"

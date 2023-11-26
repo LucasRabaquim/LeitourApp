@@ -19,13 +19,13 @@ public class PostViewModel extends ViewModel {
         return "Não foi possível criar o Post";
     }
     public String UpdatePost(Post post, String token){
-        ApiResponse response = apiPost.UpdatePost(post.GetId(),post,token);
+        ApiResponse response = apiPost.UpdatePost(post,token);
         if (response.getCode() == 200 | response.getCode() == 201)
             return "Post Alterado";
         return "Não foi possível alterar o Post";
     }
     public String DeletePost(Post post, String token){
-        ApiResponse response = apiPost.UpdatePost(post.GetId(),post,token);
+        ApiResponse response = apiPost.UpdatePost(post,token);
         if (response.getCode() == 200 | response.getCode() == 201)
             return "Post Deletado";
         return "Não foi possível alterar o Post";

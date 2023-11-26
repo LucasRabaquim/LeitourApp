@@ -2,6 +2,7 @@ package com.polarys.appleitour.helper;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,25 +36,28 @@ public class IntentHelper extends AppCompatActivity {
     }
 
     public void nextActivity(Class nextScreen){
-//        activity.finish();
         Intent intent = new Intent(activity, nextScreen);
         activity.startActivity(intent);
     }
     public void nextActivity(Class nextScreen,String data){
-  //      activity.finish();
         Intent intent = new Intent(activity, nextScreen);
         intent.putExtra(EXTRA_KEY, data);
         activity.startActivity(intent);
     }
 
     public void nextActivityObj(Class nextScreen,Object data){
-       // activity.finish();
         Intent intent = new Intent(activity, nextScreen);
         intent.putExtra(EXTRA_KEY, (Serializable) data);
         activity.startActivity(intent);
     }
+    public void nextActivityObj(Class nextScreen, Bundle data){
+        Intent intent = new Intent(activity, nextScreen);
+        intent.putExtras(data);
+        activity.startActivity(intent);
+    }
+
+
     public void nextActivityObj(Class nextScreen,Object data,String fromScreen){
-        // activity.finish();
         Intent intent = new Intent(activity, nextScreen);
         intent.putExtra(EXTRA_KEY, (Serializable) data);
         intent.putExtra(FROM_ACTIVITY_KEY, fromScreen);
