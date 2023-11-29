@@ -22,5 +22,16 @@
     <string name="sem_conta">Não possui conta? Registre-se</string>
     <string name="login">Login</string>
     <string name="repeat_password">Repita a senha\n</string>
+    <string name="author">"Autor(a): "</string>
+    <string name="book_author">"Autor(a): "</string>
+    <string name="book_title">"Título: "</string>
+    <string name="book_description">"Descrição: "</string>
+    <string name="book_publisher">"Editora: "</string>
+    <string name="book_published_date">"Lançamento: "</string>
+    <string name="book_pages">"Páginas: "</string>
+    <string name="book_isbn10">"ISBN 10: "</string>
+    <string name="book_isbn13">ISBN 13:</string>
+    <string name="book_category">"Categoria: "</string>
+    <string name="book_language">"Idioma: "</string>
 
 </resources>

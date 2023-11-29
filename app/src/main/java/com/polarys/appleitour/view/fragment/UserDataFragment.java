@@ -5,28 +5,23 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.User;
+import com.polarys.appleitour.view.activity.PlaceholderActivity;
 import com.polarys.appleitour.viewmodel.UserDataViewModel;
 
-public class UserDataFragment extends Fragment {
+public class UserDataFragment extends Fragment{
 
     private UserDataViewModel viewModel;
-
-    public static UserDataFragment newInstance() {
-        return new UserDataFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -39,55 +34,34 @@ public class UserDataFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        viewModel = ViewModelProviders.of(this).get(UserDataViewModel.class);
-        SharedHelper sharedHelper = new SharedHelper(getContext());
-        User user = sharedHelper.GetUser();
+        TabLayout tabLayout = view.findViewById(R.id.tab_layout_user);
+        SavedBookFragment savedBookFragment = new SavedBookFragment();
+        SocialFragment socialFragment = new SocialFragment();
+        PostFragment postFragment = new PostFragment();
+        User user = new SharedHelper(getContext()).GetUser();
+        UserFollowFragment userFollow = new UserFollowFragment(user,true);
+        UserFollowFragment userFollowing = new UserFollowFragment(user,false);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int id = tab.getId();
+                if (id == R.id.tab_saved) loadFragment(savedBookFragment);
+                else if (id == R.id.tab_posts) loadFragment(postFragment);
+                else if (id == R.id.tab_follow) loadFragment(userFollow);
+                else if (id == R.id.tab_follower) loadFragment(userFollowing);
+                else loadFragment(socialFragment);
+            }
 
-        /*ArrayList<Post> posts = new ArrayList<>();
-        recyclerView = view.findViewById(R.id.recycler_social);
-        adapter = new PublicationAdapter(posts,getActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(adapter);
-        ArrayList<Post> arrayList = viewModel.loadPosts();
-        if(arrayList != null) {
-            posts.clear();
-            posts.addAll(arrayList);
-            adapter.notifyDataSetChanged();
-        }*/
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {}
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
+        });
     }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getActivity().getMenuInflater().inflate(R.menu.menu_publication_options, menu);
-        return true;
+    public void loadFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.view_pager_user,fragment);
+        fragmentTransaction.commit();
     }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-      //  if(id == R.id.message)
-            Toast.makeText(getContext(), "Shows share icon", Toast.LENGTH_SHORT).show();
-        /*switch (item.getItemId()) {
-            case R.id.message:
-
-                return true;
-
-            case R.id.picture:
-                Toast.makeText(getContext(), "Shows image icon", Toast.LENGTH_SHORT).show();
-                //startActivity(i2);
-                return (true);
-
-            case R.id.mode:
-                Toast.makeText(getContext(), "Shows call icon", Toast.LENGTH_SHORT).show();
-                return (true);
-
-            case R.id.about:
-                Toast.makeText(getContext(), "calculator menu", Toast.LENGTH_SHORT).show();
-                return (true);
-
-            case R.id.exit:
-                getActivity().finish();
-                return (true);
-        }*/
-        return (super.onOptionsItemSelected(item));
-    }
-
 }

@@ -14,16 +14,15 @@ import com.polarys.appleitour.model.Post;
 public class ApiPost implements IPost {
 
     private String PATH = "Posts";
-    private final String QUERY = "?q=";
+    private final String QUERY = "?offset=";
 
     public ApiResponse GetPosts(int offset) {
-        ApiThread apiThread = new ApiThread(GETPUBLIC, PATH, null);
+        ApiThread apiThread = new ApiThread(GETPUBLIC, PATH+QUERY+offset, null);
         return apiThread.CreateThread(apiThread).getJson();
     }
-
-    @Override
-    public ApiResponse GetPostsByEmail(String email) {
-        return null;
+    public ApiResponse GetPosts(String token,int offset) {
+        ApiThread apiThread = new ApiThread(GET, PATH+QUERY+offset, null,token);
+        return apiThread.CreateThread(apiThread).getJson();
     }
 
 
@@ -49,8 +48,18 @@ public class ApiPost implements IPost {
         return apiThread.CreateThread(apiThread).getJson();
     }
 
+    @Override
+    public ApiResponse GetPostsByEmail(String token,String email) {
+        return GetPostsByEmail(token,email,0);
+    }
+    public ApiResponse GetPostsByEmail(String email) { return GetPostsByEmail(email,0);
+    }
     public ApiResponse GetPostsByEmail(String email,int offset) {
-        ApiThread apiThread = new ApiThread(GETPUBLIC, PATH+"/"+email, null);
+        ApiThread apiThread = new ApiThread(GETPUBLIC, PATH+"/"+email+QUERY+offset, null);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+    public ApiResponse GetPostsByEmail(String token,String email,int offset) {
+        ApiThread apiThread = new ApiThread(GET, PATH+"/"+email+QUERY+offset, null,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

@@ -21,7 +21,11 @@ public class CommentViewModel extends ViewModel {
     ApiPost apiPost = new ApiPost();
 
     public ArrayList<Comment> loadComments(int id){
-        ApiResponse apiResponse = apiComment.GetComments(id);
+        return loadComments(id,0);
+    }
+
+    public ArrayList<Comment> loadComments(int id,int offset){
+        ApiResponse apiResponse = apiComment.GetComments(id,offset);
         try {
             return (ArrayList<Comment>) ApiUtil.JsonToArrayObject(new Comment().getClass(), apiResponse.getBody());
         }
@@ -31,6 +35,8 @@ public class CommentViewModel extends ViewModel {
         }
     }
     public ApiResponse CreateComment(Comment comment,String token){
-        return apiComment.PostComment(comment,token);
+        ApiResponse apiResponse =  apiComment.PostComment(comment,token);
+        Log.d("create comment",apiResponse.getBody());
+        return apiResponse;
     }
 }

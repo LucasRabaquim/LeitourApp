@@ -14,13 +14,16 @@ public class ApiComment implements IComment {
     public ApiComment() {};
 
     public ApiResponse GetComments(int id){
+        return GetComments(id,0);
+    }
+    public ApiResponse GetComments(int id,int offset){
         ApiThread apiThread;
-        apiThread = new ApiThread(GETPUBLIC, "Posts/Comment/"+id);
+        apiThread = new ApiThread(GETPUBLIC, "Posts/Comment/"+id+"?offset="+offset);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse PostComment(Comment comment, String token) {
         ApiThread apiThread;
-        apiThread = new ApiThread(POST, "Posts/Comment", comment,token);
+        apiThread = new ApiThread(POST, "Comment", comment,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse UpdateComment(Comment comment, String token) {

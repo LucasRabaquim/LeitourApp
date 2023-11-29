@@ -7,6 +7,7 @@ import com.polarys.appleitour.model.ApiResponse;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 
 import okhttp3.MediaType;
@@ -17,6 +18,7 @@ import okhttp3.Response;
 
 public class ApiRequest {
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    public static final MediaType IMAGE = MediaType.parse("image/png");
     static final String API_URL = "http://localhost:5126/api/";
     static final String TOKEN = "token";
     final OkHttpClient client = new OkHttpClient();
@@ -68,6 +70,15 @@ public class ApiRequest {
     public ApiResponse post(String path, Object object, String token){
         String json = ObjectToString(object);
         RequestBody body = RequestBody.create(json, JSON);
+        Request request = new Request.Builder()
+                .url(API_URL+path)
+                .post(body)
+                .addHeader(TOKEN,token)
+                .build();
+        return request(request);
+    }
+    public ApiResponse sendImage(String path, File file, String token){
+        RequestBody body = RequestBody.create(file,IMAGE);
         Request request = new Request.Builder()
                 .url(API_URL+path)
                 .post(body)

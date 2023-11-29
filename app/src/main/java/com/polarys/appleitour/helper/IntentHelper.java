@@ -20,6 +20,10 @@ public class IntentHelper extends AppCompatActivity {
     public final static String MODE_SHARED = "MODE_SHARED";
     public final static String COMMENT_SHARED = "COMMENT_SHARED";
     public final static String FROM_ACTIVITY_KEY = "FROM_ACTIVITY_KEY";
+    public final static String POST_WRITTING_KEY = "POST_WRITTING_KEY";
+    public final static String LIST_SAVED_BOOK_KEY = "LIST_SAVED_BOOK_KEY";
+    public final static String LIST_POSTS_KEY = "LIST_POSTS_KEY";
+
     public final static String FROM_BOOKSEARCH = "FROM_BOOKSEARCH";
     public final static String FROM_SAVEDBOOK = "FROM_SAVEDBOOK";
     public static String EXTRA_KEY;

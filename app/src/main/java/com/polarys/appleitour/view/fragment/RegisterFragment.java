@@ -26,6 +26,8 @@ import com.polarys.appleitour.viewmodel.UserViewModel;
 
 import org.json.JSONException;
 
+import java.util.Objects;
+
 public class RegisterFragment extends Fragment {
 
     private EditText edit_Username;
@@ -59,26 +61,32 @@ public class RegisterFragment extends Fragment {
         user = viewModel.GetUser();
 
         if (user != null) { // Set data between Fragments
+            if (Objects.equals(user.GetNameUser(), "@"))
+                user.SetNameUser("");
             edit_Username.setText(user.GetNameUser());
             edit_Email.setText(user.GetEmail());
             edit_password.setText(user.GetPassword());
         }
 
         btn_register.setOnClickListener(v -> {
+            btn_register.setClickable(false);
             user = GetUserData();
             String passwordCompare = edit_repeat_password.getText().toString();
             String result = viewModel.VerifyFields(user, passwordCompare);
             if (result != UserViewModel.SUCCESS) { // Validate fields
                 Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+                btn_register.setClickable(true);
                 return;
             }
             if (!verifyConectivity(getContext())) { // Verify Internet
                 Toast.makeText(getContext(), "Verifique sua conexão", Toast.LENGTH_SHORT).show();
+                btn_register.setClickable(true);
                 return;
             }
             String[] response = viewModel.register(user);
             if (response[1] == null) { // Verify success on register
                 Toast.makeText(getContext(), response[0], Toast.LENGTH_SHORT).show();
+                btn_register.setClickable(true);
                 return;
             }
             SharedHelper settings = new SharedHelper(getContext());

@@ -2,12 +2,17 @@ package com.polarys.appleitour.api;
 
 import static com.polarys.appleitour.api.ApiThread.AUTOLOGIN;
 import static com.polarys.appleitour.api.ApiThread.GETPUBLIC;
+import static com.polarys.appleitour.api.ApiThread.SENDIMAGE;
 import static com.polarys.appleitour.api.ApiThread.SIGN;
 import static com.polarys.appleitour.api.ApiThread.UPDATE;
+
+import android.graphics.Bitmap;
 
 import com.polarys.appleitour.interfaces.IUser;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.User;
+
+import java.io.File;
 
 public class ApiUser implements IUser {
     private static final String PATH = "User";
@@ -43,6 +48,11 @@ public class ApiUser implements IUser {
         ApiThread apiThread = new ApiThread(UPDATE, PATH + "/alter", user,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
+    public ApiResponse UpdateImage(String token, File image) {
+        ApiThread apiThread = new ApiThread(SENDIMAGE, PATH + "/uploadImage", image,token);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+
     public ApiResponse Deactivate(String token) {
         ApiThread apiThread = new ApiThread(UPDATE, PATH + "/deactivate", null, token);
         return apiThread.CreateThread(apiThread).getJson();

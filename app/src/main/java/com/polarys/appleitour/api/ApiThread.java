@@ -6,11 +6,14 @@ import com.polarys.appleitour.model.ApiResponse;
 
 import org.json.JSONObject;
 
+import java.io.File;
+
 public class ApiThread implements Runnable {
     private static String method = null;
     private static String url = null;
     private static Object json = null;
     private static String token = null;
+    private static File file = null;
 
     public static final String GET = "GET";
     public static final String DEBUG = "DEBUG";
@@ -18,6 +21,7 @@ public class ApiThread implements Runnable {
     public static final String POST = "POST";
     public static final String SIGN = "SIGN";
     public static final String AUTOLOGIN = "AUTOLOGIN";
+    public static final String SENDIMAGE = "SENDIMAGE";
     public static final String UPDATE = "PUT";
     public static final String DELETE = "DELETE";
     private volatile ApiResponse result;
@@ -35,6 +39,12 @@ public class ApiThread implements Runnable {
         this.method = method;
         this.url = url;
         this.json = json;
+        this.token = token;
+    }
+    public ApiThread(String method,String url,File file,String token){
+        this.method = method;
+        this.url = url;
+        this.file = file;
         this.token = token;
     }
 
@@ -66,6 +76,9 @@ public class ApiThread implements Runnable {
                 break;
             case SIGN:
                 result = api.sign(url,json);
+                break;
+            case SENDIMAGE:
+                result = api.sendImage(url,file,token);
                 break;
             case UPDATE:
                 result = api.update(url,json,token);

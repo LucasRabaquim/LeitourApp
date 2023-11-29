@@ -11,6 +11,8 @@ import java.io.Serializable;
 public class BookApi implements Serializable {
 
     private String key;
+    private boolean successRequest = true;
+    private String  errorMessage;
     private String title;
     private String authors;
     private String publisher;
@@ -24,6 +26,10 @@ public class BookApi implements Serializable {
     private String cover;
 
     public BookApi() {
+    }
+    public BookApi(String _errorMessage) {
+        errorMessage = _errorMessage;
+        successRequest = false;
     }
     public String getKey() {
         return key;
@@ -107,5 +113,11 @@ public class BookApi implements Serializable {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+    public boolean getSuccess() {
+        return successRequest;
+    }
+    public String getMessage() {
+        return errorMessage;
     }
 }

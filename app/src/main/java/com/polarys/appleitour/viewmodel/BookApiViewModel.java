@@ -20,35 +20,38 @@ public class BookApiViewModel extends ViewModel {
     public BookApiViewModel() {}
 
     public ArrayList search(String title, String query) {
+        return search(title, query,0);
+    }
+    public ArrayList search(String title, String query,int offset) {
         ApiResponse apiResponse;
         switch (title) {
             case TITLE:
-                apiResponse = apiBook.GetByTitle(query);
+                apiResponse = apiBook.GetByTitle(query,offset);
                 break;
             case ISBN:
                 apiResponse = apiBook.GetByIsbn(query);
                 break;
             case AUTHOR:
-                apiResponse = apiBook.GetByAuthor(query);
+                apiResponse = apiBook.GetByAuthor(query,offset);
                 break;
             default:
                 return null;
         }
         try {
-            return ApiUtil.JsonToArrayObject(new BookApi().getClass(), apiResponse.getBody());
+            return ApiUtil.JsonToArrayObject(BookApi.class, apiResponse.getBody());
         } catch (Exception e) {
-            Log.e("String",e.toString());
-            return null;
+            ArrayList<BookApi> bookApi = new ArrayList<>();
+            bookApi.add(new BookApi(apiResponse.getBody()));
+            return bookApi;
         }
     }
+
     public BookApi GetByKey(String key){
         ApiResponse apiResponse = apiBook.GetByKey(key);
         try {
             return (BookApi) ApiUtil.JsonToObject(new BookApi(), apiResponse.getBody());
         }
         catch(Exception e){
-            Log.d("From SavedBOok",apiResponse.getBody().toString());
-            Log.d("From SavedBOok",e.toString());
             return null;
         }
     }

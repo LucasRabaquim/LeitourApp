@@ -2,13 +2,8 @@ package com.polarys.appleitour.viewmodel;
 
 import static android.app.PendingIntent.getActivity;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.Log;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.lifecycle.ViewModel;
 
 import com.polarys.appleitour.api.ApiUser;
@@ -16,10 +11,9 @@ import com.polarys.appleitour.helper.RegexHelper;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.User;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
+import java.io.File;
 
 public class UserViewModel extends ViewModel {
 
@@ -43,6 +37,11 @@ public class UserViewModel extends ViewModel {
 
     public boolean update(String token,User user){
         ApiResponse apiResponse = apiUser.UpdateUser(token,user);
+        return (apiResponse.getCode() == 200 | apiResponse.getCode() == 201);
+    }
+    public boolean updatePhoto(String token, File image){
+        ApiResponse apiResponse = apiUser.UpdateImage(token,image);
+        Log.d("Imagem",apiResponse.getBody());
         return (apiResponse.getCode() == 200 | apiResponse.getCode() == 201);
     }
 

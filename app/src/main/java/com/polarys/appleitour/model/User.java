@@ -52,6 +52,7 @@ public class User implements Serializable {
     }
 
     public User(String _email, String _password) {
+        nameUser = "@";
         email = _email;
         password = _password;
     }
@@ -94,7 +95,7 @@ public class User implements Serializable {
         password = _password;
     }
 
-    public Bitmap GetProfilePhoto() {
+   /* public Bitmap GetProfilePhoto() {
         try {
             byte [] encodeByte = Base64.getDecoder().decode(profilePhoto);
             Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
@@ -103,7 +104,8 @@ public class User implements Serializable {
             e.getMessage();
             return null;
         }
-    }
+    }*/
+    public String GetStringProfilePhoto() {return profilePhoto;}
 
     public void SetProfilePhoto(Bitmap _profilePhoto) {
         ByteArrayOutputStream outputStream = new  ByteArrayOutputStream();

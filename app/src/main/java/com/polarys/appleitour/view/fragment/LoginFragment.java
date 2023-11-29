@@ -52,19 +52,23 @@ public class LoginFragment extends Fragment {
             edit_password.setText(user.GetPassword());
         }
         btn_Login.setOnClickListener(v -> {
+            btn_Login.setClickable(false);
             user = GetUserData();
             String result = viewModel.VerifyFields(user);
             if(result != viewModel.SUCCESS) { // Validate fields
                 Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+                btn_Login.setClickable(true);
                 return;
             }
             if(!verifyConectivity(getContext())) { // Verify Internet
                 Toast.makeText(getContext(), "Verifique sua conexão", Toast.LENGTH_SHORT).show();
+                btn_Login.setClickable(true);
                 return;
             }
             String[] response = viewModel.login(user);
             if(response[1] == null) { // Verify success on login
                 Toast.makeText(getContext(), "Erro: " + response[0], Toast.LENGTH_SHORT).show();
+                btn_Login.setClickable(true);
                 return;
             }
             SharedHelper settings = new SharedHelper(getContext());
@@ -76,6 +80,7 @@ public class LoginFragment extends Fragment {
             getActivity().finish();
             IntentHelper intentHelper = new IntentHelper(getActivity(),IntentHelper.USER_SHARED);
             intentHelper.nextActivity(PlaceholderActivity.class);
+            btn_Login.setClickable(true);
         });
 
         link_register.setOnClickListener(v -> {

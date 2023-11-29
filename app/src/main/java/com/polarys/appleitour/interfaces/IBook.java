@@ -7,8 +7,7 @@ import com.polarys.appleitour.model.ApiResponse;
 
 public interface IBook {
     ApiResponse GetByIsbn(String search);
-
-    ApiResponse GetByTitle(String search);
-    ApiResponse GetByAuthor(String search);
+    ApiResponse GetByTitle(String search,int offset);
+    ApiResponse GetByAuthor(String search,int offset);
     ApiResponse GetByKey(String search);
 }

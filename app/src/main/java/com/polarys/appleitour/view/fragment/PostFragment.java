@@ -4,7 +4,9 @@ import static androidx.databinding.DataBindingUtil.setContentView;
 
 import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
+import static com.polarys.appleitour.helper.IntentHelper.POST_WRITTING_KEY;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +25,7 @@ import android.widget.Toast;
 
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.api.ApiPost;
+import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.Comment;
@@ -41,10 +45,8 @@ public class PostFragment extends Fragment {
     private Button btn_post,btn_delete;
     private EditText edit_post;
     private TextView txt_cancelar;
-
     private Post post;
     private boolean edit_mode = false;
-
     public PostFragment(){}
 
     @Override
@@ -67,7 +69,6 @@ public class PostFragment extends Fragment {
         int userId = sharedHelper.GetId();
         String token = sharedHelper.GetToken();
         Bundle bundle = this.getArguments();
-
         if(bundle != null){
             edit_mode = true;
             post = (Post) bundle.get(POST_SHARED);
@@ -91,10 +92,12 @@ public class PostFragment extends Fragment {
             String postResult;
             if(edit_mode){
                 post.SetMessagePost(message);
+                Log.d("Editando", ApiUtil.ObjectToString(post));
                 postResult = viewModel.UpdatePost(post,token);
             }
             else {
                 post = new Post(userId, message);
+                Log.d("Criando", ApiUtil.ObjectToString(post));
                 postResult = viewModel.CreatePost(post,token);
             }
             Toast.makeText(getContext(), postResult, Toast.LENGTH_SHORT).show();

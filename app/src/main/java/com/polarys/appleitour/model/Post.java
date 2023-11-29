@@ -18,16 +18,17 @@ public class Post implements Serializable{
     private String messagePost;
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int likes = 0;
+    private boolean liked = false;
 
-    private String postDate;
-    private String alteratedDate;
+    private String postDate = null;
+    private String alteratedDate = null;
     public Post() { }
 
     public Post(int userId, String messagePost) {
         this.userId = userId;
         this.messagePost = messagePost;
-        this.postDate = LocalDateTime.now()+"Z";
-        this.alteratedDate = LocalDateTime.now()+"Z";
+       // this.postDate = LocalDateTime.now()+"Z";
+       // this.alteratedDate = LocalDateTime.now()+"Z";
     }
     public Post(int id, int userId, String messagePost, int likes, String postDate, String alteratedDate) {
         this.id = id;
@@ -41,9 +42,9 @@ public class Post implements Serializable{
     public Post(int id, int userId, String message) {
         this.id = id;
         this.userId = userId;
-        this.messagePost = messagePost;
-        this.postDate = LocalDateTime.now()+"Z";
-        this.alteratedDate = LocalDateTime.now()+"Z";
+        this.messagePost = message;
+      //  this.postDate = LocalDateTime.now()+"Z";
+    //    this.alteratedDate = LocalDateTime.now()+"Z";
     }
 
 
