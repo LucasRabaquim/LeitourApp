@@ -1,8 +1,6 @@
 package com.polarys.appleitour.view.activity;
 
-import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -25,6 +23,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.api.ApiComment;
+import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.ApiResponse;
@@ -86,7 +85,12 @@ public class SeePostActivity extends AppCompatActivity {
         });
         if(post.GetId() != 0) {
             ArrayList<Comment> loadComments = viewModel.loadComments(post.GetId());
-            resetAdapter(loadComments);
+            if (loadComments != null) {
+                Log.d("TAG", "resetAdapter: "+ loadComments.toString());
+                comments.clear();
+                comments.addAll(loadComments);
+                adapter.notifyDataSetChanged();
+            }
         }
 
         textAreaCustomView = findViewById(R.id.textarea);//new TextAreaCustomView(this);
@@ -142,6 +146,7 @@ public class SeePostActivity extends AppCompatActivity {
     }
     private void resetAdapter(ArrayList<Comment> _arrayList){
         if (_arrayList != null) {
+            Log.d("TAG", "resetAdapter: "+ _arrayList.toString());
             comments.clear();
             comments.addAll(_arrayList);
             adapter.notifyDataSetChanged();

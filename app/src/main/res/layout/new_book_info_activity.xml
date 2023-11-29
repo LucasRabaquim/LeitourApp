@@ -11,7 +11,7 @@
 
         <ImageButton
             style="@style/CircularButton"
-            android:background="none"
+            android:background="@color/white"
             android:src="@drawable/icon_left_arrow" />
 
         <TextView

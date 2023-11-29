@@ -34,7 +34,6 @@
         android:layout_weight="0"
         android:layout_gravity="bottom"
         android:foreground="?android:attr/selectableItemBackground"
-        app:menu="@menu/menu_bottom_bar"
-        android:elevation="@dimen/material_emphasis_disabled"/>
+        app:menu="@menu/menu_bottom_bar"/>
 
 </LinearLayout>

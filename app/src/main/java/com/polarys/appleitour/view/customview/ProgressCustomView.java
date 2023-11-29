@@ -29,7 +29,7 @@ public class ProgressCustomView extends LinearLayout {
 
 
     private void init(@Nullable AttributeSet attrs) {
-        inflate(getContext(), R.layout.custom_progress, this);
+        //inflate(getContext(), R.layout.custom_progress, this);
 
     }
 
