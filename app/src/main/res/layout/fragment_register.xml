@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <ImageView
         android:layout_width="match_parent"
@@ -92,7 +93,7 @@
             android:layout_marginStart="60dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/outfit_bold"
-            android:text="Comparar Senha"
+            android:text="Confirmar Senha"
             android:textColor="@color/white" />
 
         <com.google.android.material.textfield.TextInputLayout

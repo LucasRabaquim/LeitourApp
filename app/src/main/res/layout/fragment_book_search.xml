@@ -3,6 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:backgroundTint="@color/black"
     android:orientation="vertical">
 
@@ -13,16 +14,29 @@
             android:visibility="visible"
             android:fitsSystemWindows="true"
             >
-            <EditText
-                android:id="@+id/search_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/placeholder">
-            </EditText>
-            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:id="@+id/btn_SearchBook"/>
-        </com.google.android.material.appbar.AppBarLayout>
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </androidx.core.widget.NestedScrollView>
 
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.search.SearchBar
+                    android:id="@+id/search_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:hint="@string/pesquisar" />
+            </com.google.android.material.appbar.AppBarLayout>
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/AzulDefault"
+                android:text="Pesquisar"
+                android:fontFamily="@font/outfit_semibold"
+                android:id="@+id/btn_SearchBook"/>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/layout_refresh"
         android:layout_width="match_parent"
@@ -34,8 +48,10 @@
             android:id="@+id/recycler_returned_books"
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:layout_marginTop="30dp"
             android:layout_height="wrap_content" />
         </ScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 </LinearLayout>

@@ -15,9 +15,8 @@
     <uses-permission
         android:name="android.permission.ACCESS_WIFI_STATE"
         android:configChanges="orientation|screenSize|keyboardHidden" />
-
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -30,7 +29,12 @@
         android:theme="@style/Theme.AppLeitour"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".screenjourney"
+            android:exported="false" />
+        <activity
+            android:name=".secondsplash"
+            android:exported="false" />
         <activity
             android:name=".view.activity.AnnotationActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

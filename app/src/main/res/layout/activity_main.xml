@@ -8,15 +8,48 @@
     android:backgroundTint="@color/black"
     android:orientation="vertical">
 
+    <ImageButton
+        android:id="@+id/btn_return2"
+        style="@style/CircularButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/linear"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_toEndOf="@+id/heading2"
+        android:background="@color/white"
+        app:srcCompat="@drawable/arrowtop" />
+
     <TextView
         android:id="@+id/heading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="163dp"
+        android:layout_height="66dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="130dp"
+        android:fontFamily="@font/outfit_semibold"
         android:gravity="center"
-        android:text="@string/placeholder"
-        android:textColor="@color/black"
-        android:textSize="26sp" />
+        android:text="Encontre seu livro favorito"
+        android:textColor="@color/Black_Cinza"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/heading2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/outfit_semibold"
+        android:gravity="center"
+        android:text="O que há de novo"
+        android:textColor="@color/Black_Cinza"
+        android:textSize="25sp" />
 
     <LinearLayout
         android:id="@+id/linear"
@@ -24,8 +57,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/heading"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">>
+
+            <com.google.android.material.search.SearchBar
+                android:id="@+id/search_bar"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/CinzaDefault"
+                android:hint="@string/pesquisar" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <!--
         <EditText
             android:id="@+id/searchBookBar"
             android:layout_width="250dp"
@@ -52,17 +101,33 @@
             android:layout_marginBottom="10dp"
 
             android:padding="10dp" />
+
+            !-->
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_returned_books"
-        android:layout_width="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linear"
+        android:layout_width="wrap_content"
+        android:layout_height="373dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="2dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <ImageView
+        android:id="@+id/profile_pic"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        app:srcCompat="@drawable/placeholder"></ImageView>
+
 
 </RelativeLayout>

@@ -33,5 +33,11 @@
     <string name="book_isbn13">ISBN 13:</string>
     <string name="book_category">"Categoria: "</string>
     <string name="book_language">"Idioma: "</string>
+    <string name="frase_author">"Frase: "</string>
+    <string name="pesquisar">"Pesquisar "</string>
+    <string name="posts">"Posts "</string>
+    <string name="seguidores">"Seguidores "</string>
+    <string name="seguindo">"Seguindo "</string>
+
 
 </resources>
