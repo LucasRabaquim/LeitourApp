@@ -10,11 +10,16 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.search.SearchBar;
+import com.google.android.material.search.SearchView;
+import com.google.android.material.snackbar.Snackbar;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.view.fragment.BookSearchFragment;
 import com.polarys.appleitour.view.fragment.PostFragment;
@@ -26,6 +31,7 @@ public class PlaceholderActivity extends AppCompatActivity {
 
     private ActionBar toolbar;
     private ProgressBar progressBar;
+    private EditText searchBar;
     private FrameLayout viewPager;
     private TextView error_message;
 
@@ -36,6 +42,8 @@ public class PlaceholderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_placeholder);
         toolbar = getSupportActionBar();
         viewPager = findViewById(R.id.placeholder_framelayout);
+        searchBar = findViewById(R.id.search_bar);
+       // searchView = findViewById(R.id.search_view);
 
         SavedBookFragment savedBookFragment = new SavedBookFragment();
         BookSearchFragment bookSearchFragment = new BookSearchFragment();
@@ -60,5 +68,10 @@ public class PlaceholderActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.placeholder_framelayout,fragment);
         fragmentTransaction.commit();
+    }
+
+    public void showSnackBar(String message){
+        Snackbar snackbar = Snackbar.make(viewPager, message, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 }

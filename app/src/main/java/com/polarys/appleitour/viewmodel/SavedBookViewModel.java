@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel;
 import com.polarys.appleitour.api.ApiAnnotation;
 import com.polarys.appleitour.api.ApiSavedBook;
 import com.polarys.appleitour.api.ApiUtil;
+import com.polarys.appleitour.interfaces.IAnnotation;
+import com.polarys.appleitour.interfaces.ISavedBook;
 import com.polarys.appleitour.model.Annotation;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.BookApi;
@@ -21,32 +23,20 @@ public class SavedBookViewModel extends ViewModel {
     public SavedBookViewModel(){};
     ApiSavedBook apiSavedBook = new ApiSavedBook();
     ApiAnnotation apiAnnotation = new ApiAnnotation();
-    public Object[] GetBookAndAnnotation(String key, String token) {
-        ApiResponse apiResponse = apiSavedBook.GetSavedBookAnnotation(key,token);
-        try {
-            JSONObject jsonResponse = new JSONObject(apiResponse.getBody());
-            String jsonSaved = jsonResponse.getJSONObject("saved").toString();
-            String jsonAnnotation = jsonResponse.getJSONArray("annotation").toString();
-            Log.d("jsonAnnotation", jsonAnnotation);
-            SavedBook savedBook = (SavedBook) ApiUtil.JsonToObject(new SavedBook().getClass(), jsonSaved);
-            ArrayList<Annotation> annotations = (ArrayList<Annotation>) ApiUtil.JsonToArrayObject(new Annotation().getClass(), jsonAnnotation);
-            return new Object[]{savedBook, annotations};
-        }
-        catch(Exception e){
-            Log.d("jsonAnnotation Erro", e.toString());
-            return null;
-        }
-    }
+
     public ApiResponse SaveBook(BookApi book, int userId, String token){
         return apiSavedBook.SaveBook(book, userId, token);
+    }
+    public ApiResponse UnsaveBook(int userId, String token){
+        return apiSavedBook.UnsaveBook(userId, token);
     }
     public ArrayList<SavedBook> loadSaved(String token){
         ApiResponse apiResponse = apiSavedBook.GetSavedBooks(token);
         Log.d("T",apiResponse.getBody());
         return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(new SavedBook().getClass(), apiResponse.getBody());
     }
-    public ArrayList<SavedBook> loadSavedFromEmail(String email){
-        ApiResponse apiResponse = apiSavedBook.GetSavedBookByEmail(email);
+    public ArrayList<SavedBook> loadSavedFromEmail(String email, int offset){
+        ApiResponse apiResponse = apiSavedBook.GetSavedBookByEmail(email,offset);
         Log.d("T",apiResponse.getBody());
         return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(new SavedBook().getClass(), apiResponse.getBody());
     }

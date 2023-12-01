@@ -104,6 +104,7 @@
         android:layout_marginStart="58dp"
         android:fontFamily="@font/outfit_bold"
         android:button="@drawable/img_checkbox"
+        android:foregroundTint="@color/white"
         android:text="Lembrar-se"
         android:textColor="#FFFFFF"
         android:textSize="12sp"

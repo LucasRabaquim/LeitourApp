@@ -36,9 +36,9 @@ public class ApiSavedBook implements ISavedBook {
         ApiThread apiThread = new ApiThread(GET, "SavedBooks/new"+key,null,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
-    public ApiResponse GetSavedBookByEmail(String email){
+    public ApiResponse GetSavedBookByEmail(String email,int offset){
         ApiThread apiThread;
-        apiThread = new ApiThread(GETPUBLIC, "SavedBooks/User/"+email);
+        apiThread = new ApiThread(GETPUBLIC, "SavedBooks/User/"+email+"?Offset="+offset);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

@@ -4,36 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.PlaceholderActivity"
-    android:orientation="vertical">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.google.android.material.search.SearchBar
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/placeholder"
-            android:visibility="visible"/>
-    </com.google.android.material.appbar.AppBarLayout>
+    android:orientation="vertical"
+    tools:context=".view.activity.PlaceholderActivity">
 
 
     <FrameLayout
         android:id="@+id/placeholder_framelayout"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"/>
+        android:layout_weight="6"
+        android:layout_height="0dp"/>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigationview"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:minHeight="100dp"
-        android:layout_weight="0"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="bottom"
         android:foreground="?android:attr/selectableItemBackground"
-        app:menu="@menu/menu_bottom_bar"/>
+        android:minHeight="100dp"
+        app:menu="@menu/menu_bottom_bar" />
 
 </LinearLayout>

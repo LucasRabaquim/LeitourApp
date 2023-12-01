@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.polarys.appleitour.api.ApiComment;
 import com.polarys.appleitour.api.ApiPost;
 import com.polarys.appleitour.api.ApiUtil;
+import com.polarys.appleitour.interfaces.IPost;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.Comment;
 
@@ -18,7 +19,6 @@ public class CommentViewModel extends ViewModel {
 
     public CommentViewModel(){}
     ApiComment apiComment = new ApiComment();
-    ApiPost apiPost = new ApiPost();
 
     public ArrayList<Comment> loadComments(int id){
         return loadComments(id,0);

@@ -2,43 +2,25 @@ package com.polarys.appleitour.view.activity;
 
 import static androidx.databinding.DataBindingUtil.setContentView;
 
-import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
-import static com.polarys.appleitour.helper.IntentHelper.ANNOTATION_SHARED;
-import static com.polarys.appleitour.helper.IntentHelper.BOOK_SHARED;
 import static com.polarys.appleitour.helper.IntentHelper.EXTRA_KEY;
-import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
-import static com.polarys.appleitour.helper.IntentHelper.SAVED_SHARED;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.polarys.appleitour.R;
-import com.polarys.appleitour.api.ApiAnnotation;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.Annotation;
 import com.polarys.appleitour.model.ApiResponse;
-import com.polarys.appleitour.model.Comment;
-import com.polarys.appleitour.model.Post;
 import com.polarys.appleitour.model.SavedBook;
-import com.polarys.appleitour.view.adapter.PostAdapter;
 import com.polarys.appleitour.viewmodel.AnnotationViewModel;
-import com.polarys.appleitour.viewmodel.SocialViewModel;
-
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class AnnotationActivity extends AppCompatActivity {
 
@@ -55,9 +37,8 @@ public class AnnotationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_post);
         viewModel = ViewModelProviders.of(this).get(AnnotationViewModel.class);
-        btn_post = findViewById(R.id.btnPost);
+        btn_post = findViewById(R.id.btnSend);
         edit_post = findViewById(R.id.edit_post);
-        btn_delete = findViewById(R.id.btnDeletePost);
         txt_cancelar = findViewById(R.id.txt_cancelar);
         SharedHelper sharedHelper = new SharedHelper(this);
         int userId = sharedHelper.GetId();
@@ -108,4 +89,5 @@ public class AnnotationActivity extends AppCompatActivity {
             }
         });
     }
+
 }

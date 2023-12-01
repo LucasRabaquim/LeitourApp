@@ -1,15 +1,11 @@
 package com.polarys.appleitour.view.adapter;
 
-import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
-
 import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -17,14 +13,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.api.ApiComment;
+import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.Comment;
-import com.polarys.appleitour.view.fragment.PostFragment;
+import com.polarys.appleitour.view.activity.SeePostActivity;
 
 import java.util.ArrayList;
 
@@ -34,6 +30,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
     private final ArrayList<Comment> data;
     private final Context context;
     private ApiComment apiComment = new ApiComment();
+
 
     public CommentAdapter(ArrayList<Comment> data, Context context, int id, String token) {
         this.data = data;
@@ -52,58 +49,40 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
     public void onBindViewHolder(@NonNull CommentAdapter.CommentHolder holder, int position) {
         Comment comment = data.get(position);
         holder.user.setText(comment.getUserName());
-        holder.text.setText(comment.getMessagePost());
+        holder.email.setText(comment.getEmail());
+        holder.date.setText(comment.getCreatedDate());
         holder.like.setVisibility(View.GONE);
-
+        if(comment.getUserId() == id)
+            holder.btnOptions.setVisibility(View.VISIBLE);
         holder.btnOptions.setOnClickListener(view -> {
-
             PopupMenu popupMenu = new PopupMenu(context, view);
-            popupMenu.inflate(R.menu.menu_publication_options); // Use your own menu resource file
-
-            // Set up the click listener for menu items
+            popupMenu.inflate(R.menu.menu_publication_options);
             popupMenu.setOnMenuItemClickListener(menuItem -> {
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.publication_edit) {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                    final EditText edittext = new EditText(context);
-                    alert.setMessage("Enter Your Message");
-                    alert.setTitle("Enter Your Title");
-
-                    alert.setView(edittext);
-
-                    alert.setPositiveButton("Yes Option", (dialog, whichButton) -> {
-
-                        String YouEditTextValue = edittext.getText().toString();
-                        comment.setMessagePost(YouEditTextValue);
-                        ApiResponse api = apiComment.UpdateComment(comment,token);
-                        Log.d("TAG", "onBindViewHolder: "+api.getBody());
-
+                    UIHelper uiHelper = new UIHelper(context);
+                    AlertDialog.Builder builder = uiHelper.createTextDialog("Altere seu comentário");
+                    builder.setPositiveButton("Enviar", (dialog, which) -> {
+                        comment.setMessagePost(uiHelper.getText());
+                        int success = apiComment.UpdateComment(comment, token).getCode();
+                        String message = (success != (200 | 201)) ? "O Comentário foi alterado" : "Erro ao alterar o comentário, tente novamente";
+                        ((SeePostActivity) context).showSnackBar(message);
                     });
-
-                    alert.setNegativeButton("No Option", (dialog, whichButton) -> {
-
-                    });
-                    alert.show();
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 } else if (itemId == R.id.publication_delete) {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                    final EditText edittext = new EditText(context);
-                    alert.setMessage("Enter Your Message");
-                    alert.setTitle("Enter Your Title");
-                    alert.setPositiveButton("Yes Option", (dialog, whichButton) -> {
-
-                        apiComment.DeleteComment(comment,token);
-
+                    UIHelper uiHelper = new UIHelper(context);
+                    AlertDialog.Builder builder = uiHelper.createDialog("O Comentário será deletado", "Deseja mesmo apagar seu comentário?", "Cancelar");
+                    builder.setPositiveButton("Confirmar", (dialog, which) -> {
+                        int success = apiComment.DeleteComment(comment, token).getCode();
+                        String message = (success != (200 | 201)) ? "O Comentário foi deletado" : "Erro ao deletar o comentário, tente novamente";
+                        ((SeePostActivity) context).showSnackBar(message);
                     });
-
-                    alert.setNegativeButton("No Option", (dialog, whichButton) -> {
-
-                    });
-                    alert.show();
-                }//default intent
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
                 return true;
             });
-
-            // Show the PopupMenu
             popupMenu.show();
         });
     }
@@ -119,20 +98,19 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
     }
 
     public class CommentHolder extends RecyclerView.ViewHolder {
-        TextView user, text;
-        ImageButton btnOptions;
-        ImageButton btnEdit;
+        TextView user, text,email,date;
+        ImageButton btnOptions, btnEdit;
         Button like;
         LinearLayout mainLayout;
 
         public CommentHolder(@NonNull View view) {
             super(view);
             this.user = view.findViewById(R.id.txt_publication_username);
+            this.email = view.findViewById(R.id.txt_publication_email);
+            this.date = view.findViewById(R.id.txt_publication_date);
             this.text = view.findViewById(R.id.txt_publication_message);
             this.btnEdit = view.findViewById(R.id.publication_edit);
             this.btnOptions = view.findViewById(R.id.publication_options);
-            //  this.date= view.findViewById(R.id.publication_date);
-            //  this.likes= view.findViewById(R.id.publication_likes);
             this.like = view.findViewById(R.id.publication_btn_like);
             mainLayout = view.findViewById(R.id.item_publication_layout);
         }

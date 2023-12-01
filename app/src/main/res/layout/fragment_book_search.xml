@@ -5,14 +5,37 @@
     android:layout_height="match_parent"
     android:backgroundTint="@color/black"
     android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/appbar"
+            android:visibility="visible"
+            android:fitsSystemWindows="true"
+            >
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/placeholder">
+            </EditText>
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/btn_SearchBook"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/layout_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_returned_books"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content" />
+        </ScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </LinearLayout>

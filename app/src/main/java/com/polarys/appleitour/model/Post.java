@@ -6,6 +6,8 @@ import static com.polarys.appleitour.api.ApiThread.GETPUBLIC;
 import static com.polarys.appleitour.api.ApiThread.POST;
 import static com.polarys.appleitour.api.ApiThread.UPDATE;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -13,12 +15,15 @@ import java.time.LocalDateTime;
 public class Post implements Serializable{
     private int id;
     private int userId;
+
+    @Expose(serialize = false)
     private String userName = "";
+    @Expose(serialize = false)
+    private String email = "";
     private String messagePost;
     private int likes = 0;
     private int Comment_number = 0;
     private boolean liked = false;
-
     private String CreatedDate = null;
     private String UserPhoto = null;
     private String alteratedDate = null;
@@ -28,13 +33,7 @@ public class Post implements Serializable{
         this.userId = userId;
         this.messagePost = messagePost;
     }
-    public Post(int id, int userId, String messagePost, int likes, String CreatedDate, String alteratedDate) {
-        this.id = id;
-        this.userId = userId;
-        this.messagePost = messagePost;
-        this.CreatedDate = null;
-        this.alteratedDate = null;
-    }
+
 
     public Post(int id, int userId, String message) {
         this.id = id;
@@ -62,9 +61,16 @@ public class Post implements Serializable{
     public String GetUserName() {
         return userName;
     }
-    public int GetLikes() {
-        return likes;
+    public String getEmail() {
+        return email;
     }
+    public void SetLikes(int _likes) {
+        likes = _likes;
+    }
+    public int GetLikes() {return likes;}
+    public int GetCommentNumber() {return Comment_number;}
+    public void SetLiked(boolean _liked) {liked = _liked;}
+    public boolean GetLiked() {return liked;}
     public void SetMessagePost(String messagePost) {
         this.messagePost = messagePost;
     }

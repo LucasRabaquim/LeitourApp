@@ -50,18 +50,15 @@ public class SavedBookFragment extends Fragment {
         viewModel = ViewModelProviders.of(this).get(SavedBookViewModel.class);
         ArrayList<SavedBook> books = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recycler_returned_books);
-        searchBar = ((PlaceholderActivity) getActivity()).findViewById(R.id.search_bar);
         adapter = new SavedBookAdapter(getActivity(), books);
         int columns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),columns));
         recyclerView.setAdapter(adapter);
-        if(savedInstanceState != null)
-            arrayList = (ArrayList<SavedBook>) savedInstanceState.getSerializable(LIST_SAVED_BOOK_KEY);
         if(arrayList == null) {
             if(user == null)
                 arrayList = viewModel.loadSaved(new SharedHelper(getActivity()).GetToken());
             else
-                arrayList = viewModel.loadSavedFromEmail(user.GetEmail());
+                arrayList = viewModel.loadSavedFromEmail(user.GetEmail(),0);
         }
         if(arrayList != null) {
             books.clear();

@@ -45,6 +45,9 @@ public class Annotation implements Serializable {
     public int getAnnotationId() {
         return annotationId;
     }
+    public String getCreatedDate() {
+        return createdDate;
+    }
 
     public void setAnnotationId(int annotationId) {
         this.annotationId = annotationId;

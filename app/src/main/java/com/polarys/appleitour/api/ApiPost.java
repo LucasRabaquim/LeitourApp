@@ -48,7 +48,6 @@ public class ApiPost implements IPost {
         return apiThread.CreateThread(apiThread).getJson();
     }
 
-    @Override
     public ApiResponse GetPostsByEmail(String token,String email) {
         return GetPostsByEmail(token,email,0);
     }

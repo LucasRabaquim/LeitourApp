@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,10 @@ import com.polarys.appleitour.viewmodel.UserDataViewModel;
 public class UserDataFragment extends Fragment{
 
     private UserDataViewModel viewModel;
+    private User user;
+
+    public UserDataFragment(){}
+    public UserDataFragment(User _user){user = _user;}
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -35,21 +40,19 @@ public class UserDataFragment extends Fragment{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         TabLayout tabLayout = view.findViewById(R.id.tab_layout_user);
-        SavedBookFragment savedBookFragment = new SavedBookFragment();
-        SocialFragment socialFragment = new SocialFragment();
-        PostFragment postFragment = new PostFragment();
-        User user = new SharedHelper(getContext()).GetUser();
-        UserFollowFragment userFollow = new UserFollowFragment(user,true);
-        UserFollowFragment userFollowing = new UserFollowFragment(user,false);
+        if(user == null)
+            user = new SharedHelper(getContext()).GetUser();
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int id = tab.getId();
-                if (id == R.id.tab_saved) loadFragment(savedBookFragment);
-                else if (id == R.id.tab_posts) loadFragment(postFragment);
-                else if (id == R.id.tab_follow) loadFragment(userFollow);
-                else if (id == R.id.tab_follower) loadFragment(userFollowing);
-                else loadFragment(socialFragment);
+                Log.d("TAG", "Tab: " + id);
+                if (id == R.id.tab_saved) loadFragment(new SavedBookFragment(user));
+                else if (id == R.id.tab_posts) loadFragment(new SocialFragment(user));
+                else if (id == R.id.tab_follow) loadFragment(new UserFollowFragment(user,true));
+                else if (id == R.id.tab_follower) loadFragment(new UserFollowFragment(user,false));
+                else loadFragment(new SavedBookFragment(user));
             }
 
             @Override

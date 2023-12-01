@@ -3,6 +3,8 @@ package com.polarys.appleitour.view.activity;
 import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.api.ApiComment;
 import com.polarys.appleitour.api.ApiUtil;
@@ -39,7 +42,7 @@ import com.polarys.appleitour.viewmodel.SocialViewModel;
 
 import java.util.ArrayList;
 
-public class SeePostActivity extends AppCompatActivity {
+public class SeePostActivity extends AppCompatActivity{
 
     private CommentViewModel viewModel;
     private RecyclerView recyclerView;
@@ -110,16 +113,16 @@ public class SeePostActivity extends AppCompatActivity {
         botao.setOnClickListener(v ->{
             EditText edit = findViewById(R.id.edit_message);
             String message = edit.getText().toString();
-            Comment comment = new Comment(id, post.GetId(), message);
+            Comment comment = new Comment(id, post.GetId(), message,sharedHelper.GetUser());
             ApiResponse response = viewModel.CreateComment(comment,token);
             if(response.getCode() == 200 | response.getCode() == 201){
                 comments.add(comment);
                 adapter.notifyDataSetChanged();
                 Toast.makeText(this,"Comentário Criado",Toast.LENGTH_SHORT).show();
+                click[0] = !click[0];
             }
             else
                 Toast.makeText(this,response.getBody(),Toast.LENGTH_SHORT).show();
-
         });
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -151,5 +154,12 @@ public class SeePostActivity extends AppCompatActivity {
             comments.addAll(_arrayList);
             adapter.notifyDataSetChanged();
         }
+    }
+
+
+
+    public void showSnackBar(String message){
+        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content).getRootView(), message, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 }

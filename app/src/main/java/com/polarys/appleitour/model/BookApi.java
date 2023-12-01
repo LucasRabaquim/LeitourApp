@@ -61,6 +61,9 @@ public class BookApi implements Serializable {
     public String getIsbn10() {
         return isbn10;
     }
+    public String getIsbn13() {
+        return isbn13;
+    }
 
 
     public void setPublisher(String publisher) {
