@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:id="@+id/item_publication_layout"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -20,29 +20,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/placeholder"
+                >
+
+            </ImageView>
 
             <TextView
                 android:id="@+id/txt_publication_username"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:padding="10dp"
                 android:layout_height="wrap_content"
                 android:text="Nome"
                 android:textColor="#4d4d4e"
                 android:textSize="24sp" />
+                <TextView
+                    android:id="@+id/txt_publication_useremail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nick"
+                    android:textColor="#a5a5a5"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/txt_publication_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nick"
-                android:textColor="#a5a5a5"
-                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txt_publication_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nick"
+                android:text="Date"
                 android:textColor="#a5a5a5"
                 android:textSize="18sp" />
 
@@ -52,9 +69,11 @@
 
         <ImageButton
             android:id="@+id/publication_options"
-            android:layout_width="36dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:visibility="gone"/>
+            android:src="@drawable/op_oes"
+
+            />
 
 
     </LinearLayout>
@@ -94,10 +113,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/publication_btn_like"
-            android:text="0"
+            android:text="1.179"
             android:textColor="#a5a5a5"
             android:textSize="10sp"
-            app:icon="@drawable/icon_heart" />
+            app:icon="@drawable/heartvector" />
 
         <Button
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
