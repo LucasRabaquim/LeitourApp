@@ -5,37 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_user_image"
-    android:background="@color/AzulDefault">
+    android:background="@color/white">
 
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/AzulDefault"
+        android:fontFamily="@font/outfit_semibold"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="18dp"
+        android:text="Perfil" />
+
+    <text
     <androidx.cardview.widget.CardView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:cardCornerRadius="250dp"
-        android:layout_gravity="center">
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="35dp"
+        app:cardCornerRadius="100dp">
 
         <ImageView
             android:id="@+id/img_user"
             app:cardCornerRadius="250dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/placeholder"
-            android:scaleType="centerCrop"/>
+            android:src="@drawable/placeholder" />
 
     </androidx.cardview.widget.CardView>
     <Button
         android:id="@+id/btn_send_image"
         android:text="imagem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_width="300dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="50dp"
         style="@style/ButtonBlue"/>
 
 
     <Button
         android:id="@+id/btn_skip_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="pular"
+        android:layout_width="300dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:text="Cancelar"
         android:layout_marginBottom="50dp"
         style="@style/ButtonBlue"/>
 

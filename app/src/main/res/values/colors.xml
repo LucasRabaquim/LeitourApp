@@ -9,4 +9,9 @@
     <color name="red">#F00F00</color>
     <color name="AzulDefault">#145CEC</color>
     <color name="AzulSecundary">#00CED1</color>
+    <color name="Black_Cinza">#4D4D4E</color>
+    <color name="CinzaDefault">#F0EDED</color>
+    <color name="Cinzaclaro">#756D6D</color>
+    <color name="Cinzaclaro2">#F9F7F8</color>
+
 </resources>

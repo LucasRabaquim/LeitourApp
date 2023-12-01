@@ -50,8 +50,8 @@
             <ImageButton
                 android:id="@+id/publication_options"
                 android:layout_width="36dp"
-                android:src="@drawable/icon_options"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:src="@drawable/op_oes" />
 
         </LinearLayout>
 

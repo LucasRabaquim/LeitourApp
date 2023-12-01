@@ -45,14 +45,13 @@
         android:textColor="@color/white"
         android:text="Email" />
 
+
     <EditText
         android:id="@+id/edit_email"
         style="@style/SignField"
-        android:inputType="textEmailAddress"
         android:drawableEnd="@drawable/iconuser"
-        android:drawableTint="@color/gray_600" />
-
-
+        android:drawableTint="@color/gray_600"
+        android:inputType="textEmailAddress" />
 
     <TextView
         android:layout_width="wrap_content"

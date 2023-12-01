@@ -9,19 +9,36 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:fontFamily="@font/outfit_semibold"
         android:gravity="center"
-        android:text="Livros Salvos"
-        android:textColor="@color/black"
-        android:textSize="26sp" />
+        android:text="LISTA DE FAVORITOS"
+        android:textColor="@color/Black_Cinza"
+        android:textSize="25sp" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <com.google.android.material.search.SearchBar
+        android:id="@+id/search_bar"
+        android:layout_width="350dp"
+        android:layout_gravity="center"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/CinzaDefault"
+        android:hint="@string/pesquisar" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_returned_books"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+
+
 
 </LinearLayout>

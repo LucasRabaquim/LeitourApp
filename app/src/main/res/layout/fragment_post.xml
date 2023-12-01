@@ -17,12 +17,16 @@
         android:gravity="top"
         android:text="Cancelar" />
 
+
     <EditText
         android:id="@+id/edit_post"
         android:layout_width="match_parent"
         android:minHeight="100dp"
         android:maxLength="250"
         android:hint="Oque vem a sua mente?"
+        android:fontFamily="@font/outfit_regular"
+        android:textSize="15dp"
+
         android:layout_height="wrap_content"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,8 +39,16 @@
             android:layout_height="40dp"
             style="@style/ButtonBlue"
             android:text=""
+
             android:buttonCornerRadius="20dp"/>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_user"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/placeholder"
+        app:cardCornerRadius="100dp" />
 
 
 </LinearLayout>
