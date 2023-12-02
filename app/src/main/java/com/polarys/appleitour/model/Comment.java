@@ -3,6 +3,9 @@ package com.polarys.appleitour.model;
 
 import com.google.gson.annotations.Expose;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Comment {
     private int commentId;
     private int userId;
@@ -73,7 +76,8 @@ public class Comment {
     }
 
     public String getCreatedDate() {
-        return createdDate;
+        LocalDateTime datetime = LocalDateTime.parse(createdDate, DateTimeFormatter.ofPattern("dd/MM/yy"));
+        return datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     public void setCreatedDate(String createdDate) {

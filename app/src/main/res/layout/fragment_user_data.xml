@@ -45,7 +45,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textNomePerfil2"
+                    android:id="@+id/txt_profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -57,7 +57,7 @@
                     android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/textEmail2"
+                    android:id="@+id/txt_profile_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -69,13 +69,14 @@
                     android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/biografia"
+                    android:id="@+id/txt_profile_bio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/outfit_regular"
                     android:text="Biografia"
+                    android:visibility="gone"
                     android:textColor="@color/Cinzaclaro"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -94,18 +95,18 @@
 
         android:backgroundTint="@color/CinzaDefault">
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/posts"
+            android:id="@+id/tab_posts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/posts"
             />
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/follow"
+            android:id="@+id/tab_following"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/seguidores" />
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/following"
+            android:id="@+id/tab_follower"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/seguindo"/>

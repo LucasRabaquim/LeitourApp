@@ -22,15 +22,16 @@
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <com.google.android.material.search.SearchBar
+                <EditText
                     android:id="@+id/search_bar"
+                    android:hint="@string/pesquisar"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:hint="@string/pesquisar" />
+                    android:layout_height="wrap_content"/>
             </com.google.android.material.appbar.AppBarLayout>
-            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:id="@+id/btn_SearchBook"/>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/layout_refresh"
         android:layout_width="match_parent"

@@ -47,6 +47,7 @@ public class BookInfoActivity extends AppCompatActivity {
     private ImageView background;
     private Object[] SavedResponse;
     private RecyclerView recyclerView;
+    private UIHelper uiHelper;
     private AnnotationAdapter adapter;
     private BookApi book;
     private SavedBook savedBook;
@@ -56,10 +57,10 @@ public class BookInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_info);
-
         SharedHelper sharedHelper = new SharedHelper(this);
         String token = sharedHelper.GetToken();
         Bundle bundle = getIntent().getExtras();
+        uiHelper = new UIHelper(this,this.getWindow().getDecorView().getRootView());
         SavedViewModel = new ViewModelProvider(this).get(SavedBookViewModel.class);
         bookApiViewModel = new ViewModelProvider(this).get(BookApiViewModel.class);
         btnOptions = findViewById(R.id.saved_options);
@@ -135,12 +136,12 @@ public class BookInfoActivity extends AppCompatActivity {
 
         btnOptions.setOnClickListener(view -> {
             PopupMenu popupMenu = new PopupMenu(this, view);
-            popupMenu.inflate(R.menu.menu_publication_options);
+            popupMenu.inflate(R.menu.menu_savedbook_options);
             popupMenu.setOnMenuItemClickListener(menuItem -> {
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.saved_unsave) {
                     UIHelper uiHelper = new UIHelper(this);
-                    AlertDialog.Builder builder = uiHelper.createDialog("Dessalvando o livro", "Se você dessalvar esse livro perderá todas as suas anotações. Quer continuar?", "Cancelar");
+                    AlertDialog.Builder builder = uiHelper.createDialog("Dessalvando o livro "+savedBook.getId(), "Se você dessalvar esse livro perderá todas as suas anotações. Quer continuar?", "Cancelar");
                     builder.setPositiveButton("Sim", (dialog, which) -> {
                         ApiResponse response = SavedViewModel.UnsaveBook(savedBook.getId(), token);
                         if (response.getCode() == (200 | 201)) {
@@ -161,7 +162,9 @@ public class BookInfoActivity extends AppCompatActivity {
     }
 
     public void showSnackBar(String message){
-        Snackbar snackbar = Snackbar.make(recyclerView, message, Snackbar.LENGTH_LONG);
-        snackbar.show();
+        uiHelper.showSnackBar(message);
+    }
+    public void showSnackBar(int message){
+        uiHelper.showSnackBar(message);
     }
 }

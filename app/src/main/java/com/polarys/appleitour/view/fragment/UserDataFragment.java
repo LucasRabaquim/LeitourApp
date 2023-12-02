@@ -48,11 +48,11 @@ public class UserDataFragment extends Fragment{
             public void onTabSelected(TabLayout.Tab tab) {
                 int id = tab.getId();
                 Log.d("TAG", "Tab: " + id);
-                if (id == R.id.tab_saved) loadFragment(new SavedBookFragment(user));
-                else if (id == R.id.tab_posts) loadFragment(new SocialFragment(user));
-                else if (id == R.id.tab_follow) loadFragment(new UserFollowFragment(user,true));
+               // if (id == R.id.tab_saved) loadFragment(new SavedBookFragment(user));
+                if (id == R.id.tab_posts) loadFragment(new SocialFragment(user));
+                else if (id == R.id.tab_following) loadFragment(new UserFollowFragment(user,true));
                 else if (id == R.id.tab_follower) loadFragment(new UserFollowFragment(user,false));
-                else loadFragment(new SavedBookFragment(user));
+               // else loadFragment(new SavedBookFragment(user));
             }
 
             @Override

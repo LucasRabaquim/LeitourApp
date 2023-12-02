@@ -9,8 +9,10 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
@@ -39,6 +41,7 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
     private EditText searchBar;
     private AppBarLayout appBarLayout;
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout refreshLayout;
     private ApiBookAdapter apiBookAdapter;
     private BookApiViewModel viewModel;
     private ArrayList<BookApi> books;
@@ -65,6 +68,7 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
         viewModel = ViewModelProviders.of(this).get(BookApiViewModel.class);
         books = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recycler_returned_books);
+        refreshLayout = view.findViewById(R.id.layout_refresh);
         apiBookAdapter = new ApiBookAdapter(books, getActivity(),new SharedHelper(getContext()).GetToken());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(apiBookAdapter);
@@ -80,7 +84,7 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 offset = books.size();
                 if (!isLoading) {
-                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == bookList.size() - 1) {
+                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == books.size() - 1) {
                         Handler handler = new Handler();
                         handler.postDelayed(() -> {
                             bookList = viewModel.search(searchParam, bookQuery,offset);
@@ -95,10 +99,25 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
             }
         });
 
-        btnSearchBook.setOnClickListener(v->request(TITLE));
+      /*  btnSearchBook.setOnClickListener(v->{
+            refreshLayout.setRefreshing(true);
+            request(TITLE);
+        });*/
+        searchBar.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                refreshLayout.setRefreshing(true);
+                request(TITLE);
+                return true;
+            }
+            return false;
+        });
+
     }
+
+
     public boolean onQueryTextSubmit(String query) {
         Log.d("TAG", "onQueryTextSubmit: ");
+        refreshLayout.setRefreshing(true);
         request(TITLE);
         return false;
     }
@@ -107,15 +126,21 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
         return false;
     }
     private void request(String _searchParam){
+
         bookQuery = searchBar.getText().toString();
         Log.d("TAG", "Searching book: " + bookQuery);
         searchParam  = _searchParam;
         bookList = viewModel.search(searchParam, bookQuery);
-        if (bookList == null || !bookList.get(0).getSuccess())
+
+        if (bookList == null || !bookList.get(0).getSuccess()){
+            refreshLayout.setRefreshing(false);
             return;
+        }
         books.clear();
         books.addAll(bookList);
         Log.d("TAG", "Request: " + books);
         apiBookAdapter.notifyDataSetChanged();
+        refreshLayout.setRefreshing(false);
+
     }
 }

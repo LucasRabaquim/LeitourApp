@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:id="@+id/saved_book_layout"
+    android:layout_height="wrap_content"
+    android:maxHeight="200dp"
     android:layout_margin="20dp"
     android:background="@drawable/saved_book_gradient"
     >
@@ -13,21 +15,24 @@
         android:id="@+id/item_book_title_letter"
         android:gravity="center"
         android:text="0"
+        android:inputType="textCapCharacters"
         android:layout_weight="2.7"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:layout_weight="1.5"
         android:orientation="vertical">
 
         <TextView
+            android:textAlignment="center"
             android:id="@+id/item_book_title"
             android:layout_width="match_parent"
             android:fontFamily="@font/outfit_semibold"
-            android:layout_height="40dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_marginTop="25dp"
-            android:gravity="center_vertical"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="@string/book_title"
@@ -37,8 +42,9 @@
         <TextView
             android:id="@+id/item_book_author"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:paddingLeft="10dp"
             android:fontFamily="@font/outfit_medium"
             android:paddingRight="10dp"
@@ -59,6 +65,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/frase_author"
             android:textSize="12sp"
+            android:visibility="gone"
             android:textColor="#979292"
             />
 
@@ -84,6 +91,7 @@
         android:layout_weight="2">
 
         <ImageView
+            android:id="@+id/item_book_cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dp"

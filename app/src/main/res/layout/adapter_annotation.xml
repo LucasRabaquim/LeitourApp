@@ -72,7 +72,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:textColor="#4D4D4E"
-            android:text="Robôs são bem bacanas e gostam de bananas. Robôs são bem bacanas e gostam de bananas. Robôs são bem bacanas e gostam de bananas."/>
+            android:text=""/>
 
     </LinearLayout>
 

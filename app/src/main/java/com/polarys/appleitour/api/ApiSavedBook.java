@@ -14,7 +14,7 @@ import com.polarys.appleitour.model.SavedBook;
 public class ApiSavedBook implements ISavedBook {
     public ApiResponse SaveBook(BookApi book, int userId, String token){
         ApiThread apiThread;
-        SavedBook savedBook = new SavedBook(0,userId,false,book.getKey(),book.getTitle(),book.getCover());
+        SavedBook savedBook = new SavedBook(0,userId,false,book.getKey(),book.getTitle(),book.getAuthors(),book.getCover());
         apiThread = new ApiThread(POST, "SavedBooks", savedBook,token);
         return apiThread.CreateThread(apiThread).getJson();
     }

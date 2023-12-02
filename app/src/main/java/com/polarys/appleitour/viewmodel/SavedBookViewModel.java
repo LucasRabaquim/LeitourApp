@@ -25,24 +25,28 @@ public class SavedBookViewModel extends ViewModel {
     ApiAnnotation apiAnnotation = new ApiAnnotation();
 
     public ApiResponse SaveBook(BookApi book, int userId, String token){
-        return apiSavedBook.SaveBook(book, userId, token);
+        ApiResponse apiResponse =  apiSavedBook.SaveBook(book, userId, token);
+        Log.d("SaveBook", "SaveBook: "+apiResponse.getBody());
+        return apiResponse;
     }
-    public ApiResponse UnsaveBook(int userId, String token){
-        return apiSavedBook.UnsaveBook(userId, token);
+    public ApiResponse UnsaveBook(int bookId, String token){
+        ApiResponse apiResponse = apiSavedBook.UnsaveBook(bookId, token);
+        Log.d("UnsaveBook", "UnsaveBook: "+apiResponse.getBody());
+        return apiResponse;
     }
     public ArrayList<SavedBook> loadSaved(String token){
         ApiResponse apiResponse = apiSavedBook.GetSavedBooks(token);
         Log.d("T",apiResponse.getBody());
-        return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(new SavedBook().getClass(), apiResponse.getBody());
+        return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(SavedBook.class, apiResponse.getBody());
     }
     public ArrayList<SavedBook> loadSavedFromEmail(String email, int offset){
         ApiResponse apiResponse = apiSavedBook.GetSavedBookByEmail(email,offset);
         Log.d("T",apiResponse.getBody());
-        return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(new SavedBook().getClass(), apiResponse.getBody());
+        return (ArrayList<SavedBook>) ApiUtil.JsonToArrayObject(SavedBook.class, apiResponse.getBody());
     }
     public ArrayList<Annotation> showAnnotations(int id, String token){
         ApiResponse apiResponse = apiAnnotation.GetAnnotations(id,token);
         Log.d("Só anotacao",apiResponse.getBody());
-        return (ArrayList<Annotation>) ApiUtil.JsonToArrayObject(new Annotation().getClass(), apiResponse.getBody());
+        return (ArrayList<Annotation>) ApiUtil.JsonToArrayObject(Annotation.class, apiResponse.getBody());
     }
 }

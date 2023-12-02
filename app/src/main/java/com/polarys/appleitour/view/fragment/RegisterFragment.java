@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
+import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.User;
 import com.polarys.appleitour.view.activity.PlaceholderActivity;
 import com.polarys.appleitour.view.activity.SignActivity;
@@ -51,6 +52,48 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        user = viewModel.GetUser();
+        declareUi(view,user);
+        View rootView = getActivity().getWindow().getDecorView().getRootView();
+        UIHelper uiHelper = new UIHelper(getContext(),rootView);
+        btn_register.setOnClickListener(v -> {
+            btn_register.setClickable(false);
+            user = getUserData();
+            String passwordCompare = edit_repeat_password.getText().toString();
+            String result = viewModel.VerifyFields(user, passwordCompare);
+            if (result != UserViewModel.SUCCESS) { // Validate fields
+                uiHelper.showSnackBar(result);
+                btn_register.setClickable(true);
+                return;
+            }
+            if (!verifyConectivity(getContext())) { // Verify Internet
+                uiHelper.showSnackBar(this.getResources().getString(R.string.string_connection));
+                btn_register.setClickable(true);
+                return;
+            }
+            String[] response = viewModel.register(user);
+            if (response[1] == null) { // Verify success on register
+                uiHelper.showSnackBar(response[0]);
+                btn_register.setClickable(true);
+                return;
+            }
+            saveUser(response);
+            ((SignActivity) getActivity()).loadFragment(new UploadImageFragment(user));
+        });
+
+        btn_Login.setOnClickListener(v -> { // Swith to user Image Fragment
+            viewModel.SetUser(getUserData());
+            ((SignActivity) getActivity()).loadFragment(new LoginFragment(viewModel));
+        });
+    }
+
+    private User getUserData() { // Set data on screen
+        String username = edit_Username.getText().toString().trim();
+        String email = edit_Email.getText().toString().trim();
+        String password = edit_password.getText().toString().trim();
+        return new User(username, email, password);
+    }
+    private void declareUi(View view,User user){
         checkBox = view.findViewById(R.id.cbKeepLogged);
         btn_Login = view.findViewById(R.id.txt_login);
         btn_register = view.findViewById(R.id.btnRegister);
@@ -58,7 +101,6 @@ public class RegisterFragment extends Fragment {
         edit_Email = view.findViewById(R.id.edit_email);
         edit_password = view.findViewById(R.id.edit_password);
         edit_repeat_password = view.findViewById(R.id.edit_compare_password);
-        user = viewModel.GetUser();
 
         if (user != null) { // Set data between Fragments
             if (Objects.equals(user.GetNameUser(), "@"))
@@ -67,46 +109,12 @@ public class RegisterFragment extends Fragment {
             edit_Email.setText(user.GetEmail());
             edit_password.setText(user.GetPassword());
         }
-
-        btn_register.setOnClickListener(v -> {
-            btn_register.setClickable(false);
-            user = GetUserData();
-            String passwordCompare = edit_repeat_password.getText().toString();
-            String result = viewModel.VerifyFields(user, passwordCompare);
-            if (result != UserViewModel.SUCCESS) { // Validate fields
-                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
-                btn_register.setClickable(true);
-                return;
-            }
-            if (!verifyConectivity(getContext())) { // Verify Internet
-                Toast.makeText(getContext(), "Verifique sua conexão", Toast.LENGTH_SHORT).show();
-                btn_register.setClickable(true);
-                return;
-            }
-            String[] response = viewModel.register(user);
-            if (response[1] == null) { // Verify success on register
-                Toast.makeText(getContext(), response[0], Toast.LENGTH_SHORT).show();
-                btn_register.setClickable(true);
-                return;
-            }
-            SharedHelper settings = new SharedHelper(getContext());
-            settings.SetKeepLogged(checkBox.isChecked());
-            settings.SetToken(response[1]);
-            User user = (User) JsonToObject(new User(), response[0]);
-            settings.SetUser(user);
-            ((SignActivity) getActivity()).loadFragment(new UploadImageFragment(user));
-        });
-
-        btn_Login.setOnClickListener(v -> {
-            viewModel.SetUser(GetUserData());
-            ((SignActivity) getActivity()).loadFragment(new LoginFragment(viewModel));
-        });
     }
-
-    private User GetUserData() {
-        String username = edit_Username.getText().toString();
-        String email = edit_Email.getText().toString();
-        String password = edit_password.getText().toString();
-        return new User(username, email, password);
+    private void saveUser(String[] response){
+        SharedHelper settings = new SharedHelper(getContext());
+        settings.SetKeepLogged(checkBox.isChecked()); // Save preference
+        settings.SetToken(response[1]); // Save Token
+        User user = (User) JsonToObject(new User(), response[0]);
+        settings.SetUser(user); // Save User
     }
 }

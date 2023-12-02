@@ -20,7 +20,6 @@
         android:textSize="18dp"
         android:text="Perfil" />
 
-    <text
     <androidx.cardview.widget.CardView
         android:layout_width="100dp"
         android:layout_height="100dp"

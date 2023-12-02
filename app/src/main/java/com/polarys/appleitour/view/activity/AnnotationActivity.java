@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.SharedHelper;
+import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.Annotation;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.SavedBook;
@@ -25,10 +26,11 @@ import com.polarys.appleitour.viewmodel.AnnotationViewModel;
 public class AnnotationActivity extends AppCompatActivity {
 
     private AnnotationViewModel viewModel;
-    private Button btn_post,btn_delete;
+    private Button btn_post;
     private EditText edit_post;
     private TextView txt_cancelar;
     private Annotation annotation;
+    private UIHelper uiHelper;
     private boolean edit_mode = false;
 
 
@@ -59,11 +61,10 @@ public class AnnotationActivity extends AppCompatActivity {
             edit_mode = true;
             annotation = savedAnnotation;
             edit_post.setText(annotation.getAnnotationText());
-            btn_delete.setVisibility(View.VISIBLE);
         }
         txt_cancelar.setOnClickListener(v-> finish());
 
-        btn_delete.setOnClickListener(v -> {viewModel.DeleteAnnotation(annotation,token);});
+       // btn_delete.setOnClickListener(v -> {viewModel.DeleteAnnotation(annotation,token);});
         btn_post.setOnClickListener(v->{
             String message = edit_post.getText().toString();
             if(message.length() <= 5){

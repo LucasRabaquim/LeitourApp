@@ -58,7 +58,7 @@ public class SocialFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         arrayList = getAdapter(token);
         resetAdapter(arrayList);
-        refreshLayout.setOnRefreshListener(() ->{
+        refreshLayout.setOnRefreshListener(() ->{ // Refresh on pull
             resetAdapter(getAdapter(token));
             offset = 0;
             refreshLayout.setRefreshing(false);
@@ -66,14 +66,13 @@ public class SocialFragment extends Fragment {
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) { // Infinite Scroll
                 super.onScrolled(recyclerView, dx, dy);
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 offset = posts.size();
                 if (!isLoading) {
                     if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == arrayList.size() - 1) {
-                       Handler handler = new Handler();
-                        handler.postDelayed(() -> {
+                      new Handler().postDelayed(() -> {
                             arrayList = getAdapter(token, offset);
                             if (arrayList != null)
                                 posts.addAll(arrayList);

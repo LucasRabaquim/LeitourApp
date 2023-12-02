@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.search.SearchBar;
@@ -51,8 +52,9 @@ public class SavedBookFragment extends Fragment {
         ArrayList<SavedBook> books = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recycler_returned_books);
         adapter = new SavedBookAdapter(getActivity(), books);
-        int columns = 3;
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),columns));
+       // int columns = 3;
+       // recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),columns));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         if(arrayList == null) {
             if(user == null)

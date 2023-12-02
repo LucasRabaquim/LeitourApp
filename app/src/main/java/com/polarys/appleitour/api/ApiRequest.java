@@ -2,6 +2,8 @@ package com.polarys.appleitour.api;
 
 import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.polarys.appleitour.model.ApiResponse;
 
@@ -11,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -77,21 +80,28 @@ public class ApiRequest {
                 .build();
         return request(request);
     }
-    public ApiResponse sendImage(String path, File file, String token){
-        RequestBody body = RequestBody.create(file,IMAGE);
-        Request request = new Request.Builder()
-                .url(API_URL+path)
-                .post(body)
-                .addHeader(TOKEN,token)
-                .build();
-        return request(request);
-    }
     public ApiResponse update(String path, Object object, String token){
         String json = ObjectToString(object);
         RequestBody body = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
                 .url(API_URL+path)
                 .put(body)
+                .addHeader(TOKEN,token)
+                .build();
+        return request(request);
+    }
+    public ApiResponse sendImage(String path, String image, String token){
+        Log.d("UPDATE", "update: "+image);
+        Log.d("URL", "url: "+API_URL+path);
+
+        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("file", "UserPhoto.jpeg",
+                        RequestBody.create(MediaType.parse("Image/*"), image))
+                .build();
+
+        Request request = new Request.Builder()
+                .url(API_URL+path)
+                .post(requestBody)
                 .addHeader(TOKEN,token)
                 .build();
         return request(request);

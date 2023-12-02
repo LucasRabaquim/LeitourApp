@@ -13,7 +13,7 @@ public class ApiThread implements Runnable {
     private static String url = null;
     private static Object json = null;
     private static String token = null;
-    private static File file = null;
+    private static String image = null;
 
     public static final String GET = "GET";
     public static final String DEBUG = "DEBUG";
@@ -41,12 +41,12 @@ public class ApiThread implements Runnable {
         this.json = json;
         this.token = token;
     }
-    public ApiThread(String method,String url,File file,String token){
+   /* public ApiThread(String method,String url,String image,String token){
         this.method = method;
         this.url = url;
-        this.file = file;
+        this.image = image;
         this.token = token;
-    }
+    }*/
 
     public ApiThread CreateThread(ApiThread apiThread){
         Thread thread = new Thread(apiThread);
@@ -78,7 +78,7 @@ public class ApiThread implements Runnable {
                 result = api.sign(url,json);
                 break;
             case SENDIMAGE:
-                result = api.sendImage(url,file,token);
+                result = api.sendImage(url,image,token);
                 break;
             case UPDATE:
                 result = api.update(url,json,token);
