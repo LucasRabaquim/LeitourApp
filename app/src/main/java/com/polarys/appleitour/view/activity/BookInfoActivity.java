@@ -87,6 +87,11 @@ public class BookInfoActivity extends AppCompatActivity {
         btn_save_book.setOnClickListener(v -> {
             int userId = sharedHelper.GetUser().GetId();
             ApiResponse apiResponse = SavedViewModel.SaveBook(finalBook, userId, token);
+
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+            overridePendingTransition(0, 0);
             Toast.makeText(this, apiResponse.getBody(), Toast.LENGTH_SHORT).show();
         });
 

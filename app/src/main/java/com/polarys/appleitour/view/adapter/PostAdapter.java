@@ -102,7 +102,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                     ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.placeholder_framelayout, fragment).commit();
                 } else if (itemId == R.id.publication_delete) {
                     UIHelper uiHelper = new UIHelper(context);
-                    AlertDialog.Builder builder = uiHelper.createDialog(R.id.string_post_delete_dialog_title,R.id.string_post_delete_dialog_message,R.id.string_dialog_option_cancel);
+                    AlertDialog.Builder builder = uiHelper.createDialog(R.string.string_post_delete_dialog_title,R.string.string_post_delete_dialog_message,R.string.string_dialog_option_cancel);
                     builder.setPositiveButton("Confirmar", (dialog, which) -> {
                         int success =  apiPost.DeletePost(post,token).getCode();
                         int message = (success != (200 | 201)) ? R.string.string_post_delete_success : R.string.string_post_delete_error;

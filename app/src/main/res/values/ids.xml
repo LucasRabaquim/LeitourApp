@@ -2,7 +2,4 @@
 <resources>
     <item name="imageCircle_imageView" type="id" />
     <item name="publication_buttons" type="id" />
-    <item name="string_post_delete_dialog_title" type="id">O post será deletado</item>
-    <item name="string_post_delete_dialog_message" type="id">Deseja mesmo deletar seu post?</item>
-    <item name="string_dialog_option_cancel" type="id">Cancelar</item>
 </resources>

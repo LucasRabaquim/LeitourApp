@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.polarys.appleitour.R;
@@ -59,8 +63,29 @@ public class UIHelper extends AppCompatActivity {
         }
     }
     public void showSnackBar(String message){
-        if(view != null)
-            Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
+        if(view != null){
+           // view.setY(20);
+            Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
+            View _view = snackbar.getView();
+            try {
+                LinearLayout.LayoutParams params=(LinearLayout.LayoutParams)_view.getLayoutParams();
+                params.setMargins(params.leftMargin,params.topMargin,params.rightMargin,params.bottomMargin *8);
+                _view.setLayoutParams(params);
+                snackbar.show();
+
+            }catch (Exception e){
+                try{
+                    FrameLayout.LayoutParams params=(FrameLayout.LayoutParams)_view.getLayoutParams();
+                    params.setMargins(params.leftMargin,params.topMargin,params.rightMargin,params.bottomMargin *8);
+                    _view.setLayoutParams(params);
+                    snackbar.show();
+                }
+                catch (Exception e1){
+                    Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
+                }
+            }
+
+        }
     }
     public void showSnackBar(int message){
         showSnackBar(stringFromResource(message));

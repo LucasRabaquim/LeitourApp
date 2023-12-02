@@ -21,11 +21,13 @@
     <string name="lembrar_senha">Continuar Logado</string>
     <string name="sem_conta">Não possui conta? Registre-se</string>
     <string name="login">Login</string>
-    <string name="repeat_password">Repita a senha\n</string>
+    <string name="repeat_password">Repita a senha</string>
     <string name="author">Autor(a): </string>
     <string name="book_author">Autor(a): </string>
     <string name="book_title">Título: </string>
     <string name="book_description">Descrição: </string>
+    <string name="string_post_delete_dialog_title" type="id">O post será deletado</string>
+    <string name="string_post_delete_dialog_message" type="id">Deseja mesmo deletar seu post?</string>
     <string name="book_publisher">Editora: </string>
     <string name="book_published_date">Lançamento: </string>
     <string name="book_pages">Páginas: </string>
@@ -54,7 +56,7 @@
     <string name="string_annotation_delete_error">Não foi possível deletar a anotação.</string>
     <string name="string_dialog_option_cancel">Cancelar</string>
     <string name="string_dialog_option_send">Enviar</string>
-    <string name="string_dialog_option_Confirm">Comfirmar</string>
+    <string name="string_dialog_option_Confirm">Confirmar</string>
     <string name="string_comment_update_error">Não foi possível atualizar o comentário.</string>
     <string name="string_comment_dialog_title">O comentário será apagado</string>
     <string name="string_comment_dialog_message">Deseja mesmo apagar seu comentário?</string>
