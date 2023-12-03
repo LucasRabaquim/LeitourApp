@@ -21,6 +21,7 @@ import com.google.android.material.search.SearchBar;
 import com.google.android.material.search.SearchView;
 import com.google.android.material.snackbar.Snackbar;
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.view.fragment.BookSearchFragment;
 import com.polarys.appleitour.view.fragment.PostFragment;
 import com.polarys.appleitour.view.fragment.SavedBookFragment;
@@ -33,6 +34,7 @@ public class PlaceholderActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private EditText searchBar;
     private FrameLayout viewPager;
+    private UIHelper uiHelper;
     private TextView error_message;
 
 
@@ -42,7 +44,9 @@ public class PlaceholderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_placeholder);
         toolbar = getSupportActionBar();
         viewPager = findViewById(R.id.placeholder_framelayout);
-        searchBar = findViewById(R.id.search_bar);
+        View rootView = getWindow().getDecorView().getRootView();
+        uiHelper = new UIHelper(this,rootView);
+       // searchBar = findViewById(R.id.search_bar);
        // searchView = findViewById(R.id.search_view);
 
         SavedBookFragment savedBookFragment = new SavedBookFragment();
@@ -50,8 +54,10 @@ public class PlaceholderActivity extends AppCompatActivity {
         SocialFragment socialFragment = new SocialFragment();
         PostFragment postFragment = new PostFragment();
         UserDataFragment userDataFragment = new UserDataFragment();
+        loadFragment(socialFragment);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationview);
+        bottomNavigationView.getMenu().findItem(R.id.nav_social).setChecked(true);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_favorites) loadFragment(savedBookFragment);
@@ -71,7 +77,9 @@ public class PlaceholderActivity extends AppCompatActivity {
     }
 
     public void showSnackBar(String message){
-        Snackbar snackbar = Snackbar.make(viewPager, message, Snackbar.LENGTH_LONG);
-        snackbar.show();
+        uiHelper.showSnackBar(message);
+    }
+    public void showSnackBar(int message){
+        uiHelper.showSnackBar(message);
     }
 }

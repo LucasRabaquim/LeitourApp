@@ -22,21 +22,16 @@
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <com.google.android.material.search.SearchBar
+                <EditText
                     android:id="@+id/search_bar"
+                    android:hint="@string/pesquisar"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:hint="@string/pesquisar" />
+                    android:layout_height="wrap_content"/>
             </com.google.android.material.appbar.AppBarLayout>
-            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/AzulDefault"
-                android:text="Pesquisar"
-                android:fontFamily="@font/outfit_semibold"
-                android:id="@+id/btn_SearchBook"/>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/layout_refresh"
         android:layout_width="match_parent"
@@ -48,7 +43,6 @@
             android:id="@+id/recycler_returned_books"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="30dp"
             android:layout_height="wrap_content" />
         </ScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

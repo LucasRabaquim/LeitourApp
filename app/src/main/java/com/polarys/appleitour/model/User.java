@@ -21,19 +21,20 @@ import java.time.LocalDateTime;
 
 public class User implements Serializable {
 
-    @SerializedName("id")
+
     private int id = 0;
-    @SerializedName("nameUser")
+
     private String nameUser = "";
-    @SerializedName("email")
+
     private String email;
-    @SerializedName("password")
+
     private String password;
-    @SerializedName("profilePhoto")
+
     private String profilePhoto;
-    @SerializedName("access")
+
+    private String bioUser = "";
     private String access = "Comum";
-    @SerializedName("createdLocalDateTime")
+
     private LocalDateTime createdLocalDateTime = null;
 
 
@@ -95,16 +96,6 @@ public class User implements Serializable {
         password = _password;
     }
 
-   /* public Bitmap GetProfilePhoto() {
-        try {
-            byte [] encodeByte = Base64.getDecoder().decode(profilePhoto);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            return bitmap;
-        } catch(Exception e) {
-            e.getMessage();
-            return null;
-        }
-    }*/
     public String GetStringProfilePhoto() {return profilePhoto;}
 
     public void SetProfilePhoto(Bitmap _profilePhoto) {

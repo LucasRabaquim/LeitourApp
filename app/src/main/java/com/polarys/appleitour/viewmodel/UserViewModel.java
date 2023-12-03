@@ -39,7 +39,7 @@ public class UserViewModel extends ViewModel {
         ApiResponse apiResponse = apiUser.UpdateUser(token,user);
         return (apiResponse.getCode() == 200 | apiResponse.getCode() == 201);
     }
-    public boolean updatePhoto(String token, File image){
+    public boolean updatePhoto(String token, String image){
         ApiResponse apiResponse = apiUser.UpdateImage(token,image);
         Log.d("Imagem",apiResponse.getBody());
         return (apiResponse.getCode() == 200 | apiResponse.getCode() == 201);

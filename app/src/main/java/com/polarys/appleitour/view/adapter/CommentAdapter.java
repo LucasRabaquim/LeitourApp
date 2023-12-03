@@ -20,6 +20,7 @@ import com.polarys.appleitour.api.ApiComment;
 import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.Comment;
+import com.polarys.appleitour.view.activity.PlaceholderActivity;
 import com.polarys.appleitour.view.activity.SeePostActivity;
 
 import java.util.ArrayList;
@@ -61,21 +62,21 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.publication_edit) {
                     UIHelper uiHelper = new UIHelper(context);
-                    AlertDialog.Builder builder = uiHelper.createTextDialog("Altere seu comentário");
+                    AlertDialog.Builder builder = uiHelper.createTextDialog(R.string.string_comment_edit_dialog_title);
                     builder.setPositiveButton("Enviar", (dialog, which) -> {
                         comment.setMessagePost(uiHelper.getText());
                         int success = apiComment.UpdateComment(comment, token).getCode();
-                        String message = (success != (200 | 201)) ? "O Comentário foi alterado" : "Erro ao alterar o comentário, tente novamente";
-                        ((SeePostActivity) context).showSnackBar(message);
+                        int message = (success != (200 | 201)) ? R.string.string_comment_update_success : R.string.string_comment_update_error;
+                        ((PlaceholderActivity) context).showSnackBar(message);
                     });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                 } else if (itemId == R.id.publication_delete) {
                     UIHelper uiHelper = new UIHelper(context);
-                    AlertDialog.Builder builder = uiHelper.createDialog("O Comentário será deletado", "Deseja mesmo apagar seu comentário?", "Cancelar");
+                    AlertDialog.Builder builder = uiHelper.createDialog(R.string.string_comment_dialog_title, R.string.string_comment_dialog_message, R.string.string_dialog_option_cancel);
                     builder.setPositiveButton("Confirmar", (dialog, which) -> {
                         int success = apiComment.DeleteComment(comment, token).getCode();
-                        String message = (success != (200 | 201)) ? "O Comentário foi deletado" : "Erro ao deletar o comentário, tente novamente";
+                        int message = (success != (200 | 201)) ? R.string.string_comment_delete_success : R.string.string_comment_delete_error;
                         ((SeePostActivity) context).showSnackBar(message);
                     });
                     AlertDialog alertDialog = builder.create();
@@ -106,7 +107,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
         public CommentHolder(@NonNull View view) {
             super(view);
             this.user = view.findViewById(R.id.txt_publication_username);
-            this.email = view.findViewById(R.id.txt_publication_email);
+            this.email = view.findViewById(R.id.txt_publication_useremail);
             this.date = view.findViewById(R.id.txt_publication_date);
             this.text = view.findViewById(R.id.txt_publication_message);
             this.btnEdit = view.findViewById(R.id.publication_edit);

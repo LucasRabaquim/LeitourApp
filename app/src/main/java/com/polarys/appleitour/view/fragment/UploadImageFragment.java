@@ -7,6 +7,7 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
+import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.User;
 import com.polarys.appleitour.view.activity.PlaceholderActivity;
 import com.polarys.appleitour.viewmodel.UserViewModel;
@@ -29,40 +31,37 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 
 public class UploadImageFragment extends Fragment {
 
     private Button btn_skip, btn_image;
     private ImageView img_user;
     private UserViewModel viewModel;
+    private UIHelper uiHelper;
     private Bitmap bitmap;
     ActivityResultLauncher<Intent> getImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result != null) {
                     Uri imageUri = result.getData().getData();
-                    File imageFile = new File(getContext().getCacheDir(), "filename");
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), imageUri);
                         img_user.setImageBitmap(bitmap);
-
-
-                        imageFile.createNewFile();
-                        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
-                        byte[] bitmapdata = bos.toByteArray();
-
-                        FileOutputStream fos = new FileOutputStream(imageFile);
-                        fos.write(bitmapdata);
-                        fos.flush();
-                        fos.close();
-
                     } catch (IOException e) {
                         Log.d("TAG", e.toString());
                         bitmap = null;
                     }
                     if (bitmap != null) {
-                        boolean success = viewModel.updatePhoto(new SharedHelper(getContext()).GetToken(), imageFile);
-                        Log.d("TAG", "Sucesso: " + success);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                        byte[] imageBytes = baos.toByteArray();
+
+                        String encodedImage = Base64.encodeToString(imageBytes, Base64.NO_WRAP | Base64.URL_SAFE);
+                      //  byte[] decode = Base64.decode(imageBytes);
+                        //String encodedImage = new BigInteger(1, imageBytes).toString(2);
+                        boolean success = viewModel.updatePhoto(new SharedHelper(getContext()).GetToken(), encodedImage);
+                        int message = (success) ? R.string.string_photo_success : R.string.string_photo_fail;
+                        uiHelper.showSnackBar(message);
                     }
                 }
             }
@@ -111,6 +110,8 @@ public class UploadImageFragment extends Fragment {
         btn_skip = view.findViewById(R.id.btn_skip_image);
         viewModel = new UserViewModel();
         img_user = view.findViewById(R.id.img_user);
+        View rootView = getActivity().getWindow().getDecorView().getRootView();
+        uiHelper = new UIHelper(getContext(),rootView);
         btn_skip.setOnClickListener(v -> {
             getActivity().finish();
             IntentHelper intentHelper = new IntentHelper(getActivity(), IntentHelper.USER_SHARED);

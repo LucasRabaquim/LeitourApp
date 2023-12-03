@@ -50,10 +50,8 @@
             <ImageButton
                 android:id="@+id/publication_options"
                 android:layout_width="36dp"
-                android:background="null"
-                android:layout_marginLeft="30dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/op_oes" />
+                android:src="@drawable/icon_options"
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 
@@ -74,7 +72,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:textColor="#4D4D4E"
-            android:text="Comentário do usuário"/>
+            android:text="Robôs são bem bacanas e gostam de bananas. Robôs são bem bacanas e gostam de bananas. Robôs são bem bacanas e gostam de bananas."/>
 
     </LinearLayout>
 

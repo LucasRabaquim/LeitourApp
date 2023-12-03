@@ -13,9 +13,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
+import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.User;
 import com.polarys.appleitour.view.activity.PlaceholderActivity;
 import com.polarys.appleitour.view.activity.SignActivity;
@@ -41,56 +44,64 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        edit_email = view.findViewById(R.id.edit_email);
-        edit_password = view.findViewById(R.id.edit_password);
-        checkBox = view.findViewById(R.id.cbKeepLogged);
-        btn_Login = view.findViewById(R.id.btnLogin);
-        link_register = view.findViewById(R.id.txt_register);
         user = viewModel.GetUser();
-        if(user != null){ // Set data between Fragments
-            edit_email.setText(user.GetEmail());
-            edit_password.setText(user.GetPassword());
-        }
+        declareUi(view,user);
+        View rootView = getActivity().getWindow().getDecorView().getRootView();
+        UIHelper uiHelper = new UIHelper(getContext(),rootView);
         btn_Login.setOnClickListener(v -> {
             btn_Login.setClickable(false);
-            user = GetUserData();
+            user = getUserData();
             String result = viewModel.VerifyFields(user);
             if(result != viewModel.SUCCESS) { // Validate fields
-                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+                uiHelper.showSnackBar(result);
                 btn_Login.setClickable(true);
                 return;
             }
             if(!verifyConectivity(getContext())) { // Verify Internet
-                Toast.makeText(getContext(), "Verifique sua conexão", Toast.LENGTH_SHORT).show();
+                uiHelper.showSnackBar(R.string.string_connection);
                 btn_Login.setClickable(true);
                 return;
             }
             String[] response = viewModel.login(user);
             if(response[1] == null) { // Verify success on login
-                Toast.makeText(getContext(), "Erro: " + response[0], Toast.LENGTH_SHORT).show();
+                uiHelper.showSnackBar(response[0]);
                 btn_Login.setClickable(true);
                 return;
             }
-            SharedHelper settings = new SharedHelper(getContext());
-            settings.SetKeepLogged(checkBox.isChecked());
-            settings.SetToken(response[1]);
-            User user = (User) JsonToObject(new User(), response[0]);
-            settings.SetUser(user);
-            Toast.makeText(getContext(), "Seja bem-vindo(a): " + user.GetNameUser(), Toast.LENGTH_SHORT).show();
+            saveUser(response);
+            uiHelper.showSnackBar(this.getResources().getString(R.string.string_welcome) + user.GetNameUser());
             getActivity().finish();
             IntentHelper intentHelper = new IntentHelper(getActivity(),IntentHelper.USER_SHARED);
             intentHelper.nextActivity(PlaceholderActivity.class);
             btn_Login.setClickable(true);
         });
 
-        link_register.setOnClickListener(v -> {
-            viewModel.SetUser(GetUserData());
+        link_register.setOnClickListener(v -> { // Switch to Register screen
+            viewModel.SetUser(getUserData());
             ((SignActivity) getActivity()).loadFragment(new RegisterFragment(viewModel));
         });
     }
-    private User GetUserData(){
-        String email = edit_email.getText().toString();
-        String password = edit_password.getText().toString();
+    private void declareUi(View view, User user){
+        edit_email = view.findViewById(R.id.edit_email);
+        edit_password = view.findViewById(R.id.edit_password);
+        checkBox = view.findViewById(R.id.cbKeepLogged);
+        btn_Login = view.findViewById(R.id.btnLogin);
+        link_register = view.findViewById(R.id.txt_register);
+        if(user != null){ // Set data between Fragments
+            edit_email.setText(user.GetEmail());
+            edit_password.setText(user.GetPassword());
+        }
+    }
+    private User getUserData(){ // Get Data from fields
+        String email = edit_email.getText().toString().trim();
+        String password = edit_password.getText().toString().trim();
         return new User(email,password);
+    }
+    private void saveUser(String[] response){
+        SharedHelper settings = new SharedHelper(getContext());
+        settings.SetKeepLogged(checkBox.isChecked()); // Save preference
+        settings.SetToken(response[1]); // Save Token
+        User user = (User) JsonToObject(new User(), response[0]);
+        settings.SetUser(user); // Save User
     }
 }

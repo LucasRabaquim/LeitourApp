@@ -29,6 +29,7 @@ import com.polarys.appleitour.api.ApiComment;
 import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
+import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.Comment;
 import com.polarys.appleitour.model.Post;
@@ -55,7 +56,8 @@ public class SeePostActivity extends AppCompatActivity{
     private TextView txt_likes;
     private Button botao;
     private ArrayList<Comment> comments;
-    boolean isLoading = false;
+    private boolean isLoading = false;
+    private UIHelper uiHelper;
     private int offset;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +65,8 @@ public class SeePostActivity extends AppCompatActivity{
         setContentView(R.layout.activity_see_post);
         Post post = (Post) getIntent().getSerializableExtra(POST_SHARED);
         viewModel = ViewModelProviders.of(this).get(CommentViewModel.class);
-        txt_name = findViewById(R.id.txt_publication_username);
-        txt_message = findViewById(R.id.txt_publication_message);
-        txt_likes = findViewById(R.id.publication_likes);
-        txt_name.setText(post.GetUserName());
-        txt_message.setText(post.GetMessagePost());
-        txt_likes.setText(post.GetLikes() + "likes");
-
+        declareUi(post);
+        uiHelper = new UIHelper(this,this.getWindow().getDecorView().getRootView());
         SharedHelper sharedHelper = new SharedHelper(this);
         int id = sharedHelper.GetId();
         String token = sharedHelper.GetToken();
@@ -80,26 +77,28 @@ public class SeePostActivity extends AppCompatActivity{
         adapter = new CommentAdapter(comments,this,id,token);
         recyclerView.setAdapter(adapter);
         refreshLayout = findViewById(R.id.layout_refresh);
-        refreshLayout.setOnRefreshListener(() ->{
+
+        refreshLayout.setOnRefreshListener(() ->{ // On pull refresh
             ArrayList<Comment> loadComments = viewModel.loadComments(post.GetId());
             resetAdapter(loadComments);
             offset = 0;
             refreshLayout.setRefreshing(false);
         });
+
         if(post.GetId() != 0) {
             ArrayList<Comment> loadComments = viewModel.loadComments(post.GetId());
             if (loadComments != null) {
-                Log.d("TAG", "resetAdapter: "+ loadComments.toString());
                 comments.clear();
                 comments.addAll(loadComments);
                 adapter.notifyDataSetChanged();
             }
         }
 
-        textAreaCustomView = findViewById(R.id.textarea);//new TextAreaCustomView(this);
+        textAreaCustomView = findViewById(R.id.textarea);
         btn_create_comment = findViewById(R.id.btn_create_comment);
         final boolean[] click = {true};
-        btn_create_comment.setOnClickListener(v ->{
+
+        btn_create_comment.setOnClickListener(v ->{ // TODO: Change to check button
             if(click[0]){
                 recyclerView.setVisibility(View.GONE);
                 textAreaCustomView.setVisibility(View.VISIBLE);
@@ -118,11 +117,11 @@ public class SeePostActivity extends AppCompatActivity{
             if(response.getCode() == 200 | response.getCode() == 201){
                 comments.add(comment);
                 adapter.notifyDataSetChanged();
-                Toast.makeText(this,"Comentário Criado",Toast.LENGTH_SHORT).show();
+                showSnackBar(R.string.string_comment_created);
                 click[0] = !click[0];
             }
             else
-                Toast.makeText(this,response.getBody(),Toast.LENGTH_SHORT).show();
+                showSnackBar(response.getBody());
         });
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -147,19 +146,27 @@ public class SeePostActivity extends AppCompatActivity{
             }
         });
     }
+
+    private void declareUi(Post post){
+        txt_name = findViewById(R.id.txt_publication_username);
+        txt_message = findViewById(R.id.txt_publication_message);
+        txt_likes = findViewById(R.id.publication_likes);
+        txt_name.setText(post.GetUserName());
+        txt_message.setText(post.GetMessagePost());
+        txt_likes.setText(post.GetLikes() + "likes");
+    }
     private void resetAdapter(ArrayList<Comment> _arrayList){
         if (_arrayList != null) {
-            Log.d("TAG", "resetAdapter: "+ _arrayList.toString());
             comments.clear();
             comments.addAll(_arrayList);
             adapter.notifyDataSetChanged();
         }
     }
-
-
-
     public void showSnackBar(String message){
-        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content).getRootView(), message, Snackbar.LENGTH_LONG);
-        snackbar.show();
+        uiHelper.showSnackBar(message);
     }
+    public void showSnackBar(int message){
+        uiHelper.showSnackBar(message);
+    }
+
 }

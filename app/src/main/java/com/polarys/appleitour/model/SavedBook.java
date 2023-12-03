@@ -17,16 +17,18 @@ public class SavedBook implements Serializable {
     private boolean isPublic;
     private String bookKey;
     private String bookTitle;
+    private String bookAuthor;
     private String bookCover;
 
     public SavedBook() {  }
 
-    public SavedBook(int id, int userId, boolean isPublic, String bookKey,String bookTitle,String bookCover) {
-        this.userId = userId;
-        this.isPublic = isPublic;
-        this.bookKey = bookKey;
-        this.bookTitle = bookTitle;
-        this.bookCover = bookCover;
+    public SavedBook(int _id, int _userId, boolean _isPublic, String _bookKey,String _bookTitle,String _bookAuthor,String _bookCover) {
+        userId = _userId;
+        isPublic = _isPublic;
+        bookKey = _bookKey;
+        bookTitle = _bookTitle;
+        bookAuthor = _bookAuthor;
+        bookCover = _bookCover;
     }
     public int getId() {
         return id;
@@ -56,7 +58,7 @@ public class SavedBook implements Serializable {
         return bookKey;
     }
     public String getBookTitle() { return bookTitle; }
-    public String getBookCover() { return bookTitle; }
+    public String getBookCover() { return bookCover; }
 
     public void setBookKey(String bookKey) {
         this.bookKey = bookKey;

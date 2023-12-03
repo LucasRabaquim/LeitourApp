@@ -32,7 +32,6 @@ import java.util.ArrayList;
 public class AnnotationAdapter extends RecyclerView.Adapter<AnnotationAdapter.AnnotationHolder>{
     private final ArrayList<Annotation> annotations;
     private Context context;
-    private SharedHelper sharedHelper;
     private String token;
     private ApiAnnotation apiAnnotation = new ApiAnnotation();
 
@@ -66,22 +65,22 @@ public class AnnotationAdapter extends RecyclerView.Adapter<AnnotationAdapter.An
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.publication_edit) {
                     UIHelper uiHelper = new UIHelper(context);
-                    AlertDialog.Builder builder = uiHelper.createTextDialog("Edite sua anotação");
+                    AlertDialog.Builder builder = uiHelper.createTextDialog(R.string.string_comment_dialog_title);
                     builder.setPositiveButton("Enviar", (dialog, which) -> {
                         annotation.setAnnotationText(uiHelper.getText());
                         int success = apiAnnotation.UpdateAnnotation(annotation, token).getCode();
-                        String message = (success != (200 | 201)) ? "O Comentário foi alterado" : "Erro ao alterar o comentário, tente novamente";
-                        //((BookInfoActivity) context).showSnackBar(message);
+                        int message = (success != (200 | 201)) ? R.string.string_annotation_update_success : R.string.string_annotation_update_error;
+                        ((BookInfoActivity) context).showSnackBar(message);
                     });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                 } else if (itemId == R.id.publication_delete) {
                     UIHelper uiHelper = new UIHelper(context);
-                    AlertDialog.Builder builder = uiHelper.createDialog("O Comentário será deletado", "Deseja mesmo apagar seu comentário?", "Cancelar");
+                    AlertDialog.Builder builder = uiHelper.createDialog(R.string.string_annotation_dialog_title, R.string.string_annotation_dialog_message, R.string.string_dialog_option_cancel);
                     builder.setPositiveButton("Confirmar", (dialog, which) -> {
                         int success = apiAnnotation.DeleteAnnotation(annotation, token).getCode();
-                        String message = (success != (200 | 201)) ? "O Comentário foi deletado" : "Erro ao deletar o comentário, tente novamente";
-//                        ((SeePostActivity) context).showSnackBar(message);
+                        int message = (success != (200 | 201)) ? R.string.string_annotation_delete_success : R.string.string_annotation_delete_error;
+                        ((BookInfoActivity) context).showSnackBar(message);
                     });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();

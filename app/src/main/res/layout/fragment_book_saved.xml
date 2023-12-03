@@ -28,6 +28,7 @@
         android:layout_height="50dp"
         android:backgroundTint="@color/CinzaDefault"
         android:hint="@string/pesquisar" />
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView

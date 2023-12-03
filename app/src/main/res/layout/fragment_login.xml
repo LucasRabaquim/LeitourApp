@@ -49,9 +49,8 @@
     <EditText
         android:id="@+id/edit_email"
         style="@style/SignField"
-        android:drawableStart="@drawable/iconuser"
-        android:drawableTint="@color/AzulDefault"
-        android:text="Email"
+        android:drawableEnd="@drawable/iconuser"
+        android:drawableTint="@color/gray_600"
         android:inputType="textEmailAddress" />
 
     <TextView

@@ -6,10 +6,13 @@ import static com.polarys.appleitour.api.ApiThread.GETPUBLIC;
 import static com.polarys.appleitour.api.ApiThread.POST;
 import static com.polarys.appleitour.api.ApiThread.UPDATE;
 
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class Post implements Serializable{
@@ -24,7 +27,7 @@ public class Post implements Serializable{
     private int likes = 0;
     private int Comment_number = 0;
     private boolean liked = false;
-    private String CreatedDate = null;
+    private String CreatedDate;
     private String UserPhoto = null;
     private String alteratedDate = null;
     public Post() { }
@@ -75,7 +78,13 @@ public class Post implements Serializable{
         this.messagePost = messagePost;
     }
     public String GetCreatedDate() {
-        return CreatedDate;
+        try {
+            LocalDateTime datetime = LocalDateTime.parse(CreatedDate, DateTimeFormatter.ofPattern("dd/MM/yy"));
+            return datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch (Exception e){
+            Log.d("GetCreatedDate", "GetCreatedDate: " +e);
+            return CreatedDate;
+        }
     }
     public void SetCreatedDate(String CreatedDate) {
         this.CreatedDate = CreatedDate;

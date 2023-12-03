@@ -21,23 +21,49 @@
     <string name="lembrar_senha">Continuar Logado</string>
     <string name="sem_conta">Não possui conta? Registre-se</string>
     <string name="login">Login</string>
-    <string name="repeat_password">Repita a senha\n</string>
-    <string name="author">"Autor(a): "</string>
-    <string name="book_author">"Autor(a): "</string>
-    <string name="book_title">"Título: "</string>
-    <string name="book_description">"Descrição: "</string>
-    <string name="book_publisher">"Editora: "</string>
-    <string name="book_published_date">"Lançamento: "</string>
-    <string name="book_pages">"Páginas: "</string>
-    <string name="book_isbn10">"ISBN 10: "</string>
-    <string name="book_isbn13">ISBN 13:</string>
-    <string name="book_category">"Categoria: "</string>
-    <string name="book_language">"Idioma: "</string>
-    <string name="frase_author">"Frase: "</string>
-    <string name="pesquisar">"Pesquisar "</string>
-    <string name="posts">"Posts "</string>
+    <string name="repeat_password">Repita a senha</string>
+    <string name="author">Autor(a): </string>
+    <string name="book_author">Autor(a): </string>
+    <string name="book_title">Título: </string>
+    <string name="book_description">Descrição: </string>
+    <string name="string_post_delete_dialog_title" type="id">O post será deletado</string>
+    <string name="string_post_delete_dialog_message" type="id">Deseja mesmo deletar seu post?</string>
+    <string name="book_publisher">Editora: </string>
+    <string name="book_published_date">Lançamento: </string>
+    <string name="book_pages">Páginas: </string>
+    <string name="book_isbn10">ISBN 10: </string>
+    <string name="book_isbn13">ISBN 13: </string>
+    <string name="book_category">Categoria: </string>
+    <string name="book_language">Idioma: </string>
+    <string name="frase_author">Frase: </string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="posts">Posts</string>
     <string name="seguidores">"Seguidores "</string>
     <string name="seguindo">"Seguindo "</string>
+    <string name="string_photo_success">Foto atualizada.</string>
+    <string name="string_photo_fail">Erro ao atualizar foto. Tente novamente.</string>
+    <string name="string_connection">Verifique a conexão.</string>
+    <string name="string_comment_created">O comentário foi criado.</string>
+    <string name="string_welcome">Seja bem-vindo(a): </string>
+    <string name="string_write_more">Escreva um pouco mais</string>
+    <string name="string_post_delete_error">Não foi possível deletar o post.</string>
+    <string name="string_post_delete_success">Post deletado com sucesso.</string>
+    <string name="string_comment_edit_dialog_title">Deseja editar seu comentário?</string>
+    <string name="string_comment_update_success">Comentário atualizado.</string>
+    <string name="string_annotation_update_success">A anotação foi atualizada.</string>
+    <string name="string_annotation_delete_success">A anotação foi deletada.</string>
+    <string name="string_annotation_update_error">Não foi possível atualizar a anotação.</string>
+    <string name="string_annotation_delete_error">Não foi possível deletar a anotação.</string>
+    <string name="string_dialog_option_cancel">Cancelar</string>
+    <string name="string_dialog_option_send">Enviar</string>
+    <string name="string_dialog_option_Confirm">Confirmar</string>
+    <string name="string_comment_update_error">Não foi possível atualizar o comentário.</string>
+    <string name="string_comment_dialog_title">O comentário será apagado</string>
+    <string name="string_comment_dialog_message">Deseja mesmo apagar seu comentário?</string>
+    <string name="string_comment_delete_success">O comentário foi deletado.</string>
+    <string name="string_comment_delete_error">Não foi possível deletar o comentário, tente novamente.</string>
+    <string name="string_annotation_dialog_title">A anotação será deletada.</string>
+    <string name="string_annotation_dialog_message">Deseja mesmo apagar sua anotação?</string>
 
 
 </resources>

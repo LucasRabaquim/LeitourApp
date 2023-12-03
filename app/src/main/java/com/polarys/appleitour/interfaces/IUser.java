@@ -11,7 +11,7 @@ public interface IUser {
     ApiResponse Login(User user);
     ApiResponse AutoLogin(String token);
     ApiResponse Register(User user);
-    ApiResponse UpdateImage(String token, File image);
+    ApiResponse UpdateImage(String token, String image);
     ApiResponse LoadUsers(int offset);
     ApiResponse GetByEmail(String email);
     ApiResponse GetByName(String name,int offset);

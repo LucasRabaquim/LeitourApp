@@ -1,22 +1,31 @@
 package com.polarys.appleitour.helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.polarys.appleitour.R;
 import com.polarys.appleitour.model.ApiResponse;
 
 import java.net.ContentHandler;
 
 public class UIHelper extends AppCompatActivity {
     private Context context;
+    private View view;
     EditText edittext;
     public UIHelper(Context _context){context = _context;}
+    public UIHelper(Context _context,View _view){context = _context;view = _view;}
     public AlertDialog.Builder createDialog(String title,String message,String no){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
@@ -27,12 +36,18 @@ public class UIHelper extends AppCompatActivity {
         });
         return builder;
     }
+    public AlertDialog.Builder createDialog(int title,int message,int no){
+        return createDialog(stringFromResource(title),stringFromResource(message),stringFromResource(no));
+    }
 
+    public AlertDialog.Builder createTextDialog(int title){
+        return createTextDialog(stringFromResource(title));
+    }
     public AlertDialog.Builder createTextDialog(String title){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setCancelable(false);
-        builder.setNegativeButton("Cancelar", (dialog, which) -> {
+        builder.setNegativeButton(stringFromResource(R.string.string_dialog_option_cancel), (dialog, which) -> {
             dialog.cancel();
         });
         edittext = new EditText(context);
@@ -44,7 +59,38 @@ public class UIHelper extends AppCompatActivity {
             return edittext.getText().toString();
         }
         catch (Exception e){
-            return "TESTE";
+            return "TESTE " +e;
         }
+    }
+    public void showSnackBar(String message){
+        if(view != null){
+           // view.setY(20);
+            Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
+            View _view = snackbar.getView();
+            try {
+                LinearLayout.LayoutParams params=(LinearLayout.LayoutParams)_view.getLayoutParams();
+                params.setMargins(params.leftMargin,params.topMargin,params.rightMargin,params.bottomMargin *8);
+                _view.setLayoutParams(params);
+                snackbar.show();
+
+            }catch (Exception e){
+                try{
+                    FrameLayout.LayoutParams params=(FrameLayout.LayoutParams)_view.getLayoutParams();
+                    params.setMargins(params.leftMargin,params.topMargin,params.rightMargin,params.bottomMargin *8);
+                    _view.setLayoutParams(params);
+                    snackbar.show();
+                }
+                catch (Exception e1){
+                    Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
+                }
+            }
+
+        }
+    }
+    public void showSnackBar(int message){
+        showSnackBar(stringFromResource(message));
+    }
+    private String stringFromResource(int message){
+        return context.getResources().getString(message);
     }
 }
