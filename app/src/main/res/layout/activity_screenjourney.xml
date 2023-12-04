@@ -36,13 +36,13 @@
         android:drawableEnd="@drawable/arrowlogin"
         android:gravity="center"
         tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="309dp" />
+        tools:layout_editor_absoluteY="309dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="290dp"
         android:layout_height="60dp"
-
         android:drawableEnd="@drawable/arrowregister"
         android:fontFamily="@font/outfit_semibold"
         android:gravity="center"
@@ -50,7 +50,8 @@
         android:textColor="@color/white"
         android:textSize="18dp"
         tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="399dp" />
+        tools:layout_editor_absoluteY="399dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView3"
@@ -63,7 +64,8 @@
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="209dp" />
+        tools:layout_editor_absoluteY="209dp"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView7"

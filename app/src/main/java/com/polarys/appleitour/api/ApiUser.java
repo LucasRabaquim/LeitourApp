@@ -54,6 +54,11 @@ public class ApiUser implements IUser {
         return apiThread.CreateThread(apiThread).getJson();
     }
 
+    public ApiResponse getStatistics(String email){
+        ApiThread apiThread = new ApiThread(GETPUBLIC, PATH + "/userStatistics/"+email);
+        return apiThread.CreateThread(apiThread).getJson();
+    }
+
     public ApiResponse Deactivate(String token) {
         ApiThread apiThread = new ApiThread(UPDATE, PATH + "/deactivate", null, token);
         return apiThread.CreateThread(apiThread).getJson();

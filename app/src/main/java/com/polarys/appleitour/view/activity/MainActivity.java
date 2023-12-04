@@ -14,6 +14,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+     /*   IntentHelper intntHelper = new IntentHelper(this);
+        intntHelper.nextActivity(PlaceholderActivity.class);
+        finish();
+        return;*/
         SharedHelper sharedHelper = new SharedHelper(this);
         Class nextScreen;
         // Get User preference of login

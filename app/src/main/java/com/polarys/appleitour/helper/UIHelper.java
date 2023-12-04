@@ -23,6 +23,7 @@ import java.net.ContentHandler;
 public class UIHelper extends AppCompatActivity {
     private Context context;
     private View view;
+    private final int MARGIN_CORRECTION = 8;
     EditText edittext;
     public UIHelper(Context _context){context = _context;}
     public UIHelper(Context _context,View _view){context = _context;view = _view;}
@@ -69,14 +70,14 @@ public class UIHelper extends AppCompatActivity {
             View _view = snackbar.getView();
             try {
                 LinearLayout.LayoutParams params=(LinearLayout.LayoutParams)_view.getLayoutParams();
-                params.setMargins(params.leftMargin,params.topMargin,params.rightMargin,params.bottomMargin *8);
+                params.setMargins(params.leftMargin,params.topMargin,params.rightMargin,params.bottomMargin *MARGIN_CORRECTION);
                 _view.setLayoutParams(params);
                 snackbar.show();
 
             }catch (Exception e){
                 try{
                     FrameLayout.LayoutParams params=(FrameLayout.LayoutParams)_view.getLayoutParams();
-                    params.setMargins(params.leftMargin,params.topMargin,params.rightMargin,params.bottomMargin *8);
+                    params.setMargins(params.leftMargin,params.topMargin,params.rightMargin,params.bottomMargin *MARGIN_CORRECTION);
                     _view.setLayoutParams(params);
                     snackbar.show();
                 }

@@ -1,6 +1,8 @@
 package com.polarys.appleitour.model;
 
 
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 
 import java.time.LocalDateTime;
@@ -76,8 +78,13 @@ public class Comment {
     }
 
     public String getCreatedDate() {
-        LocalDateTime datetime = LocalDateTime.parse(createdDate, DateTimeFormatter.ofPattern("dd/MM/yy"));
-        return datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        try {
+            LocalDateTime datetime = LocalDateTime.parse(createdDate, DateTimeFormatter.ofPattern("dd/MM/yy"));
+            return datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch (Exception e){
+            Log.d("GetCreatedDate", "GetCreatedDate: " +e);
+            return createdDate;
+        }
     }
 
     public void setCreatedDate(String createdDate) {

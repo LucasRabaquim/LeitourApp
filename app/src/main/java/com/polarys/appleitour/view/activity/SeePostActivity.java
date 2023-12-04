@@ -51,9 +51,9 @@ public class SeePostActivity extends AppCompatActivity{
     private Button btn_create_comment;
     private LinearLayout textAreaCustomView;
     private SwipeRefreshLayout refreshLayout;
-    private TextView txt_name;
+    private TextView txt_name,txt_publication_useremail;
     private TextView txt_message;
-    private TextView txt_likes;
+    private Button txt_likes;
     private Button botao;
     private ArrayList<Comment> comments;
     private boolean isLoading = false;
@@ -150,10 +150,12 @@ public class SeePostActivity extends AppCompatActivity{
     private void declareUi(Post post){
         txt_name = findViewById(R.id.txt_publication_username);
         txt_message = findViewById(R.id.txt_publication_message);
-        txt_likes = findViewById(R.id.publication_likes);
+        txt_publication_useremail = findViewById(R.id.txt_publication_useremail);
+        txt_likes = findViewById(R.id.publication_btn_like);
         txt_name.setText(post.GetUserName());
         txt_message.setText(post.GetMessagePost());
-        txt_likes.setText(post.GetLikes() + "likes");
+        txt_publication_useremail.setText(post.getEmail());
+        txt_likes.setText("Likes:" + post.GetLikes());
     }
     private void resetAdapter(ArrayList<Comment> _arrayList){
         if (_arrayList != null) {

@@ -64,6 +64,8 @@
     <string name="string_comment_delete_error">Não foi possível deletar o comentário, tente novamente.</string>
     <string name="string_annotation_dialog_title">A anotação será deletada.</string>
     <string name="string_annotation_dialog_message">Deseja mesmo apagar sua anotação?</string>
+    <string name="string_annotation_create_success">Anotação criada com sucesso.</string>
+    <string name="string_annotation_create_error">Erro ao criar a anotação, tente novamente.</string>
 
 
 </resources>

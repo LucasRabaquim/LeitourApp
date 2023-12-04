@@ -73,7 +73,7 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(apiBookAdapter);
         searchBar = view.getRootView().findViewById(R.id.search_bar);
-        btnSearchBook = view.getRootView().findViewById(R.id.btn_SearchBook);
+   //     btnSearchBook = view.getRootView().findViewById(R.id.btn_SearchBook);
         searchBar.setVisibility(View.VISIBLE);
         appBarLayout = view.findViewById(R.id.appbar);
         appBarLayout.setVisibility(View.VISIBLE);
@@ -85,17 +85,22 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
                 offset = books.size();
                 if (!isLoading) {
                     if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == books.size() - 1) {
+                        Log.d("TAG", "onScrolled: "+books.size());
+                     
                         Handler handler = new Handler();
                         handler.postDelayed(() -> {
-                            bookList = viewModel.search(searchParam, bookQuery,offset);
+                            getActivity().runOnUiThread(() -> {
+                                refreshLayout.setRefreshing(true);
+                            });
+                            bookList = viewModel.search(TITLE, bookQuery,offset);
                             if (bookList != null)
-                                bookList.addAll(bookList);
+                                books.addAll(bookList);
                             apiBookAdapter.notifyDataSetChanged();
                             isLoading = false;
                         },2000);
                     }
                 }
-
+                refreshLayout.setRefreshing(false);
             }
         });
 
@@ -105,7 +110,6 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
         });*/
         searchBar.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                refreshLayout.setRefreshing(true);
                 request(TITLE);
                 return true;
             }

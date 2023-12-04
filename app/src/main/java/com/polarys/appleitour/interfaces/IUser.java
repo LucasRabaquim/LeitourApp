@@ -16,6 +16,7 @@ public interface IUser {
     ApiResponse GetByEmail(String email);
     ApiResponse GetByName(String name,int offset);
     ApiResponse UpdateUser(String token, User user);
+    ApiResponse getStatistics(String email);
     ApiResponse Deactivate(String token);
     ApiResponse GetFollowing(String email,int offset);
     ApiResponse GetFollowers(String email,int offset);

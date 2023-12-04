@@ -71,6 +71,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         holder.date.setText(post.GetCreatedDate());
         holder.text.setText(post.GetMessagePost());
         holder.btnLike.setText("Likes:" + post.GetLikes());
+        if(post.GetLiked())
+            holder.btnLike.setBackgroundResource(R.drawable.baseline_favorite_24);
         holder.btnComments.setText(String.valueOf(post.GetCommentNumber()));
         holder.btnLike.setOnClickListener(v -> {
             ApiResponse response = apiPost.Like(post.GetId(), token);
@@ -78,6 +80,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                 int likes = post.GetLikes() + ((post.GetLiked()) ? -1 : +1);
                 holder.btnLike.setText("Likes: " + likes);
                 post.SetLiked(!post.GetLiked());
+                if(post.GetLiked())
+                    holder.btnLike.setBackgroundResource(R.drawable.baseline_favorite_24);
+                else
+                    holder.btnLike.setBackgroundResource(R.drawable.baseline_favorite_border_24);
             }
 
         });

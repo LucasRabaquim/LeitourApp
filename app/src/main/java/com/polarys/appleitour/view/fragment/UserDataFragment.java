@@ -13,17 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.api.ApiUser;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.User;
 import com.polarys.appleitour.view.activity.PlaceholderActivity;
+import com.polarys.appleitour.viewmodel.PostViewModel;
 import com.polarys.appleitour.viewmodel.UserDataViewModel;
 
 public class UserDataFragment extends Fragment{
 
     private UserDataViewModel viewModel;
     private User user;
+    private com.google.android.material.tabs.TabItem tab_post,tab_following,tab_follower;
 
     public UserDataFragment(){}
     public UserDataFragment(User _user){user = _user;}
@@ -42,25 +46,16 @@ public class UserDataFragment extends Fragment{
         TabLayout tabLayout = view.findViewById(R.id.tab_layout_user);
         if(user == null)
             user = new SharedHelper(getContext()).GetUser();
+        viewModel = ViewModelProviders.of(this).get(UserDataViewModel.class);
+        tab_post = view.findViewById(R.id.tab_posts);
+        tab_follower = view.findViewById(R.id.tab_follower);
+        tab_following = view.findViewById(R.id.tab_following);
+        int[] statistics = viewModel.getStatistics(user.GetEmail());
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int id = tab.getId();
-                Log.d("TAG", "Tab: " + id);
-               // if (id == R.id.tab_saved) loadFragment(new SavedBookFragment(user));
-                if (id == R.id.tab_posts) loadFragment(new SocialFragment(user));
-                else if (id == R.id.tab_following) loadFragment(new UserFollowFragment(user,true));
-                else if (id == R.id.tab_follower) loadFragment(new UserFollowFragment(user,false));
-               // else loadFragment(new SavedBookFragment(user));
-            }
+        tab_post.setOnClickListener(v -> loadFragment(new SocialFragment(user)));
+        tab_follower.setOnClickListener(v -> loadFragment(new UserFollowFragment(user,true)));
+        tab_following.setOnClickListener(v -> loadFragment(new UserFollowFragment(user,false)));
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {}
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {}
-        });
     }
     public void loadFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

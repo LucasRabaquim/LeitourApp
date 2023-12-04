@@ -43,16 +43,16 @@ public class AnnotationActivity extends AppCompatActivity {
         edit_post = findViewById(R.id.edit_post);
         txt_cancelar = findViewById(R.id.txt_cancelar);
         SharedHelper sharedHelper = new SharedHelper(this);
-        int userId = sharedHelper.GetId();
+        View rootView = getWindow().getDecorView().getRootView();
+        uiHelper = new UIHelper(this,rootView);
         String token = sharedHelper.GetToken();
         Annotation savedAnnotation = null;
-        SavedBook savedBook = null;
+        SavedBook savedBook;
         int savedI;
         try {
             savedAnnotation = (Annotation) getIntent().getSerializableExtra(EXTRA_KEY);
             savedI = savedAnnotation.getSavedBookId();
         }catch(Exception e) {
-            Log.d("Anno", "onCreate: "+e);
             savedBook = (SavedBook) getIntent().getSerializableExtra(EXTRA_KEY);
             savedI = savedBook.getId();
         }
@@ -64,29 +64,27 @@ public class AnnotationActivity extends AppCompatActivity {
         }
         txt_cancelar.setOnClickListener(v-> finish());
 
-       // btn_delete.setOnClickListener(v -> {viewModel.DeleteAnnotation(annotation,token);});
         btn_post.setOnClickListener(v->{
             String message = edit_post.getText().toString();
             if(message.length() <= 5){
-                Toast.makeText(this,"Escreva um pouco mais",Toast.LENGTH_SHORT).show();
+                uiHelper.showSnackBar(R.string.string_write_more);
                 return;
             }
             if(edit_mode){
                 annotation.setAnnotationText(message);
                 ApiResponse response = viewModel.UpdateAnnotation(annotation,token);
                 if(response.getCode() == 200 | response.getCode() == 201)
-                    Toast.makeText(this,"Post alterado",Toast.LENGTH_SHORT).show();
+                    uiHelper.showSnackBar(R.string.string_annotation_update_success);
                 else
-                    Toast.makeText(this,response.getBody(),Toast.LENGTH_SHORT).show();
+                    uiHelper.showSnackBar(R.string.string_annotation_update_error);
             }
             else {
-                Log.d("BAH","" +savedId);
                 annotation = new Annotation(savedId, message);
                 ApiResponse response = viewModel.CreateAnnotation(annotation, token);
                 if (response.getCode() == 200 | response.getCode() == 201)
-                    Toast.makeText(this, "Post Criado", Toast.LENGTH_SHORT).show();
+                    uiHelper.showSnackBar(R.string.string_annotation_create_success);
                 else
-                    Toast.makeText(this, response.getBody(), Toast.LENGTH_SHORT).show();
+                    uiHelper.showSnackBar(R.string.string_annotation_create_error);
             }
         });
     }

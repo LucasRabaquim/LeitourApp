@@ -9,6 +9,7 @@ android {
         applicationId = "com.polarys.appleitour"
         minSdk = 29
         targetSdk = 34
+        vectorDrawables.useSupportLibrary = true
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -40,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation("com.android.support:appcompat-v7:23.2.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("com.squareup.retrofit2:converter-gson:2.3.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

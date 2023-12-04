@@ -11,6 +11,8 @@ import com.polarys.appleitour.helper.RegexHelper;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.User;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -44,6 +46,9 @@ public class UserViewModel extends ViewModel {
         Log.d("Imagem",apiResponse.getBody());
         return (apiResponse.getCode() == 200 | apiResponse.getCode() == 201);
     }
+
+
+
 
     private String[] formatUser(String apiUser){
         try {
