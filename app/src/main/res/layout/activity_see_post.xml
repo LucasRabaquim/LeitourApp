@@ -123,7 +123,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.179"
+
                     android:textColor="#A6A6A6"
                     android:textSize="10sp"
                     app:icon="@drawable/chat" />

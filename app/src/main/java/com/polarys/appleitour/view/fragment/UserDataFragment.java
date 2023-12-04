@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -27,6 +28,8 @@ public class UserDataFragment extends Fragment{
 
     private UserDataViewModel viewModel;
     private User user;
+    private TextView txt_user_name;
+    private TextView txt_user_email;
     private com.google.android.material.tabs.TabItem tab_post,tab_following,tab_follower;
 
     public UserDataFragment(){}
@@ -48,14 +51,22 @@ public class UserDataFragment extends Fragment{
             user = new SharedHelper(getContext()).GetUser();
         viewModel = ViewModelProviders.of(this).get(UserDataViewModel.class);
         tab_post = view.findViewById(R.id.tab_posts);
+        txt_user_name = view.findViewById(R.id.txt_profile_name);
+        txt_user_name.setText(user.GetNameUser());
+        txt_user_email = view.findViewById(R.id.txt_profile_email);
+        txt_user_email.setText(user.GetEmail());
+        tab_post = view.findViewById(R.id.tab_posts);
         tab_follower = view.findViewById(R.id.tab_follower);
         tab_following = view.findViewById(R.id.tab_following);
         int[] statistics = viewModel.getStatistics(user.GetEmail());
 
-        tab_post.setOnClickListener(v -> loadFragment(new SocialFragment(user)));
-        tab_follower.setOnClickListener(v -> loadFragment(new UserFollowFragment(user,true)));
-        tab_following.setOnClickListener(v -> loadFragment(new UserFollowFragment(user,false)));
+        try {
+            tab_post.setOnClickListener(v -> loadFragment(new SocialFragment(user)));
+            tab_follower.setOnClickListener(v -> loadFragment(new UserFollowFragment(user, true)));
+            tab_following.setOnClickListener(v -> loadFragment(new UserFollowFragment(user, false)));
+        }catch (Exception e){
 
+        }
     }
     public void loadFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
