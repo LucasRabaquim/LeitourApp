@@ -18,11 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.api.ApiBook;
-import com.polarys.appleitour.api.ApiSavedBook;
 import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.model.ApiResponse;
-import com.polarys.appleitour.model.BookApi;
+import com.polarys.appleitour.model.Book;
 import com.polarys.appleitour.model.SavedBook;
 import com.polarys.appleitour.view.activity.BookInfoActivity;
 import com.squareup.picasso.Picasso;
@@ -57,7 +56,7 @@ public class SavedBookAdapter extends RecyclerView.Adapter<SavedBookAdapter.View
         holder.mainLayout.setOnClickListener(view -> {
             IntentHelper intentHelper = new IntentHelper((Activity) context);
             ApiResponse bookRequest = new ApiBook().GetByKey(savedBook.getBookKey());
-            BookApi book = (BookApi) ApiUtil.JsonToObject(new BookApi(),bookRequest.getBody());
+            Book book = (Book) ApiUtil.JsonToObject(new Book(),bookRequest.getBody());
             bundle.putSerializable(SAVED_SHARED,savedBook);
             bundle.putSerializable(BOOK_SHARED,book);
             intentHelper.nextActivityObj(BookInfoActivity.class,bundle);

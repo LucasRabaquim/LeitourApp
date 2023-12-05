@@ -7,15 +7,10 @@ import androidx.lifecycle.ViewModel;
 import com.polarys.appleitour.api.ApiAnnotation;
 import com.polarys.appleitour.api.ApiSavedBook;
 import com.polarys.appleitour.api.ApiUtil;
-import com.polarys.appleitour.interfaces.IAnnotation;
-import com.polarys.appleitour.interfaces.ISavedBook;
 import com.polarys.appleitour.model.Annotation;
 import com.polarys.appleitour.model.ApiResponse;
-import com.polarys.appleitour.model.BookApi;
+import com.polarys.appleitour.model.Book;
 import com.polarys.appleitour.model.SavedBook;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -24,7 +19,7 @@ public class SavedBookViewModel extends ViewModel {
     ApiSavedBook apiSavedBook = new ApiSavedBook();
     ApiAnnotation apiAnnotation = new ApiAnnotation();
 
-    public ApiResponse SaveBook(BookApi book, int userId, String token){
+    public ApiResponse SaveBook(Book book, int userId, String token){
         ApiResponse apiResponse =  apiSavedBook.SaveBook(book, userId, token);
         Log.d("SaveBook", "SaveBook: "+apiResponse.getBody());
         return apiResponse;

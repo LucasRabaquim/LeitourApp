@@ -4,15 +4,14 @@ import static com.polarys.appleitour.api.ApiThread.DELETE;
 import static com.polarys.appleitour.api.ApiThread.GET;
 import static com.polarys.appleitour.api.ApiThread.GETPUBLIC;
 import static com.polarys.appleitour.api.ApiThread.POST;
-import static com.polarys.appleitour.api.ApiUtil.ObjectToString;
 
 import com.polarys.appleitour.interfaces.ISavedBook;
 import com.polarys.appleitour.model.ApiResponse;
-import com.polarys.appleitour.model.BookApi;
+import com.polarys.appleitour.model.Book;
 import com.polarys.appleitour.model.SavedBook;
 
 public class ApiSavedBook implements ISavedBook {
-    public ApiResponse SaveBook(BookApi book, int userId, String token){
+    public ApiResponse SaveBook(Book book, int userId, String token){
         ApiThread apiThread;
         SavedBook savedBook = new SavedBook(0,userId,false,book.getKey(),book.getTitle(),book.getAuthors(),book.getCover());
         apiThread = new ApiThread(POST, "SavedBooks", savedBook,token);

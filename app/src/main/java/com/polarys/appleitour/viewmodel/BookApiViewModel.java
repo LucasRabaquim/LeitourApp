@@ -4,14 +4,12 @@ import static com.polarys.appleitour.api.ApiBook.AUTHOR;
 import static com.polarys.appleitour.api.ApiBook.ISBN;
 import static com.polarys.appleitour.api.ApiBook.TITLE;
 
-import android.util.Log;
-
 import androidx.lifecycle.ViewModel;
 
 import com.polarys.appleitour.api.ApiBook;
 import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.model.ApiResponse;
-import com.polarys.appleitour.model.BookApi;
+import com.polarys.appleitour.model.Book;
 
 import java.util.ArrayList;
 
@@ -38,18 +36,18 @@ public class BookApiViewModel extends ViewModel {
                 return null;
         }
         try {
-            return ApiUtil.JsonToArrayObject(BookApi.class, apiResponse.getBody());
+            return ApiUtil.JsonToArrayObject(Book.class, apiResponse.getBody());
         } catch (Exception e) {
-            ArrayList<BookApi> bookApi = new ArrayList<>();
-            bookApi.add(new BookApi(apiResponse.getBody()));
+            ArrayList<Book> bookApi = new ArrayList<>();
+            bookApi.add(new Book(apiResponse.getBody()));
             return bookApi;
         }
     }
 
-    public BookApi GetByKey(String key){
+    public Book GetByKey(String key){
         ApiResponse apiResponse = apiBook.GetByKey(key);
         try {
-            return (BookApi) ApiUtil.JsonToObject(new BookApi(), apiResponse.getBody());
+            return (Book) ApiUtil.JsonToObject(new Book(), apiResponse.getBody());
         }
         catch(Exception e){
             return null;

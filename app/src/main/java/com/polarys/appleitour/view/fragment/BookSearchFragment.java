@@ -23,8 +23,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.appbar.AppBarLayout;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.SharedHelper;
-import com.polarys.appleitour.model.BookApi;
-import com.polarys.appleitour.view.adapter.ApiBookAdapter;
+import com.polarys.appleitour.model.Book;
+import com.polarys.appleitour.view.adapter.BookAdapter;
 import com.polarys.appleitour.viewmodel.BookApiViewModel;
 
 import java.util.ArrayList;
@@ -34,12 +34,12 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
     private AppBarLayout appBarLayout;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout;
-    private ApiBookAdapter apiBookAdapter;
+    private BookAdapter apiBookAdapter;
     private BookApiViewModel viewModel;
-    private ArrayList<BookApi> books;
+    private ArrayList<Book> books;
     private Button btnSearchBook;
     private String searchParam,bookQuery;
-    private ArrayList<BookApi> bookList;
+    private ArrayList<Book> bookList;
     boolean isLoading = false;
     private int offset;
 
@@ -61,14 +61,14 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
         books = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recycler_returned_books);
         refreshLayout = view.findViewById(R.id.layout_refresh);
-        apiBookAdapter = new ApiBookAdapter(books, getActivity(),new SharedHelper(getContext()).GetToken());
+        apiBookAdapter = new BookAdapter(books, getActivity(),new SharedHelper(getContext()).GetToken());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(apiBookAdapter);
-        searchBar = view.getRootView().findViewById(R.id.search_bar);
-        btnSearchBook = view.findViewById(R.id.search_bar);
+        searchBar = view.findViewById(R.id.search_bar);
+    //    btnSearchBook = view.findViewById(R.id.search_bar);
        // searchBar.setVisibility(View.VISIBLE);
-        appBarLayout = view.findViewById(R.id.appbar);
-        appBarLayout.setVisibility(View.VISIBLE);
+   //     appBarLayout = view.findViewById(R.id.appbar);
+//        appBarLayout.setVisibility(View.VISIBLE);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {

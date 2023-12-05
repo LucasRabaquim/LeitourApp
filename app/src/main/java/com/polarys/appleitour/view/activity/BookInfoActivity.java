@@ -6,10 +6,8 @@ import static com.polarys.appleitour.helper.IntentHelper.SAVED_SHARED;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +22,7 @@ import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.helper.ViewHelper;
 import com.polarys.appleitour.model.Annotation;
 import com.polarys.appleitour.model.ApiResponse;
-import com.polarys.appleitour.model.BookApi;
+import com.polarys.appleitour.model.Book;
 import com.polarys.appleitour.model.SavedBook;
 import com.polarys.appleitour.view.adapter.AnnotationAdapter;
 import com.polarys.appleitour.viewmodel.BookApiViewModel;
@@ -36,16 +34,15 @@ import java.util.ArrayList;
 public class BookInfoActivity extends AppCompatActivity {
 
     private com.google.android.material.button.MaterialButton btn_save_book, btn_create_annotation;
-    private com.google.android.material.button.MaterialButton info_category, info_pages,info_isbn10,info_isbn13;
+    private com.google.android.material.button.MaterialButton info_category, info_pages,info_language;
     private BookApiViewModel bookApiViewModel;
     private SavedBookViewModel SavedViewModel;
     private ImageView btnReturn,btnOptions;
-    private ImageView background;
     private Object[] SavedResponse;
     private RecyclerView recyclerView;
     private UIHelper uiHelper;
     private AnnotationAdapter adapter;
-    private BookApi book;
+    private Book book;
     private SavedBook savedBook;
 
 
@@ -69,15 +66,16 @@ public class BookInfoActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         findViewById(R.id.btn_return).setOnClickListener(v -> finish());
-        book = (BookApi) bundle.getSerializable(BOOK_SHARED);
+        book = (Book) bundle.getSerializable(BOOK_SHARED);
         savedBook = (SavedBook) bundle.getSerializable(SAVED_SHARED);
 
         if (book != null)
             setViewData(book);
 
         btnReturn.setOnClickListener(v -> finish());
+
         final SavedBook finalSaved = savedBook;
-        final BookApi finalBook = book;
+        final Book finalBook = book;
         btn_save_book = findViewById(R.id.icon_save);
 
         btn_save_book.setOnClickListener(v -> {
@@ -89,8 +87,11 @@ public class BookInfoActivity extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 startActivity(getIntent());
                 overridePendingTransition(0, 0);
+                uiHelper.showSnackBar(R.string.string_book_saved_sucess);
             }
-            uiHelper.showSnackBar(apiResponse.getBody());
+            else
+                uiHelper.showSnackBar(apiResponse.getBody());
+
 
         });
 
@@ -124,27 +125,27 @@ public class BookInfoActivity extends AppCompatActivity {
         btn_create_annotation = findViewById(R.id.icon_annotation);
         info_category = findViewById(R.id.info_book_category);
         info_pages = findViewById(R.id.info_book_pages);
-        info_isbn10 = findViewById(R.id.info_book_isbn10);
-        info_isbn13 = findViewById(R.id.info_book_isbn13);
+        info_language = findViewById(R.id.info_book_language);
     }
-    private void setViewData(BookApi book) {
-        background = findViewById(R.id.img_book_background);
+    private void setViewData(Book book) {
+        ImageView background = findViewById(R.id.img_book_cover);
         ViewHelper viewHelper = new ViewHelper(this);
         viewHelper.setTextOfViewAppend(R.id.txt_book_title, R.string.book_title,book.getTitle());
         viewHelper.setTextOfViewAppend(R.id.txt_book_author, R.string.book_author,book.getAuthors());
         viewHelper.setTextOfViewAppend(R.id.txt_book_publisher, R.string.book_publisher,book.getPublisher());
+        viewHelper.setTextOfViewAppend(R.id.txt_book_isbn10, R.string.book_isbn10,book.getIsbn10());
+        viewHelper.setTextOfViewAppend(R.id.txt_book_isbn13, R.string.book_isbn13,book.getIsbn13());
         viewHelper.setButtonOfViewAppend(R.id.info_book_category,R.string.book_category,book.getCategory());
         viewHelper.setButtonOfViewAppend(R.id.info_book_pages,R.string.book_pages,String.valueOf(book.getPages()));
-        viewHelper.setButtonOfViewAppend(R.id.info_book_isbn10,R.string.book_isbn10,book.getIsbn10());
-        viewHelper.setButtonOfViewAppend(R.id.info_book_isbn13,R.string.book_isbn13,book.getIsbn13());
-
+        viewHelper.setButtonOfViewAppend(R.id.info_book_language,R.string.book_language,book.getLanguage());
         viewHelper.setTextOfViewAppend(R.id.txt_published_date, R.string.book_published_date,book.getPublishedDate());
         viewHelper.setTextOfViewAppend(R.id.txt_book_description, R.string.book_description,book.getDescription());
-        viewHelper.setTextOfViewAppend(R.id.txt_book_language, R.string.book_language,book.getLanguage());
         try {
             Picasso.get().load(book.getCover()).into(background);
         }catch(Exception e){
             Log.d("Erro de Imagem", "setViewData: "+e);
+            Log.d("Erro de Imagem", "setViewData: "+book.getCover());
+            Log.d("Erro de Imagem", "setViewData: "+background);
         }
     }
     private void options(String token){

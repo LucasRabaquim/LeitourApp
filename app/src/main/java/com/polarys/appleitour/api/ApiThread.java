@@ -41,12 +41,12 @@ public class ApiThread implements Runnable {
         this.json = json;
         this.token = token;
     }
-   /* public ApiThread(String method,String url,String image,String token){
+    public ApiThread(String method,String url,String image,String token){
         this.method = method;
         this.url = url;
         this.image = image;
         this.token = token;
-    }*/
+    }
 
     public ApiThread CreateThread(ApiThread apiThread){
         Thread thread = new Thread(apiThread);

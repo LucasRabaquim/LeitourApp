@@ -50,6 +50,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
         Comment comment = data.get(position);
         holder.user.setText(comment.getUserName());
         holder.email.setText(comment.getEmail());
+        holder.text.setText(comment.getMessagePost());
         holder.date.setText(comment.getCreatedDate());
         holder.like.setVisibility(View.GONE);
         holder.comment.setVisibility(View.GONE);

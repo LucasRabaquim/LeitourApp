@@ -28,7 +28,9 @@ import com.polarys.appleitour.model.Post;
 import com.polarys.appleitour.view.adapter.CommentAdapter;
 import com.polarys.appleitour.viewmodel.CommentViewModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class SeePostActivity extends AppCompatActivity{
 
@@ -42,6 +44,7 @@ public class SeePostActivity extends AppCompatActivity{
     private MaterialButton btn_like, btn_send_comment, btn_comments;
     private ArrayList<Comment> comments;
     private boolean isLoading = false;
+    private boolean click = false;
     private UIHelper uiHelper;
     private ApiPost apiPost = new ApiPost();
     private int offset;
@@ -83,18 +86,8 @@ public class SeePostActivity extends AppCompatActivity{
 
         textAreaCustomView = findViewById(R.id.textarea);
         btn_create_comment = findViewById(R.id.btn_create_comment);
-        final boolean[] click = {true};
 
-        btn_create_comment.setOnClickListener(v ->{
-            if(click[0]){
-                recyclerView.setVisibility(View.GONE);
-                textAreaCustomView.setVisibility(View.VISIBLE);
-            }else{
-                recyclerView.setVisibility(View.VISIBLE);
-                textAreaCustomView.setVisibility(View.GONE);
-            }
-            click[0] = !click[0];
-        });
+        btn_create_comment.setOnClickListener(v -> textArea());
         btn_send_comment = findViewById(R.id.btn_send_text);
         btn_send_comment.setOnClickListener(v ->{
             EditText edit = findViewById(R.id.edit_message);
@@ -102,10 +95,11 @@ public class SeePostActivity extends AppCompatActivity{
             Comment comment = new Comment(id, post.GetId(), message,sharedHelper.GetUser());
             ApiResponse response = viewModel.CreateComment(comment,token);
             if(response.getCode() == 200 | response.getCode() == 201){
-                comments.add(comment);
+                comment.setCreatedDate(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()));
+                comments.add(0,comment);
                 adapter.notifyDataSetChanged();
                 showSnackBar(R.string.string_comment_created);
-                click[0] = !click[0];
+                textArea();
             }
             else
                 showSnackBar(response.getBody());
@@ -132,6 +126,17 @@ public class SeePostActivity extends AppCompatActivity{
 
             }
         });
+    }
+
+    private void textArea(){
+        if(!click){
+            recyclerView.setVisibility(View.GONE);
+            textAreaCustomView.setVisibility(View.VISIBLE);
+        }else{
+            recyclerView.setVisibility(View.VISIBLE);
+            textAreaCustomView.setVisibility(View.GONE);
+        }
+        click = !click;
     }
 
     private void declareUi(Post post,String token){
@@ -162,8 +167,6 @@ public class SeePostActivity extends AppCompatActivity{
             else
                 btn_like.setIcon(ContextCompat.getDrawable(this,R.drawable.baseline_favorite_border_24));
         });
-
-
     }
     private void resetAdapter(ArrayList<Comment> _arrayList){
         if (_arrayList != null) {

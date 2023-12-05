@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.view.fragment.LoginFragment;
 import com.polarys.appleitour.view.fragment.RegisterFragment;
+import com.polarys.appleitour.view.fragment.UploadImageFragment;
 import com.polarys.appleitour.viewmodel.UserViewModel;
 
 public class SignActivity extends AppCompatActivity {
@@ -18,10 +20,15 @@ public class SignActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         SharedHelper sharedHelper = new SharedHelper(this);
         UserViewModel viewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        if(sharedHelper.GetUser() == null) // Verify if its the user first time using the app
-            loadFragment(new RegisterFragment(viewModel));
-        else
-            loadFragment(new LoginFragment(viewModel));
+        boolean EDIT = getIntent().getBooleanExtra(IntentHelper.EXTRA_KEY,false);
+        if(EDIT)
+            loadFragment(new UploadImageFragment());
+        else {
+            if (sharedHelper.GetUser() == null) // Verify if its the user first time using the app
+                loadFragment(new RegisterFragment(viewModel));
+            else
+                loadFragment(new LoginFragment(viewModel));
+        }
     }
 
     public void loadFragment(Fragment fragment){

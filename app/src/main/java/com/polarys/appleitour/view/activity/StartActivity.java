@@ -15,10 +15,6 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-     /*   IntentHelper intntHelper = new IntentHelper(this);
-        intntHelper.nextActivity(PlaceholderActivity.class);
-        finish();
-        return;*/
         SharedHelper sharedHelper = new SharedHelper(this);
         Class nextScreen;
         // Get User preference of login

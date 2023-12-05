@@ -26,7 +26,7 @@ public class ViewHelper extends AppCompatActivity {
         try {
             if (text.isEmpty())
                 textView.setVisibility(View.GONE);
-            textView.setText(activity.getResources().getString(prefix) + text);
+            textView.setText(activity.getResources().getString(prefix) +" "+text);
         }catch (Exception e){
         }
     }

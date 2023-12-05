@@ -69,7 +69,7 @@ public class SharedHelper extends AppCompatActivity {
     }
     public void Logout(){
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString(USER, "");
+        editor.putString(USER, ObjectToString(new User()));
         editor.putBoolean(KEEP_LOGGED,false);
         editor.putString(TOKEN,"");
         editor.apply();

@@ -21,11 +21,11 @@ public class Comment {
     private String alteratedDate;
 
     public Comment() { }
-    public Comment(int userId, int postId, String messagePost,User user) {
+    public Comment(int userId, int postId, String _message,User user) {
         this.commentId = 0;
         this.userId = userId;
         this.postId = postId;
-        this.messagePost = messagePost;
+        this.messagePost = _message;
         this.userName = user.GetNameUser();
         this.email = user.GetEmail();
     }

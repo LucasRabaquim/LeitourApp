@@ -2,13 +2,9 @@ package com.polarys.appleitour.model;
 
 
 
-import static com.polarys.appleitour.api.ApiThread.GETPUBLIC;
-
-import com.polarys.appleitour.api.ApiThread;
-
 import java.io.Serializable;
 
-public class BookApi implements Serializable {
+public class Book implements Serializable {
 
     private String key;
     private boolean successRequest = true;
@@ -20,12 +16,12 @@ public class BookApi implements Serializable {
     private String description;
     private int pages;
     private String category;
-    private String isbn10;
-    private String isbn13;
+    private String isbn_10;
+    private String isbn_13;
     private String language;
     private String cover;
-    public BookApi() {}
-    public BookApi(String _errorMessage) {
+    public Book() {}
+    public Book(String _errorMessage) {
         errorMessage = _errorMessage;
         successRequest = false;
     }
@@ -42,10 +38,10 @@ public class BookApi implements Serializable {
         return publisher;
     }
     public String getIsbn10() {
-        return isbn10;
+        return isbn_10;
     }
     public String getIsbn13() {
-        return isbn13;
+        return isbn_13;
     }
     public String getPublishedDate() {
         return publishedDate;

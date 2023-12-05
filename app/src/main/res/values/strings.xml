@@ -89,6 +89,7 @@
     <string name="string_create_anotation">Escrever anotação</string>
     <string name="string_saved_book_title">LISTA DE FAVORITOS</string>
     <string name="string_annotation_dialog_Update_title">Altere sua anotação</string>
+    <string name="string_book_saved_sucess">Livro salvo com sucesso.</string>
 
 
 </resources>

@@ -48,6 +48,11 @@ public class IntentHelper extends AppCompatActivity {
         intent.putExtra(EXTRA_KEY, data);
         activity.startActivity(intent);
     }
+    public void nextActivity(Class nextScreen,boolean data){
+        Intent intent = new Intent(activity, nextScreen);
+        intent.putExtra(EXTRA_KEY, data);
+        activity.startActivity(intent);
+    }
 
     public void nextActivityObj(Class nextScreen,Object data){
         Intent intent = new Intent(activity, nextScreen);

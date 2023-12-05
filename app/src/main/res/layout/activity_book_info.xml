@@ -53,14 +53,13 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:padding="5dp"
-
                     android:src="@drawable/placeholder" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal|fill_vertical"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <com.google.android.material.button.MaterialButton
@@ -70,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="#a5a5a5"
                         android:textSize="10sp"
-                        app:icon="@drawable/icon_heart" />
+                        app:icon="@drawable/icon_category" />
 
                     <com.google.android.material.button.MaterialButton
                         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
@@ -79,16 +78,16 @@
                         android:layout_height="wrap_content"
                         android:textColor="#a5a5a5"
                         android:textSize="10sp"
-                        app:icon="@drawable/icon_heart" />
+                        app:icon="@drawable/icon_pages" />
 
                     <com.google.android.material.button.MaterialButton
                         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                        android:id="@+id/info_book_isbn10"
+                        android:id="@+id/info_book_language"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="#a5a5a5"
                         android:textSize="10sp"
-                        app:icon="@drawable/icon_heart" />
+                        app:icon="@drawable/icon_earth" />
 
                     <com.google.android.material.button.MaterialButton
                         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
@@ -97,6 +96,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="#a5a5a5"
                         android:textSize="10sp"
+                        android:visibility="gone"
                         app:icon="@drawable/icon_heart" />
                 </LinearLayout>
             </LinearLayout>
@@ -120,6 +120,11 @@
                     android:icon="@drawable/icon_saved_flag" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="8dp">
             <TextView
                 android:id="@+id/txt_book_author"
                 style="@style/TextTitle"
@@ -142,16 +147,25 @@
                 android:text="@string/book_published_date" />
 
 
-            <TextView
-                android:id="@+id/txt_book_language"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/book_language" />
+
+
+                <TextView
+                    android:id="@+id/txt_book_isbn10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/book_isbn10" />
+
+                <TextView
+                    android:id="@+id/txt_book_isbn13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/book_isbn13" />
 
             <TextView
                 android:id="@+id/txt_book_description"
                 style="@style/TextTitle"
                 android:text="@string/book_description" />
+        </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_annotation"

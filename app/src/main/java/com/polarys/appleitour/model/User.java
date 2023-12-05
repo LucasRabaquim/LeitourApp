@@ -56,12 +56,14 @@ public class User implements Serializable {
         nameUser = "@";
         email = _email;
         password = _password;
+      //  profilePhoto = "https://upload";
     }
 
     public User(String _username, String _email, String _password) {
         nameUser = _username;
         email = _email;
         password = _password;
+       // profilePhoto = ;
     }
 
     public int GetId() {

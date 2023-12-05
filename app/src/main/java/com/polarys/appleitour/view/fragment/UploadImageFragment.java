@@ -29,6 +29,8 @@ import com.polarys.appleitour.viewmodel.UserViewModel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 
 public class UploadImageFragment extends Fragment {
 
@@ -52,11 +54,21 @@ public class UploadImageFragment extends Fragment {
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                         byte[] imageBytes = baos.toByteArray();
+                     /*   String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
-                        String encodedImage = Base64.encodeToString(imageBytes, Base64.NO_WRAP | Base64.URL_SAFE);
-                      //  byte[] decode = Base64.decode(imageBytes);
-                        //String encodedImage = new BigInteger(1, imageBytes).toString(2);
-                        boolean success = viewModel.updatePhoto(new SharedHelper(getContext()).GetToken(), encodedImage);
+                        Base64Decoder decoder = Base64.getDecoder();
+                        byte[] binaryData = decoder.decode(encodedImage);*/
+                        String binaryString;
+                        try {
+                            binaryString = new String(imageBytes, "UTF-8");
+                        } catch (UnsupportedEncodingException e) {
+                            throw new RuntimeException(e);
+                        }
+
+
+                        //  byte[] decode = Base64.decode(imageBytes);
+                       // String encodedImage = new BigInteger(1, imageBytes).toString(2);
+                        boolean success = viewModel.updatePhoto(new SharedHelper(getContext()).GetToken(), binaryString);
                         int message = (success) ? R.string.string_photo_success : R.string.string_photo_fail;
                         uiHelper.showSnackBar(message);
                     }

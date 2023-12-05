@@ -26,6 +26,7 @@ import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.User;
 import com.polarys.appleitour.view.activity.HomeActivity;
+import com.polarys.appleitour.view.activity.SignActivity;
 import com.polarys.appleitour.view.activity.StartActivity;
 import com.polarys.appleitour.viewmodel.UserDataViewModel;
 
@@ -64,11 +65,8 @@ public class UserDataFragment extends Fragment{
         txt_user_email.setText(user.GetEmail());
         btn_options = view.findViewById(R.id.user_options);
         tab_post = view.findViewById(R.id.tab_posts);
-      //  tab_follower = view.findViewById(R.id.tab_follower);
-      //  tab_following = view.findViewById(R.id.tab_following);
         // Saved books, posts, following, followers
         int[] statistics = viewModel.getStatistics(user.GetEmail());
-
 
         tabLayout.getTabAt(0).setText("Posts\n"+statistics[0]);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
@@ -84,20 +82,14 @@ public class UserDataFragment extends Fragment{
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
+            public void onTabUnselected(TabLayout.Tab tab) { }
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-
+            public void onTabReselected(TabLayout.Tab tab) { }
         });
         loadFragment(new SocialFragment(user));
 
         btn_options.setOnClickListener(v -> {
-            PopupMenu popupMenu = new PopupMenu(getContext(), view);
+            PopupMenu popupMenu = new PopupMenu(getContext(), v);
             popupMenu.inflate(R.menu.menu_user_options);
             popupMenu.setOnMenuItemClickListener(menuItem -> {
                 int itemId = menuItem.getItemId();
@@ -112,7 +104,11 @@ public class UserDataFragment extends Fragment{
                     });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
-
+                }
+                else if(itemId == R.id.user_profile_edit){
+                    getActivity().finish();
+                    IntentHelper intentHelper = new IntentHelper(getActivity());
+                    intentHelper.nextActivity(SignActivity.class,true);
                 }
                 return true;
             });

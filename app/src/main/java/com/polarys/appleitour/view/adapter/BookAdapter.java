@@ -1,8 +1,6 @@
 package com.polarys.appleitour.view.adapter;
 
 import static com.polarys.appleitour.helper.IntentHelper.BOOK_SHARED;
-import static com.polarys.appleitour.helper.IntentHelper.EXTRA_KEY;
-import static com.polarys.appleitour.helper.IntentHelper.FROM_BOOKSEARCH;
 import static com.polarys.appleitour.helper.IntentHelper.SAVED_SHARED;
 
 import android.app.Activity;
@@ -22,18 +20,18 @@ import com.polarys.appleitour.api.ApiSavedBook;
 import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.model.ApiResponse;
-import com.polarys.appleitour.model.BookApi;
+import com.polarys.appleitour.model.Book;
 import com.polarys.appleitour.model.SavedBook;
 import com.polarys.appleitour.view.activity.BookInfoActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookHolder> {
-    private final ArrayList<BookApi> books;
+public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ApiBookHolder> {
+    private final ArrayList<Book> books;
     private Context context;
     private String token;
 
-    public ApiBookAdapter(ArrayList apiBooks, Context context,String _token) {
+    public BookAdapter(ArrayList apiBooks, Context context, String _token) {
         books = apiBooks;
         this.context = context;
         token = _token;
@@ -48,7 +46,7 @@ public class ApiBookAdapter extends RecyclerView.Adapter<ApiBookAdapter.ApiBookH
     @Override
     public void onBindViewHolder(@NonNull ApiBookHolder holder, int position) {
 
-        BookApi book = books.get(position);
+        Book book = books.get(position);
         try {
             Picasso.get().load(book.getCover()).into(holder.cover);
         }
