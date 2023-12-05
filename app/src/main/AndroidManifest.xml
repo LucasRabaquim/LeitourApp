@@ -30,9 +30,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".view.activity.StartActivity"
-            android:exported="false" />
-        <activity
             android:name=".screenjourney"
             android:exported="false" />
         <activity
@@ -43,7 +40,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
-            android:name=".view.activity.HomeActivity"
+            android:name=".view.activity.PlaceholderActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
@@ -89,8 +86,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".view.activity.splashscreen"
-            android:theme="@style/Theme.Design.NoActionBar"
+            android:name=".view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action
