@@ -40,7 +40,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
-            android:name=".view.activity.HomeActivity"
+            android:name=".view.activity.PlaceholderActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
@@ -86,7 +86,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".view.activity.StartActivity"
+            android:name=".view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action
