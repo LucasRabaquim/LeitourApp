@@ -67,4 +67,11 @@ public class SharedHelper extends AppCompatActivity {
         User user = (User) JsonToObject(new User(),settings.getString(USER, ""));
         return user.GetId();
     }
+    public void Logout(){
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(USER, "");
+        editor.putBoolean(KEEP_LOGGED,false);
+        editor.putString(TOKEN,"");
+        editor.apply();
+    }
 }

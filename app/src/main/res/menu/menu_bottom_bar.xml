@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <menu xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:showIn="navigation_view">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
 
         <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_favorites"
                 android:icon="@drawable/icon_heart"
-                android:title="Favoritos" />
+                app:showAsAction="ifRoom"
+                android:title="@string/string_favorites" />
             <item
                 android:id="@+id/nav_seach_book"
                 android:icon="@drawable/icon_search"
-                android:title="Pesquisar" />
+                app:showAsAction="ifRoom"
+                android:title="@string/string_search" />
             <item
                 android:id="@+id/nav_social"
                 android:icon="@drawable/homevector"
-                android:title="Home" />
+                app:showAsAction="ifRoom"
+                android:title="@string/string_home" />
             <item
                 android:id="@+id/nav_post"
-                android:icon="@drawable/categoriavector"
-                android:title="Postar" />
+                android:icon="@drawable/icon_send"
+                app:showAsAction="ifRoom"
+                android:title="@string/string_post" />
 
             <item
                 android:id="@+id/nav_user"
                 android:icon="@drawable/uservector"
-                android:title="Perfil" />
+                app:showAsAction="ifRoom"
+                android:title="@string/string_profile" />
         </group>
 
 </menu>

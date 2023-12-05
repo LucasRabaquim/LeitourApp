@@ -1,7 +1,6 @@
 package com.polarys.appleitour.view.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.button.MaterialButton;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.api.ApiComment;
 import com.polarys.appleitour.helper.UIHelper;
-import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.Comment;
-import com.polarys.appleitour.view.activity.PlaceholderActivity;
+import com.polarys.appleitour.view.activity.HomeActivity;
 import com.polarys.appleitour.view.activity.SeePostActivity;
 
 import java.util.ArrayList;
@@ -53,6 +52,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
         holder.email.setText(comment.getEmail());
         holder.date.setText(comment.getCreatedDate());
         holder.like.setVisibility(View.GONE);
+        holder.comment.setVisibility(View.GONE);
         if(comment.getUserId() == id)
             holder.btnOptions.setVisibility(View.VISIBLE);
         holder.btnOptions.setOnClickListener(view -> {
@@ -62,12 +62,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.publication_edit) {
                     UIHelper uiHelper = new UIHelper(context);
-                    AlertDialog.Builder builder = uiHelper.createTextDialog(R.string.string_comment_edit_dialog_title);
+                    AlertDialog.Builder builder = uiHelper.createTextDialog(R.string.string_comment_edit_dialog_title,250);
                     builder.setPositiveButton("Enviar", (dialog, which) -> {
                         comment.setMessagePost(uiHelper.getText());
                         int success = apiComment.UpdateComment(comment, token).getCode();
                         int message = (success != (200 | 201)) ? R.string.string_comment_update_success : R.string.string_comment_update_error;
-                        ((PlaceholderActivity) context).showSnackBar(message);
+                        ((HomeActivity) context).showSnackBar(message);
                     });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
@@ -101,7 +101,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
     public class CommentHolder extends RecyclerView.ViewHolder {
         TextView user, text,email,date;
         ImageButton btnOptions, btnEdit;
-        Button like;
+        MaterialButton like,comment;
         LinearLayout mainLayout;
 
         public CommentHolder(@NonNull View view) {
@@ -113,6 +113,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
             this.btnEdit = view.findViewById(R.id.publication_edit);
             this.btnOptions = view.findViewById(R.id.publication_options);
             this.like = view.findViewById(R.id.publication_btn_like);
+            comment = view.findViewById(R.id.publication_comments_number);
             mainLayout = view.findViewById(R.id.item_publication_layout);
         }
     }

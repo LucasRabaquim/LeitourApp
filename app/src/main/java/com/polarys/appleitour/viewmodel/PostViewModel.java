@@ -12,17 +12,17 @@ public class PostViewModel extends ViewModel {
     public PostViewModel(){}
     ApiPost apiPost = new ApiPost();
 
-    public String CreatePost(Post post, String token){
+    public String[] CreatePost(Post post, String token){
         ApiResponse response = apiPost.CreatePost(post, token);
         if (response.getCode() == 200 | response.getCode() == 201)
-            return "Post Criado";
-        return response.getBody();
+            return new String[]{"Post Criado","SUCCESS"};
+        return new String[]{response.getBody(),"ERROR"};
     }
-    public String UpdatePost(Post post, String token){
+    public String[] UpdatePost(Post post, String token){
         ApiResponse response = apiPost.UpdatePost(post,token);
         if (response.getCode() == 200 | response.getCode() == 201)
-            return "Post Alterado";
-        return response.getBody();
+            return new String[]{"Post Criado","SUCCESS"};
+        return new String[]{response.getBody(),"ERROR"};
     }
     public String DeletePost(Post post, String token){
         ApiResponse response = apiPost.UpdatePost(post,token);

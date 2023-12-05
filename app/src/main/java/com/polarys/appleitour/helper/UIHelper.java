@@ -3,6 +3,7 @@ package com.polarys.appleitour.helper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -41,10 +42,10 @@ public class UIHelper extends AppCompatActivity {
         return createDialog(stringFromResource(title),stringFromResource(message),stringFromResource(no));
     }
 
-    public AlertDialog.Builder createTextDialog(int title){
-        return createTextDialog(stringFromResource(title));
+    public AlertDialog.Builder createTextDialog(int title,int length){
+        return createTextDialog(stringFromResource(title),length);
     }
-    public AlertDialog.Builder createTextDialog(String title){
+    public AlertDialog.Builder createTextDialog(String title,int length){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setCancelable(false);
@@ -52,6 +53,23 @@ public class UIHelper extends AppCompatActivity {
             dialog.cancel();
         });
         edittext = new EditText(context);
+        edittext.setFilters(new InputFilter[] { new InputFilter.LengthFilter(length) });
+        builder.setView(edittext);
+        return builder;
+    }
+    public AlertDialog.Builder createTextDialog(int title,int length,String text){
+        return createTextDialog(stringFromResource(title),length,text);
+    }
+    public AlertDialog.Builder createTextDialog(String title,int length,String text){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title);
+        builder.setCancelable(false);
+        builder.setNegativeButton(stringFromResource(R.string.string_dialog_option_cancel), (dialog, which) -> {
+            dialog.cancel();
+        });
+        edittext = new EditText(context);
+        edittext.setFilters(new InputFilter[] { new InputFilter.LengthFilter(length) });
+        edittext.setText(text);
         builder.setView(edittext);
         return builder;
     }
@@ -60,7 +78,7 @@ public class UIHelper extends AppCompatActivity {
             return edittext.getText().toString();
         }
         catch (Exception e){
-            return "TESTE " +e;
+            return "";
         }
     }
     public void showSnackBar(String message){

@@ -8,12 +8,12 @@ import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.ApiResponse;
 
-public class MainActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_start);
 
      /*   IntentHelper intntHelper = new IntentHelper(this);
         intntHelper.nextActivity(PlaceholderActivity.class);
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             String token = sharedHelper.GetToken();
             ApiResponse response = new ApiUser().AutoLogin(token);
             if (response.getCode() == 200) // Success connecting to API
-                nextScreen = PlaceholderActivity.class;
+                nextScreen = HomeActivity.class;
             else // Internet, Autentication Error
                 nextScreen = SignActivity.class;
         }

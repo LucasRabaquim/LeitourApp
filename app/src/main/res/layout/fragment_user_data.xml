@@ -11,18 +11,31 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="center_vertical">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="30dp"
+    android:gravity="center">
         <TextView
             android:id="@+id/textView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:fontFamily="@font/outfit_semibold"
             android:gravity="center"
-            android:text="Perfil"
+            android:paddingStart="20dp"
+            android:layout_weight="9"
+            android:text="@string/string_profile"
             android:textColor="@color/AzulDefault"
-            android:textSize="18dp" />
-
+            android:textSize="18sp" />
+    <ImageButton
+        android:id="@+id/user_options"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="end"
+        android:layout_height="match_parent"
+        android:src="@drawable/icon_options"
+        android:background="?android:attr/selectableItemBackground"  />
+</LinearLayout>
         <LinearLayout
             style="@style/FlexRow"
             android:layout_marginTop="30dp">
@@ -54,13 +67,13 @@
                     android:fontFamily="@font/outfit_semibold"
                     android:text="@string/name"
                     android:textColor="@color/Black_Cinza"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/txt_profile_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="start"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/outfit_regular"
@@ -100,7 +113,7 @@
             android:layout_height="wrap_content"
             android:text="@string/posts"
             />
-        <com.google.android.material.tabs.TabItem
+      <!--  <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_following"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/seguindo"/>
-       <!-- <com.google.android.material.tabs.TabItem
+       < <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_follower"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,7 +131,7 @@
 
     </com.google.android.material.tabs.TabLayout>
     <FrameLayout
-        android:id="@+id/view_pager_user"
+        android:id="@+id/userdata_framelayout"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="wrap_content">

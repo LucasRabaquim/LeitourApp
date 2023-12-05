@@ -4,7 +4,6 @@ import static com.polarys.appleitour.api.ApiUtil.JsonToObject;
 import static com.polarys.appleitour.api.ApiUtil.verifyConectivity;
 import androidx.fragment.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,18 +11,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.User;
-import com.polarys.appleitour.view.activity.PlaceholderActivity;
+import com.polarys.appleitour.view.activity.HomeActivity;
 import com.polarys.appleitour.view.activity.SignActivity;
 import com.polarys.appleitour.viewmodel.UserViewModel;
-import org.json.JSONException;
 
 public class LoginFragment extends Fragment {
 
@@ -72,7 +68,7 @@ public class LoginFragment extends Fragment {
             uiHelper.showSnackBar(this.getResources().getString(R.string.string_welcome) + user.GetNameUser());
             getActivity().finish();
             IntentHelper intentHelper = new IntentHelper(getActivity(),IntentHelper.USER_SHARED);
-            intentHelper.nextActivity(PlaceholderActivity.class);
+            intentHelper.nextActivity(HomeActivity.class);
             btn_Login.setClickable(true);
         });
 

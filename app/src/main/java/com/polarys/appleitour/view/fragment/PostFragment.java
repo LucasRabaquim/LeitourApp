@@ -22,6 +22,8 @@ import com.polarys.appleitour.api.ApiUtil;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.Post;
+import com.polarys.appleitour.view.activity.HomeActivity;
+import com.polarys.appleitour.view.activity.SignActivity;
 import com.polarys.appleitour.viewmodel.PostViewModel;
 
 import java.util.Objects;
@@ -63,22 +65,26 @@ public class PostFragment extends Fragment {
                 uiHelper.showSnackBar(R.string.string_write_more);
                 return;
             }
-            String postResult;
+            String[] postResult;
             if(edit_mode){
                 post.SetMessagePost(message);
                 Log.d("Editando", ApiUtil.ObjectToString(post));
                 postResult = viewModel.UpdatePost(post,token);
+                if(postResult[1] == "SUCESS")
+                    ((HomeActivity) getActivity()).loadFragment(new SocialFragment());
             }
             else {
                 post = new Post(userId, message);
                 Log.d("Criando", ApiUtil.ObjectToString(post));
                 postResult = viewModel.CreatePost(post,token);
+                if(postResult[1] == "SUCESS")
+                    ((HomeActivity) getActivity()).loadFragment(new SocialFragment());
             }
-            uiHelper.showSnackBar(postResult);
+            uiHelper.showSnackBar(postResult[0]);
         });
     }
     private void declareUi(View view, Bundle bundle){
-        btn_post = view.findViewById(R.id.btnSend);
+        btn_post = view.findViewById(R.id.btn_create_post);
         btn_post.setText( (buttonText.isEmpty()) ? "Postar" : buttonText);
         edit_post = view.findViewById(R.id.edit_post);
         txt_cancelar = view.findViewById(R.id.txt_cancelar);
