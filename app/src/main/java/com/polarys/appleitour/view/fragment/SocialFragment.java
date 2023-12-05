@@ -90,7 +90,7 @@ public class SocialFragment extends Fragment {
     }
     private ArrayList<Post> getAdapter(String _token, int offset){
         return (user == null) ? viewModel.loadPosts(_token,offset) :
-                viewModel.loadPostsByEmail(_token,user.GetEmail(), offset);
+                viewModel.loadPostsByEmail(user.GetEmail(), offset);
     }
     private void resetAdapter(ArrayList<Post> _arrayList){
         if (_arrayList != null) {

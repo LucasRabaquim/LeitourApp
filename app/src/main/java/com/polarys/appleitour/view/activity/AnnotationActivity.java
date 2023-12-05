@@ -39,8 +39,9 @@ public class AnnotationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_post);
         viewModel = ViewModelProviders.of(this).get(AnnotationViewModel.class);
-        btn_post = findViewById(R.id.btnSend);
+        btn_post = findViewById(R.id.btn_create_post);
         edit_post = findViewById(R.id.edit_post);
+        edit_post.setText(R.string.string_create_anotation);
         txt_cancelar = findViewById(R.id.txt_cancelar);
         SharedHelper sharedHelper = new SharedHelper(this);
         View rootView = getWindow().getDecorView().getRootView();

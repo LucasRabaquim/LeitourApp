@@ -34,21 +34,14 @@
         android:layout_gravity="bottom"
         android:gravity="end">
         <Button
-            android:id="@+id/btnSend"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            style="@style/ButtonBlue"
-            android:text=""
-
-            android:buttonCornerRadius="20dp"/>
+            android:id="@+id/btn_create_post"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_gravity="bottom|end"
+            android:backgroundTint="@color/AzulDefault"
+            android:text="@string/string_write_post"
+            android:textSize="12dp" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/img_user"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/placeholder"
-        app:cardCornerRadius="100dp" />
 
 
 </LinearLayout>

@@ -54,9 +54,13 @@ public class AnnotationAdapter extends RecyclerView.Adapter<AnnotationAdapter.An
         holder.title.setText(annotation.getAnnotationText());
         holder.date.setText(annotation.getCreatedDate());
         holder.text.setText(annotation.getAnnotationText());
-        holder.mainLayout.setOnLongClickListener(v -> {
-            holder.text.setMaxLines(999);
-            return true;
+        final boolean[] click = {false};
+        holder.mainLayout.setOnClickListener(v -> {
+            if(!click[0])
+                holder.text.setMaxLines(999);
+            else
+                holder.text.setMaxLines(50);
+            click[0] = !click[0];
         });
         holder.btnOptions.setOnClickListener(view -> {
             PopupMenu popupMenu = new PopupMenu(context, view);
@@ -65,7 +69,7 @@ public class AnnotationAdapter extends RecyclerView.Adapter<AnnotationAdapter.An
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.publication_edit) {
                     UIHelper uiHelper = new UIHelper(context);
-                    AlertDialog.Builder builder = uiHelper.createTextDialog(R.string.string_comment_dialog_title);
+                    AlertDialog.Builder builder = uiHelper.createTextDialog(R.string.string_annotation_dialog_Update_title,500,annotation.getAnnotationText());
                     builder.setPositiveButton("Enviar", (dialog, which) -> {
                         annotation.setAnnotationText(uiHelper.getText());
                         int success = apiAnnotation.UpdateAnnotation(annotation, token).getCode();

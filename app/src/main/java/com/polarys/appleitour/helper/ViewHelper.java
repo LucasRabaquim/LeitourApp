@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
 
 
 public class ViewHelper extends AppCompatActivity {
@@ -27,8 +28,14 @@ public class ViewHelper extends AppCompatActivity {
                 textView.setVisibility(View.GONE);
             textView.setText(activity.getResources().getString(prefix) + text);
         }catch (Exception e){
-
         }
+    }
+    public void setButtonOfViewAppend(int id, int prefix, String text){
+        MaterialButton button = activity.findViewById(id);
+        if(text != "" | text != "NULL")
+            button.setText("\n"+activity.getResources().getString(prefix) + text);
+        else
+            button.setText("\n"+activity.getResources().getString(prefix) + "-");
     }
 
 }

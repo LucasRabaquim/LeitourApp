@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent" >
 
     <ImageView
         android:layout_width="match_parent"
@@ -33,13 +32,13 @@
             android:fontFamily="@font/outfit_medium"
             android:gravity="top"
             android:maxLines="2"
-            android:text="Seja Bem-vindo"
+            android:text="@string/string_welcome_alt"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
         <TextView
             style="@style/SignText"
-            android:text="Nome de Usuário" />
+            android:text="@string/userName"/>
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -47,29 +46,26 @@
             style="@style/SignFieldOutline"
             android:drawableEnd="@drawable/iconuser"
             android:drawableTint="@color/white"
+            android:maxLength="30"
             android:inputType="text"
             android:paddingEnd="12dp"
             android:paddingStart="12dp" />
 
         <TextView
             style="@style/SignText"
-            android:text="Email" />
+            android:text="@string/email" />
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_email"
             style="@style/SignFieldOutline"
+            android:maxLength="100"
             android:inputType="textEmailAddress" />
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/outfit_bold"
-            android:text="Senha"
-            android:textColor="@color/white" />
+            style="@style/SignText"
+            android:text="@string/password" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -88,27 +84,22 @@
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/outfit_bold"
-            android:text="Confirmar Senha"
-            android:textColor="@color/white" />
+            style="@style/SignText"
+            android:text="@string/repeat_password" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/AzulDefault"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/white">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/AzulDefault"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/white">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_compare_password"
-                style="@style/SignFieldOutline"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_compare_password"
+            style="@style/SignFieldOutline"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
         <CheckBox
@@ -119,17 +110,17 @@
             android:button="@drawable/img_checkbox"
             android:foregroundTint="@color/white"
             android:fontFamily="@font/outfit_bold"
-            android:text="Lembrar-se"
+            android:text="@string/string_remember"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
-            app:buttonIconTint="#145CEC" />
+            app:buttonIconTint="#fff" />
 
         <TextView
             android:id="@+id/txt_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Já possui uma conta? Entrar"
+            android:text="@string/string_already_has_account"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
@@ -140,9 +131,9 @@
             android:layout_gravity="center"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/outfit_bold"
-            android:text="Registrar"
+            android:text="@string/string_register"
             android:textColor="#145CEC"
-            android:textSize="16dp"
+            android:textSize="16sp"
             app:cornerRadius="20dp" />
 
 

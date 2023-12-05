@@ -7,18 +7,16 @@ import com.google.gson.annotations.Expose;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Formatter;
 
 public class Comment {
     private int commentId;
     private int userId;
   //  @JsonIgnore
-    @Expose(serialize = false)
-    private String userName ="";
-    @Expose(serialize = false)
-    private String email = "";
+    private String userName;
+    private String email;
     private int postId;
     private String messagePost;
-    //private String postDate = "";
     private String createdDate;
     private String alteratedDate;
 
@@ -29,6 +27,7 @@ public class Comment {
         this.postId = postId;
         this.messagePost = messagePost;
         this.userName = user.GetNameUser();
+        this.email = user.GetEmail();
     }
     public Comment(int commentId, int userId, int postId, String messagePost, String postDate, String alteratedDate) {
         this.commentId = commentId;
@@ -79,11 +78,12 @@ public class Comment {
 
     public String getCreatedDate() {
         try {
-            LocalDateTime datetime = LocalDateTime.parse(createdDate, DateTimeFormatter.ofPattern("dd/MM/yy"));
-            return datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        }catch (Exception e){
-            Log.d("GetCreatedDate", "GetCreatedDate: " +e);
-            return createdDate;
+            LocalDateTime dateTime = LocalDateTime.parse(createdDate);
+            DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            return dateTime.format(formatters);
+        }
+        catch(Exception e){
+            return  createdDate;
         }
     }
 

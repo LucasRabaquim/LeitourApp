@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/placeholder" />
+            android:text="@string/string_book_info" />
 
         <ImageButton
             android:id="@+id/saved_options"
@@ -28,6 +28,7 @@
             android:layout_marginEnd="20dp"
             android:visibility="gone"
             android:src="@drawable/icon_options"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_height="match_parent" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -52,6 +53,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:padding="5dp"
+
                     android:src="@drawable/placeholder" />
 
                 <LinearLayout
@@ -61,39 +63,38 @@
                     android:gravity="center_horizontal|fill_vertical"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/publication_btn_like"
+                    <com.google.android.material.button.MaterialButton
                         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/info_book_category"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1.179"
                         android:textColor="#a5a5a5"
                         android:textSize="10sp"
                         app:icon="@drawable/icon_heart" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/info_book_pages"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1.179"
                         android:textColor="#a5a5a5"
                         android:textSize="10sp"
                         app:icon="@drawable/icon_heart" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/info_book_isbn10"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1.179"
                         android:textColor="#a5a5a5"
                         android:textSize="10sp"
                         app:icon="@drawable/icon_heart" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/info_book_isbn13"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1.179"
                         android:textColor="#a5a5a5"
                         android:textSize="10sp"
                         app:icon="@drawable/icon_heart" />
@@ -102,23 +103,21 @@
 
             <LinearLayout style="@style/FlexRow">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_done" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/icon_annotation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_write"
+                    android:text="@string/string_annote"
                     android:visibility="invisible" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/icon_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_saved_flag" />
+                    android:text="@string/string_save"
+                    android:icon="@drawable/icon_saved_flag" />
             </LinearLayout>
 
             <TextView
@@ -142,35 +141,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/book_published_date" />
 
-            <TextView
-                android:id="@+id/txt_book_pages"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/book_pages" />
-
-            <TextView
-                android:id="@+id/txt_book_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/book_category" />
 
             <TextView
                 android:id="@+id/txt_book_language"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/book_language" />
-
-            <TextView
-                android:id="@+id/txt_book_isbn10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/book_isbn10" />
-
-            <TextView
-                android:id="@+id/txt_book_isbn13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/book_isbn13" />
 
             <TextView
                 android:id="@+id/txt_book_description"

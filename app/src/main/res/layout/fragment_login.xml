@@ -31,7 +31,7 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/outfit_medium"
         android:gravity="top"
-        android:text="Seja Bem-vindo"
+        android:text="@string/string_welcome_alt"
         android:maxLines="2"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
@@ -43,12 +43,13 @@
         android:layout_marginStart="60dp"
         android:fontFamily="@font/outfit_bold"
         android:textColor="@color/white"
-        android:text="Email" />
+        android:text="@string/email" />
 
 
     <EditText
         android:id="@+id/edit_email"
         style="@style/SignField"
+        android:maxLength="30"
         android:drawableEnd="@drawable/iconuser"
         android:drawableTint="@color/gray_600"
         android:inputType="textEmailAddress" />
@@ -59,7 +60,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/outfit_bold"
-        android:text="Senha"
+        android:text="@string/password"
         android:textColor="@color/white" />
 
 
@@ -73,6 +74,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_password"
             style="@style/SignField"
+            android:maxLength="64"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +87,7 @@
         android:src="@drawable/iconuser" />
 
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,27 +96,28 @@
         android:layout_marginTop="51dp"
         android:text="Esqueceu a senha?"
         android:textColor="#FFFFFF"
-        android:textSize="12sp" />
+        android:textSize="12sp" />-->
 
     <CheckBox
         android:id="@+id/cbKeepLogged"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:layout_marginStart="58dp"
         android:fontFamily="@font/outfit_bold"
         android:button="@drawable/img_checkbox"
         android:foregroundTint="@color/white"
-        android:text="Lembrar-se"
+        android:text="@string/string_remember"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
-        app:buttonIconTint="#145CEC" />
+        app:buttonIconTint="#fff" />
 
     <TextView
         android:id="@+id/txt_register"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Não possui conta? Registre-se"
+        android:text="@string/string_dont_has_account"
         android:layout_gravity="center"
         android:textColor="@color/white"
         android:textSize="14sp" />
@@ -126,12 +129,10 @@
         android:backgroundTint="@color/white"
         android:fontFamily="@font/outfit_bold"
         android:layout_gravity="center"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="#145CEC"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:cornerRadius="20dp" />
-
-
 
 
     <ImageView

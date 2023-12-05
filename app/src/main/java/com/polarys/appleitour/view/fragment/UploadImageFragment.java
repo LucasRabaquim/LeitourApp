@@ -24,14 +24,11 @@ import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.User;
-import com.polarys.appleitour.view.activity.PlaceholderActivity;
+import com.polarys.appleitour.view.activity.HomeActivity;
 import com.polarys.appleitour.viewmodel.UserViewModel;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigInteger;
 
 public class UploadImageFragment extends Fragment {
 
@@ -115,7 +112,7 @@ public class UploadImageFragment extends Fragment {
         btn_skip.setOnClickListener(v -> {
             getActivity().finish();
             IntentHelper intentHelper = new IntentHelper(getActivity(), IntentHelper.USER_SHARED);
-            intentHelper.nextActivity(PlaceholderActivity.class);
+            intentHelper.nextActivity(HomeActivity.class);
         });
 
         btn_image.setOnClickListener(v -> getImage());

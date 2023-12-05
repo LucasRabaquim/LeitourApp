@@ -4,7 +4,6 @@ import static com.polarys.appleitour.api.ApiUtil.JsonToObject;
 import static com.polarys.appleitour.api.ApiUtil.verifyConectivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -21,11 +19,9 @@ import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.User;
-import com.polarys.appleitour.view.activity.PlaceholderActivity;
+import com.polarys.appleitour.view.activity.HomeActivity;
 import com.polarys.appleitour.view.activity.SignActivity;
 import com.polarys.appleitour.viewmodel.UserViewModel;
-
-import org.json.JSONException;
 
 import java.util.Objects;
 
@@ -78,7 +74,9 @@ public class RegisterFragment extends Fragment {
                 return;
             }
             saveUser(response);
-            ((SignActivity) getActivity()).loadFragment(new UploadImageFragment(user));
+            getActivity().finish();
+            IntentHelper intentHelper = new IntentHelper(getActivity(), IntentHelper.USER_SHARED);
+            intentHelper.nextActivity(HomeActivity.class);
         });
 
         btn_Login.setOnClickListener(v -> { // Swith to user Image Fragment

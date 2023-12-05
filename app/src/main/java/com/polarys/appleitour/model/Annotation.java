@@ -13,6 +13,7 @@ import com.polarys.appleitour.helper.SharedHelper;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import kotlin.jvm.Transient;
@@ -46,7 +47,14 @@ public class Annotation implements Serializable {
         return annotationId;
     }
     public String getCreatedDate() {
-        return createdDate;
+        try {
+            LocalDateTime dateTime = LocalDateTime.parse(createdDate);
+            DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            return dateTime.format(formatters);
+        }
+        catch(Exception e){
+            return  createdDate;
+        }
     }
 
     public void setAnnotationId(int annotationId) {

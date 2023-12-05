@@ -1,14 +1,6 @@
 package com.polarys.appleitour.model;
 
-import static com.polarys.appleitour.api.ApiThread.DELETE;
-import static com.polarys.appleitour.api.ApiThread.GET;
-import static com.polarys.appleitour.api.ApiThread.GETPUBLIC;
-import static com.polarys.appleitour.api.ApiThread.POST;
-import static com.polarys.appleitour.api.ApiThread.UPDATE;
-
 import android.util.Log;
-
-import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -19,15 +11,13 @@ public class Post implements Serializable{
     private int id;
     private int userId;
 
-    @Expose(serialize = false)
-    private String userName = "";
-    @Expose(serialize = false)
-    private String email = "";
+    private String userName;
+    private String email;
     private String messagePost;
     private int likes = 0;
     private int Comment_number = 0;
     private boolean liked = false;
-    private String CreatedDate;
+    private String createdDate;
     private String UserPhoto = null;
     private String alteratedDate = null;
     public Post() { }
@@ -79,15 +69,16 @@ public class Post implements Serializable{
     }
     public String GetCreatedDate() {
         try {
-            LocalDateTime datetime = LocalDateTime.parse(CreatedDate, DateTimeFormatter.ofPattern("dd/MM/yy"));
-            return datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        }catch (Exception e){
-            Log.d("GetCreatedDate", "GetCreatedDate: " +e);
-            return CreatedDate;
+            LocalDateTime dateTime = LocalDateTime.parse(createdDate);
+            DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            return dateTime.format(formatters);
+        }
+        catch(Exception e){
+            return  createdDate;
         }
     }
     public void SetCreatedDate(String CreatedDate) {
-        this.CreatedDate = CreatedDate;
+        this.createdDate = CreatedDate;
     }
     public String GetAlteratedDate() {
         return alteratedDate;

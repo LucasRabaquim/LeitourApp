@@ -53,6 +53,9 @@ public class BookApi implements Serializable {
     public String getDescription() {
         return description;
     }
+    public String getCategory() {
+        return category;
+    }
     public int getPages() {
         return pages;
     }

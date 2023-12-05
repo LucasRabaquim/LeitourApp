@@ -1,15 +1,12 @@
 package com.polarys.appleitour.view.activity;
 
 import static com.polarys.appleitour.helper.IntentHelper.BOOK_SHARED;
-import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
 import static com.polarys.appleitour.helper.IntentHelper.SAVED_SHARED;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -20,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.IntentHelper;
 import com.polarys.appleitour.helper.SharedHelper;
@@ -31,7 +27,6 @@ import com.polarys.appleitour.model.ApiResponse;
 import com.polarys.appleitour.model.BookApi;
 import com.polarys.appleitour.model.SavedBook;
 import com.polarys.appleitour.view.adapter.AnnotationAdapter;
-import com.polarys.appleitour.view.fragment.PostFragment;
 import com.polarys.appleitour.viewmodel.BookApiViewModel;
 import com.polarys.appleitour.viewmodel.SavedBookViewModel;
 import com.squareup.picasso.Picasso;
@@ -40,7 +35,8 @@ import java.util.ArrayList;
 
 public class BookInfoActivity extends AppCompatActivity {
 
-    private Button btn_save_book, btn_create_annotation;
+    private com.google.android.material.button.MaterialButton btn_save_book, btn_create_annotation;
+    private com.google.android.material.button.MaterialButton info_category, info_pages,info_isbn10,info_isbn13;
     private BookApiViewModel bookApiViewModel;
     private SavedBookViewModel SavedViewModel;
     private ImageView btnReturn,btnOptions;
@@ -63,9 +59,9 @@ public class BookInfoActivity extends AppCompatActivity {
         uiHelper = new UIHelper(this,this.getWindow().getDecorView().getRootView());
         SavedViewModel = new ViewModelProvider(this).get(SavedBookViewModel.class);
         bookApiViewModel = new ViewModelProvider(this).get(BookApiViewModel.class);
-        btnOptions = findViewById(R.id.saved_options);
-        btnReturn = findViewById(R.id.btn_return);
-        btn_create_annotation = findViewById(R.id.icon_annotation);
+        declareUi();
+
+
         ArrayList<Annotation> annotations = new ArrayList<>();
         recyclerView = findViewById(R.id.recycler_annotation);
         adapter = new AnnotationAdapter(annotations, this,token);
@@ -88,11 +84,14 @@ public class BookInfoActivity extends AppCompatActivity {
             int userId = sharedHelper.GetUser().GetId();
             ApiResponse apiResponse = SavedViewModel.SaveBook(finalBook, userId, token);
 
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(getIntent());
-            overridePendingTransition(0, 0);
-            Toast.makeText(this, apiResponse.getBody(), Toast.LENGTH_SHORT).show();
+            if(apiResponse.getCode() == (200 | 201)) {
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            }
+            uiHelper.showSnackBar(apiResponse.getBody());
+
         });
 
         if(savedBook != null) {
@@ -111,6 +110,7 @@ public class BookInfoActivity extends AppCompatActivity {
 
             }catch(Exception e){Log.d("Anotacao",e.toString()); }
             btn_create_annotation.setOnClickListener(v->{
+                finish();
                 IntentHelper intentHelper = new IntentHelper(this);
                 intentHelper.nextActivityObj(AnnotationActivity.class,finalSaved);
             });
@@ -118,18 +118,29 @@ public class BookInfoActivity extends AppCompatActivity {
 
     }
 
+    private void declareUi(){
+        btnOptions = findViewById(R.id.saved_options);
+        btnReturn = findViewById(R.id.btn_return);
+        btn_create_annotation = findViewById(R.id.icon_annotation);
+        info_category = findViewById(R.id.info_book_category);
+        info_pages = findViewById(R.id.info_book_pages);
+        info_isbn10 = findViewById(R.id.info_book_isbn10);
+        info_isbn13 = findViewById(R.id.info_book_isbn13);
+    }
     private void setViewData(BookApi book) {
         background = findViewById(R.id.img_book_background);
         ViewHelper viewHelper = new ViewHelper(this);
         viewHelper.setTextOfViewAppend(R.id.txt_book_title, R.string.book_title,book.getTitle());
         viewHelper.setTextOfViewAppend(R.id.txt_book_author, R.string.book_author,book.getAuthors());
         viewHelper.setTextOfViewAppend(R.id.txt_book_publisher, R.string.book_publisher,book.getPublisher());
+        viewHelper.setButtonOfViewAppend(R.id.info_book_category,R.string.book_category,book.getCategory());
+        viewHelper.setButtonOfViewAppend(R.id.info_book_pages,R.string.book_pages,String.valueOf(book.getPages()));
+        viewHelper.setButtonOfViewAppend(R.id.info_book_isbn10,R.string.book_isbn10,book.getIsbn10());
+        viewHelper.setButtonOfViewAppend(R.id.info_book_isbn13,R.string.book_isbn13,book.getIsbn13());
+
         viewHelper.setTextOfViewAppend(R.id.txt_published_date, R.string.book_published_date,book.getPublishedDate());
         viewHelper.setTextOfViewAppend(R.id.txt_book_description, R.string.book_description,book.getDescription());
         viewHelper.setTextOfViewAppend(R.id.txt_book_language, R.string.book_language,book.getLanguage());
-        viewHelper.setTextOfViewAppend(R.id.txt_book_pages, R.string.book_pages,String.valueOf(book.getPages()));
-        viewHelper.setTextOfViewAppend(R.id.txt_book_isbn10, R.string.book_isbn10,book.getIsbn10());
-        viewHelper.setTextOfViewAppend(R.id.txt_book_isbn13, R.string.book_isbn13,book.getIsbn13());
         try {
             Picasso.get().load(book.getCover()).into(background);
         }catch(Exception e){
@@ -146,19 +157,18 @@ public class BookInfoActivity extends AppCompatActivity {
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.saved_unsave) {
                     UIHelper uiHelper = new UIHelper(this);
-                    AlertDialog.Builder builder = uiHelper.createDialog("Dessalvando o livro "+savedBook.getId(), "Se você dessalvar esse livro perderá todas as suas anotações. Quer continuar?", "Cancelar");
+                    AlertDialog.Builder builder = uiHelper.createDialog("Dessalvando o livro: "+savedBook.getBookTitle(), "Se você dessalvar esse livro perderá todas as suas anotações. Quer continuar?", "Cancelar");
                     builder.setPositiveButton("Sim", (dialog, which) -> {
                         ApiResponse response = SavedViewModel.UnsaveBook(savedBook.getId(), token);
                         if (response.getCode() == (200 | 201)) {
                             IntentHelper intentHelper = new IntentHelper(this);
                             finish();
-                            intentHelper.nextActivity(PlaceholderActivity.class);
+                            intentHelper.nextActivity(HomeActivity.class);
                         }
                     });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
 
-                } else if (itemId == R.id.saved_public) {
                 }
                 return true;
             });

@@ -5,21 +5,15 @@ import static android.app.PendingIntent.getActivity;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.search.SearchBar;
-import com.google.android.material.search.SearchView;
-import com.google.android.material.snackbar.Snackbar;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.view.fragment.BookSearchFragment;
@@ -28,7 +22,7 @@ import com.polarys.appleitour.view.fragment.SavedBookFragment;
 import com.polarys.appleitour.view.fragment.SocialFragment;
 import com.polarys.appleitour.view.fragment.UserDataFragment;
 
-public class PlaceholderActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private ActionBar toolbar;
     private ProgressBar progressBar;
@@ -41,7 +35,7 @@ public class PlaceholderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_placeholder);
+        setContentView(R.layout.activity_home);
         toolbar = getSupportActionBar();
         viewPager = findViewById(R.id.placeholder_framelayout);
         View rootView = getWindow().getDecorView().getRootView();

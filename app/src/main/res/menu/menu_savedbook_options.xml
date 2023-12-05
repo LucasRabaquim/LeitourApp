@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/saved_unsave" android:title="Des-salvar" />
-    <item android:id="@+id/saved_public" android:title="Mudar publicidade" />
+    <item android:id="@+id/saved_unsave" android:title="@string/string_unsave" />
+   <!-- <item android:id="@+id/saved_public" android:title="Mudar publicidade" />-->
 </menu>

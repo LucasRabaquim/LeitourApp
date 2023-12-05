@@ -10,19 +10,19 @@
     >
 
     <TextView
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/item_book_title_letter"
         android:gravity="center"
+        android:layout_weight="12"
         android:text="0"
-        android:inputType="textCapCharacters"
-        android:layout_weight="2.7"/>
+        android:inputType="textCapCharacters"/>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_weight="1.5"
+        android:layout_weight="50"
         android:orientation="vertical">
 
         <TextView
@@ -30,8 +30,8 @@
             android:id="@+id/item_book_title"
             android:layout_width="match_parent"
             android:fontFamily="@font/outfit_semibold"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+
             android:layout_marginTop="25dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -42,8 +42,8 @@
         <TextView
             android:id="@+id/item_book_author"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+
             android:gravity="center"
             android:paddingLeft="10dp"
             android:fontFamily="@font/outfit_medium"
@@ -86,16 +86,15 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2">
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/item_book_cover"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:padding="5dp"
-
             android:src="@drawable/placeholder"
             />
 

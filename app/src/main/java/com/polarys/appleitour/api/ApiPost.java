@@ -54,11 +54,11 @@ public class ApiPost implements IPost {
     public ApiResponse GetPostsByEmail(String email) { return GetPostsByEmail(email,0);
     }
     public ApiResponse GetPostsByEmail(String email,int offset) {
-        ApiThread apiThread = new ApiThread(GETPUBLIC, PATH+"/"+email+QUERY+offset, null);
+        ApiThread apiThread = new ApiThread(GETPUBLIC, PATH+"/email/"+email+QUERY+offset, null);
         return apiThread.CreateThread(apiThread).getJson();
     }
     public ApiResponse GetPostsByEmail(String token,String email,int offset) {
-        ApiThread apiThread = new ApiThread(GET, PATH+"/"+email+QUERY+offset, null,token);
+        ApiThread apiThread = new ApiThread(GET, PATH+"/email/"+email+QUERY+offset, null,token);
         return apiThread.CreateThread(apiThread).getJson();
     }
 }

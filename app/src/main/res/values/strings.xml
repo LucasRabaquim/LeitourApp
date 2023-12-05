@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">App Leitour</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Leitour</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="placeholder">PLACEHOLDER</string>
     <string name="min_placeholder">100k</string>
@@ -66,6 +65,30 @@
     <string name="string_annotation_dialog_message">Deseja mesmo apagar sua anotação?</string>
     <string name="string_annotation_create_success">Anotação criada com sucesso.</string>
     <string name="string_annotation_create_error">Erro ao criar a anotação, tente novamente.</string>
+    <string name="string_edit">Editar</string>
+    <string name="string_exit">Sair</string>
+    <string name="string_unsave">Des-salvar</string>
+    <string name="string_delete">Deletar</string>
+    <string name="string_write_post">Envie seu post</string>
+    <string name="string_write_comment">Escreva um comentário</string>
+    <string name="string_welcome_alt">Seja Bem-Vindo(a)</string>
+    <string name="string_remember">Lembrar-se</string>
+    <string name="string_already_has_account">Já possui uma conta? Entrar</string>
+    <string name="string_register">Registrar</string>
+    <string name="string_dont_has_account">Não possui conta? Registre-se</string>
+    <string name="string_profile">Perfil</string>
+    <string name="string_post">Postar</string>
+    <string name="string_home">Home</string>
+    <string name="string_search">Pesquisar</string>
+    <string name="string_favorites">Favoritos</string>
+    <string name="string_book_info">Informações do Livro</string>
+    <string name="string_save">Salvar</string>
+    <string name="string_annote">Anotar</string>
+    <string name="logout_diaog_message">Deseja mesmo sair?</string>
+    <string name="logout_dialog_title">Efetuando Logout</string>
+    <string name="string_create_anotation">Escrever anotação</string>
+    <string name="string_saved_book_title">LISTA DE FAVORITOS</string>
+    <string name="string_annotation_dialog_Update_title">Altere sua anotação</string>
 
 
 </resources>

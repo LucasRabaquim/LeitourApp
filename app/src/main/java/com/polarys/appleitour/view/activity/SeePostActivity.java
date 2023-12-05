@@ -3,6 +3,7 @@ package com.polarys.appleitour.view.activity;
 import static com.polarys.appleitour.helper.IntentHelper.POST_SHARED;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +17,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
 import com.polarys.appleitour.R;
+import com.polarys.appleitour.api.ApiPost;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.helper.UIHelper;
 import com.polarys.appleitour.model.ApiResponse;
@@ -35,11 +38,12 @@ public class SeePostActivity extends AppCompatActivity{
     private Button btn_create_comment;
     private LinearLayout textAreaCustomView;
     private SwipeRefreshLayout refreshLayout;
-    private TextView txt_name,txt_publication_useremail,txt_message;
-    private Button txt_likes, btn_send_comment, btn_comments;
+    private TextView txt_name,txt_publication_useremail,txt_message,txt_date;
+    private MaterialButton btn_like, btn_send_comment, btn_comments;
     private ArrayList<Comment> comments;
     private boolean isLoading = false;
     private UIHelper uiHelper;
+    private ApiPost apiPost = new ApiPost();
     private int offset;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +51,12 @@ public class SeePostActivity extends AppCompatActivity{
         setContentView(R.layout.activity_see_post);
         Post post = (Post) getIntent().getSerializableExtra(POST_SHARED);
         viewModel = ViewModelProviders.of(this).get(CommentViewModel.class);
-        declareUi(post);
-        uiHelper = new UIHelper(this,this.getWindow().getDecorView().getRootView());
         SharedHelper sharedHelper = new SharedHelper(this);
         int id = sharedHelper.GetId();
         String token = sharedHelper.GetToken();
+        declareUi(post,token);
+        uiHelper = new UIHelper(this,this.getWindow().getDecorView().getRootView());
+
 
         comments = new ArrayList<Comment>(){};
         recyclerView = this.findViewById(R.id.recycler_social);
@@ -80,7 +85,7 @@ public class SeePostActivity extends AppCompatActivity{
         btn_create_comment = findViewById(R.id.btn_create_comment);
         final boolean[] click = {true};
 
-        btn_create_comment.setOnClickListener(v ->{ // TODO: Change to check button
+        btn_create_comment.setOnClickListener(v ->{
             if(click[0]){
                 recyclerView.setVisibility(View.GONE);
                 textAreaCustomView.setVisibility(View.VISIBLE);
@@ -129,17 +134,36 @@ public class SeePostActivity extends AppCompatActivity{
         });
     }
 
-    private void declareUi(Post post){
+    private void declareUi(Post post,String token){
         txt_name = findViewById(R.id.txt_publication_username);
+        txt_publication_useremail = findViewById(R.id.txt_publication_useremail);
+        txt_date = findViewById(R.id.txt_publication_date);
         txt_message = findViewById(R.id.txt_publication_message);
         txt_publication_useremail = findViewById(R.id.txt_publication_useremail);
         btn_comments = findViewById(R.id.publication_comments_number);
-        txt_likes = findViewById(R.id.publication_btn_like);
+        btn_like = findViewById(R.id.publication_btn_like);
+
         txt_name.setText(post.GetUserName());
-        txt_message.setText(post.GetMessagePost());
         txt_publication_useremail.setText(post.getEmail());
-        txt_likes.setText("Likes:" + post.GetLikes());
+        txt_date.setText(post.GetCreatedDate());
+        txt_message.setText(post.GetMessagePost());
+        btn_like.setText("Likes:" + post.GetLikes());
+        if(post.GetLiked())
+            btn_like.setIcon(ContextCompat.getDrawable(this,R.drawable.baseline_favorite_24));
         btn_comments.setText(String.valueOf(post.GetCommentNumber()));
+        btn_like.setOnClickListener(v -> {
+            ApiResponse response = apiPost.Like(post.GetId(), token);
+            int likes = post.GetLikes() + ((post.GetLiked()) ? -1 : +1);
+            post.SetLikes(likes);
+            btn_like.setText("Likes: " + likes);
+            post.SetLiked(!post.GetLiked());
+            if(post.GetLiked())
+                btn_like.setIcon(ContextCompat.getDrawable(this,R.drawable.baseline_favorite_24));
+            else
+                btn_like.setIcon(ContextCompat.getDrawable(this,R.drawable.baseline_favorite_border_24));
+        });
+
+
     }
     private void resetAdapter(ArrayList<Comment> _arrayList){
         if (_arrayList != null) {

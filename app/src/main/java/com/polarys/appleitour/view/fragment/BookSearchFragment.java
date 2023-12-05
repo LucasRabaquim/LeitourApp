@@ -5,14 +5,12 @@ import static com.polarys.appleitour.api.ApiBook.TITLE;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
@@ -23,15 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.search.SearchBar;
 import com.polarys.appleitour.R;
 import com.polarys.appleitour.helper.SharedHelper;
 import com.polarys.appleitour.model.BookApi;
-import com.polarys.appleitour.model.Post;
-import com.polarys.appleitour.model.SavedBook;
-import com.polarys.appleitour.model.User;
-import com.polarys.appleitour.view.activity.PlaceholderActivity;
-import com.polarys.appleitour.view.activity.SignActivity;
 import com.polarys.appleitour.view.adapter.ApiBookAdapter;
 import com.polarys.appleitour.viewmodel.BookApiViewModel;
 
@@ -73,8 +65,8 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(apiBookAdapter);
         searchBar = view.getRootView().findViewById(R.id.search_bar);
-   //     btnSearchBook = view.getRootView().findViewById(R.id.btn_SearchBook);
-        searchBar.setVisibility(View.VISIBLE);
+        btnSearchBook = view.findViewById(R.id.search_bar);
+       // searchBar.setVisibility(View.VISIBLE);
         appBarLayout = view.findViewById(R.id.appbar);
         appBarLayout.setVisibility(View.VISIBLE);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
