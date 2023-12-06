@@ -3,8 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:id="@+id/saved_book_layout"
-    android:layout_height="wrap_content"
-    android:maxHeight="200dp"
+    android:layout_height="200dp"
     android:layout_margin="20dp"
     android:background="@drawable/saved_book_gradient"
     >
@@ -14,15 +13,15 @@
         android:layout_height="match_parent"
         android:id="@+id/item_book_title_letter"
         android:gravity="center"
-        android:layout_weight="12"
+        android:width="50dp"
         android:text="0"
         android:inputType="textCapCharacters"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_weight="50"
+
         android:orientation="vertical">
 
         <TextView
@@ -31,7 +30,6 @@
             android:layout_width="match_parent"
             android:fontFamily="@font/outfit_semibold"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="25dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -86,8 +84,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="100dp"
         android:layout_height="match_parent">
 
         <ImageView

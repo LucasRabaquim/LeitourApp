@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
@@ -37,7 +38,7 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
     private BookAdapter apiBookAdapter;
     private BookApiViewModel viewModel;
     private ArrayList<Book> books;
-    private Button btnSearchBook;
+    private ImageView btnSearchBook;
     private String searchParam,bookQuery;
     private ArrayList<Book> bookList;
     boolean isLoading = false;
@@ -65,10 +66,8 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(apiBookAdapter);
         searchBar = view.findViewById(R.id.search_bar);
-    //    btnSearchBook = view.findViewById(R.id.search_bar);
-       // searchBar.setVisibility(View.VISIBLE);
-   //     appBarLayout = view.findViewById(R.id.appbar);
-//        appBarLayout.setVisibility(View.VISIBLE);
+        btnSearchBook = view.findViewById(R.id.btn_search);
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -96,10 +95,9 @@ public class BookSearchFragment extends Fragment implements SearchView.OnQueryTe
             }
         });
 
-      /*  btnSearchBook.setOnClickListener(v->{
-            refreshLayout.setRefreshing(true);
+        btnSearchBook.setOnClickListener(v->{
             request(TITLE);
-        });*/
+        });
         searchBar.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 request(TITLE);

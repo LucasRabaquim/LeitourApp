@@ -4,6 +4,7 @@ package com.polarys.appleitour.model;
 import android.util.Log;
 
 import com.google.gson.annotations.Expose;
+import com.polarys.appleitour.api.ApiRequest;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,6 +16,7 @@ public class Comment {
   //  @JsonIgnore
     private String userName;
     private String email;
+    private String userPhoto;
     private int postId;
     private String messagePost;
     private String createdDate;
@@ -52,6 +54,9 @@ public class Comment {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+    public String GetUserPhoto() {
+        return ApiRequest.API_URL + userPhoto;
     }
 
     public int getPostId() {

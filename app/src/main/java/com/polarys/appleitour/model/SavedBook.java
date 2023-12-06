@@ -58,6 +58,7 @@ public class SavedBook implements Serializable {
         return bookKey;
     }
     public String getBookTitle() { return bookTitle; }
+    public String getBookAuthor() { return bookAuthor; }
     public String getBookCover() { return bookCover; }
 
     public void setBookKey(String bookKey) {

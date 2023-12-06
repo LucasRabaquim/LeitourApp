@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     private final Context context;
     private final int id;
     private final String token;
+    private ImageView userPhoto;
     private ApiPost apiPost = new ApiPost();
     private SharedHelper sharedHelper;
 
@@ -68,11 +70,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         holder.user.setText(post.GetUserName());
         holder.email.setText(post.getEmail());
         holder.date.setText(post.GetCreatedDate());
+        holder.btnComments.setText(""+post.GetCommentNumber());
         holder.text.setText(post.GetMessagePost());
         holder.btnLike.setText("Likes:" + post.GetLikes());
         if(post.GetLiked())
             holder.btnLike.setIcon(ContextCompat.getDrawable(context,R.drawable.baseline_favorite_24));
-        holder.btnComments.setText(String.valueOf(post.GetCommentNumber()));
+
         holder.btnLike.setOnClickListener(v -> {
             ApiResponse response = apiPost.Like(post.GetId(), token);
                 int likes = post.GetLikes() + ((post.GetLiked()) ? -1 : +1);

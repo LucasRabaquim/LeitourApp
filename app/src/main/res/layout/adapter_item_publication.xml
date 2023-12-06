@@ -84,7 +84,7 @@
 
             <ImageButton
                 android:id="@+id/publication_options"
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
                 android:layout_marginEnd="20dp"
@@ -140,7 +140,7 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.179"
+                android:text="0"
                 android:textColor="#A6A6A6"
                 android:textSize="10sp"
                 app:icon="@drawable/baseline_favorite_border_24" />

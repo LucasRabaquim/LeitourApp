@@ -52,6 +52,7 @@ public class SavedBookAdapter extends RecyclerView.Adapter<SavedBookAdapter.View
         holder.title.setText(savedBook.getBookTitle());
         final String letter = String.valueOf(savedBook.getBookTitle().charAt(0));
         holder.letter.setText(letter);
+        holder.author.setText(savedBook.getBookAuthor());
         Bundle bundle = new Bundle();
         holder.mainLayout.setOnClickListener(view -> {
             IntentHelper intentHelper = new IntentHelper((Activity) context);
@@ -75,7 +76,7 @@ public class SavedBookAdapter extends RecyclerView.Adapter<SavedBookAdapter.View
         public ViewHolder(@NonNull View view){
             super(view);
             this.title= view.findViewById(R.id.item_book_title);
-            this.author= view.findViewById(R.id.item_book_title);
+            this.author= view.findViewById(R.id.item_book_author);
             this.letter= view.findViewById(R.id.item_book_title_letter);
             this.cover= view.findViewById(R.id.item_book_cover);
             mainLayout = view.findViewById(R.id.saved_book_layout);

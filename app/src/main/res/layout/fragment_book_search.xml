@@ -21,7 +21,10 @@
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="50dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/search_bar"
                     android:hint="@string/pesquisar"
@@ -29,7 +32,17 @@
                     android:singleLine="true"
                     android:imeOptions="actionDone"
                     android:layout_width="match_parent"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"/>
+                <ImageButton
+                    android:id="@+id/btn_search"
+                    android:src="@drawable/icon_search"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"/>
+                </LinearLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

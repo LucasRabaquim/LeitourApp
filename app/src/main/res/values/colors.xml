@@ -12,6 +12,8 @@
     <color name="Black_Cinza">#4D4D4E</color>
     <color name="CinzaDefault">#F0EDED</color>
     <color name="Cinzaclaro">#756D6D</color>
-    <color name="Cinzaclaro2">#F9F7F8</color>
+    <color name="Cinzaclaro2">#E4E4E4</color>
+    <color name="gray_book">#C9C9C9</color>
+    <color name="stripes_book">#16000000</color>
 
 </resources>

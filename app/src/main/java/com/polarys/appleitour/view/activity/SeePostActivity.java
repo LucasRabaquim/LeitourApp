@@ -69,10 +69,7 @@ public class SeePostActivity extends AppCompatActivity{
         refreshLayout = findViewById(R.id.layout_refresh);
 
         refreshLayout.setOnRefreshListener(() ->{ // On pull refresh
-            ArrayList<Comment> loadComments = viewModel.loadComments(post.GetId());
-            resetAdapter(loadComments);
-            offset = 0;
-            refreshLayout.setRefreshing(false);
+            load(post);
         });
 
         if(post.GetId() != 0) {
@@ -147,7 +144,7 @@ public class SeePostActivity extends AppCompatActivity{
         txt_publication_useremail = findViewById(R.id.txt_publication_useremail);
         btn_comments = findViewById(R.id.publication_comments_number);
         btn_like = findViewById(R.id.publication_btn_like);
-
+        btn_comments.setText(""+post.GetCommentNumber());
         txt_name.setText(post.GetUserName());
         txt_publication_useremail.setText(post.getEmail());
         txt_date.setText(post.GetCreatedDate());
@@ -155,7 +152,6 @@ public class SeePostActivity extends AppCompatActivity{
         btn_like.setText("Likes:" + post.GetLikes());
         if(post.GetLiked())
             btn_like.setIcon(ContextCompat.getDrawable(this,R.drawable.baseline_favorite_24));
-        btn_comments.setText(String.valueOf(post.GetCommentNumber()));
         btn_like.setOnClickListener(v -> {
             ApiResponse response = apiPost.Like(post.GetId(), token);
             int likes = post.GetLikes() + ((post.GetLiked()) ? -1 : +1);
@@ -174,6 +170,12 @@ public class SeePostActivity extends AppCompatActivity{
             comments.addAll(_arrayList);
             adapter.notifyDataSetChanged();
         }
+    }
+    private void load(Post post){
+        ArrayList<Comment> loadComments = viewModel.loadComments(post.GetId());
+        resetAdapter(loadComments);
+        offset = 0;
+        refreshLayout.setRefreshing(false);
     }
     public void showSnackBar(String message){
         uiHelper.showSnackBar(message);

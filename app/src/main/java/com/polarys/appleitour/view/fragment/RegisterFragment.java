@@ -48,7 +48,12 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        user = viewModel.GetUser();
+        try {
+            user = viewModel.GetUser();
+        }
+        catch(Exception e){
+            user = null;
+        }
         declareUi(view,user);
         View rootView = getActivity().getWindow().getDecorView().getRootView();
         UIHelper uiHelper = new UIHelper(getContext(),rootView);

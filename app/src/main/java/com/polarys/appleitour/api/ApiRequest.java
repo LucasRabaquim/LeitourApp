@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.polarys.appleitour.model.ApiResponse;
 
+import java.io.File;
+
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -17,7 +19,7 @@ import okhttp3.Response;
 public class ApiRequest {
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static final MediaType IMAGE = MediaType.parse("image/png");
-    static final String API_URL = "http://localhost:5126/api/";
+    public static final String API_URL = "http://localhost:5126/api/";
     static final String TOKEN = "token";
     final OkHttpClient client = new OkHttpClient();
 
@@ -93,9 +95,11 @@ public class ApiRequest {
         Log.d("UPDATE", "update: " + image);
         Log.d("URL", "url: " + API_URL + path);
         try {
+//RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), image);
+
             RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
                     .addFormDataPart("file", "UserPhoto.jpeg",
-                            RequestBody.create(MediaType.parse("Image/*"), image))
+                            RequestBody.create(MediaType.parse("image/jpeg"), image))
                     .build();
 
             Request request = new Request.Builder()

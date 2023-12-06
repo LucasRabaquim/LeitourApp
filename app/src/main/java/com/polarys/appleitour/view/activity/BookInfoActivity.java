@@ -130,8 +130,8 @@ public class BookInfoActivity extends AppCompatActivity {
     private void setViewData(Book book) {
         ImageView background = findViewById(R.id.img_book_cover);
         ViewHelper viewHelper = new ViewHelper(this);
-        viewHelper.setTextOfViewAppend(R.id.txt_book_title, R.string.book_title,book.getTitle());
-        viewHelper.setTextOfViewAppend(R.id.txt_book_author, R.string.book_author,book.getAuthors());
+        viewHelper.setTextOfViewAppend(R.id.txt_book_title,book.getTitle());
+        viewHelper.setTextOfViewAppend(R.id.txt_book_author, book.getAuthors());
         viewHelper.setTextOfViewAppend(R.id.txt_book_publisher, R.string.book_publisher,book.getPublisher());
         viewHelper.setTextOfViewAppend(R.id.txt_book_isbn10, R.string.book_isbn10,book.getIsbn10());
         viewHelper.setTextOfViewAppend(R.id.txt_book_isbn13, R.string.book_isbn13,book.getIsbn13());

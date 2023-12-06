@@ -2,6 +2,8 @@ package com.polarys.appleitour.model;
 
 import android.util.Log;
 
+import com.polarys.appleitour.api.ApiRequest;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,10 +17,10 @@ public class Post implements Serializable{
     private String email;
     private String messagePost;
     private int likes = 0;
-    private int Comment_number = 0;
+    private int comment_Number = 0;
     private boolean liked = false;
     private String createdDate;
-    private String UserPhoto = null;
+    private String UserPhoto;
     private String alteratedDate = null;
     public Post() { }
 
@@ -51,6 +53,9 @@ public class Post implements Serializable{
     public String GetMessagePost() {
         return messagePost;
     }
+    public String GetUserPhoto() {
+        return ApiRequest.API_URL + UserPhoto;
+    }
     public String GetUserName() {
         return userName;
     }
@@ -61,7 +66,7 @@ public class Post implements Serializable{
         likes = _likes;
     }
     public int GetLikes() {return likes;}
-    public int GetCommentNumber() {return Comment_number;}
+    public int GetCommentNumber() {return comment_Number;}
     public void SetLiked(boolean _liked) {liked = _liked;}
     public boolean GetLiked() {return liked;}
     public void SetMessagePost(String messagePost) {

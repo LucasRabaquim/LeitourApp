@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    //noinspection GradleCompatible
     implementation("com.android.support:appcompat-v7:23.2.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("com.squareup.retrofit2:converter-gson:2.3.0")

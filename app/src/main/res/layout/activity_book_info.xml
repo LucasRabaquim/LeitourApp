@@ -3,9 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:background="@color/Cinzaclaro2"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -23,25 +26,32 @@
 
         <ImageButton
             android:id="@+id/saved_options"
-            android:layout_width="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
             android:layout_gravity="end"
             android:layout_marginEnd="20dp"
-            android:visibility="gone"
-            android:src="@drawable/icon_options"
             android:background="?android:attr/selectableItemBackground"
-            android:layout_height="match_parent" />
+            android:src="@drawable/icon_options"
+            android:visibility="gone" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
+        android:background="@drawable/backgroundlivro"
+        android:backgroundTint="@color/stripes_book"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:paddingBottom="7dp"
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,7 +60,7 @@
                 <ImageView
                     android:id="@+id/img_book_cover"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="250dp"
                     android:layout_weight="1"
                     android:padding="5dp"
                     android:src="@drawable/placeholder" />
@@ -63,51 +73,49 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                         android:id="@+id/info_book_category"
+                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="#a5a5a5"
+                        android:textColor="@color/AzulDefault"
                         android:textSize="10sp"
-                        app:icon="@drawable/icon_category" />
+                        app:icon="@drawable/icon_category"
+                        app:iconTint="@color/AzulDefault" />
 
                     <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                         android:id="@+id/info_book_pages"
+                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#a5a5a5"
+                        android:layout_height="50dp"
+                        android:textColor="@color/AzulDefault"
+
                         android:textSize="10sp"
-                        app:icon="@drawable/icon_pages" />
+                        app:icon="@drawable/icon_pages"
+                        app:iconTint="@color/AzulDefault" />
 
                     <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                         android:id="@+id/info_book_language"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#a5a5a5"
-                        android:textSize="10sp"
-                        app:icon="@drawable/icon_earth" />
-
-                    <com.google.android.material.button.MaterialButton
                         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                        android:id="@+id/info_book_isbn13"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#a5a5a5"
+                        android:layout_height="50dp"
+                        android:textColor="@color/AzulDefault"
                         android:textSize="10sp"
-                        android:visibility="gone"
-                        app:icon="@drawable/icon_heart" />
+                        app:icon="@drawable/icon_earth"
+                        app:iconTint="@color/AzulDefault" />
+
+
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout style="@style/FlexRow">
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/icon_annotation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/AzulDefault"
                     android:src="@drawable/icon_write"
                     android:text="@string/string_annote"
                     android:visibility="invisible" />
@@ -116,37 +124,44 @@
                     android:id="@+id/icon_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/string_save"
-                    android:icon="@drawable/icon_saved_flag" />
+                    android:backgroundTint="@color/AzulDefault"
+                    android:icon="@drawable/icon_saved_flag"
+                    android:text="@string/string_save" />
             </LinearLayout>
-
+        </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
-            <TextView
-                android:id="@+id/txt_book_author"
-                style="@style/TextTitle"
-                android:text="@string/book_author" />
+                android:layout_margin="8dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt_book_title"
-                style="@style/TextTitle"
-                android:text="@string/book_title" />
+                <TextView
+                    android:id="@+id/txt_book_author"
+                    style="@style/TextTitle"
+                    android:textFontWeight="50"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/outfit_extrabold"
+                    android:textColor="@color/AzulDefault"
+                    android:text="@string/book_author" />
 
-            <TextView
-                android:id="@+id/txt_book_publisher"
-                style="@style/TextTitle"
-                android:text="@string/book_publisher" />
+                <TextView
+                    android:id="@+id/txt_book_title"
+                    style="@style/TextTitle"
+                    android:fontFamily="@font/outfit_bold"
+                    android:text="@string/book_title"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="20dp"/>
 
-            <TextView
-                android:id="@+id/txt_published_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/book_published_date" />
+                <TextView
+                    android:id="@+id/txt_book_publisher"
+                    style="@style/TextTitle"
+                    android:text="@string/book_publisher" />
 
-
+                <TextView
+                    android:id="@+id/txt_published_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/book_published_date" />
 
 
                 <TextView
@@ -159,13 +174,14 @@
                     android:id="@+id/txt_book_isbn13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/book_isbn13" />
+                    android:text="@string/book_isbn13"
+                    android:layout_marginBottom="20dp"/>
 
-            <TextView
-                android:id="@+id/txt_book_description"
-                style="@style/TextTitle"
-                android:text="@string/book_description" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/txt_book_description"
+                    style="@style/TextTitle"
+                    android:text="@string/book_description" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_annotation"

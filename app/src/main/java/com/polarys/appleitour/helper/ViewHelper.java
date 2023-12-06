@@ -30,6 +30,15 @@ public class ViewHelper extends AppCompatActivity {
         }catch (Exception e){
         }
     }
+    public void setTextOfViewAppend(int id, String text){
+        TextView textView = activity.findViewById(id);
+        try {
+            if (text.isEmpty())
+                textView.setVisibility(View.GONE);
+            textView.setText(text);
+        }catch (Exception e){
+        }
+    }
     public void setButtonOfViewAppend(int id, int prefix, String text){
         MaterialButton button = activity.findViewById(id);
         if(text != "" | text != "NULL")

@@ -105,11 +105,6 @@ public class UserDataFragment extends Fragment{
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                 }
-                else if(itemId == R.id.user_profile_edit){
-                    getActivity().finish();
-                    IntentHelper intentHelper = new IntentHelper(getActivity());
-                    intentHelper.nextActivity(SignActivity.class,true);
-                }
                 return true;
             });
             popupMenu.show();

@@ -63,12 +63,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.publication_edit) {
                     UIHelper uiHelper = new UIHelper(context);
-                    AlertDialog.Builder builder = uiHelper.createTextDialog(R.string.string_comment_edit_dialog_title,250);
+                    AlertDialog.Builder builder = uiHelper.createTextDialog(R.string.string_comment_edit_dialog_title,250,comment.getMessagePost());
                     builder.setPositiveButton("Enviar", (dialog, which) -> {
                         comment.setMessagePost(uiHelper.getText());
                         int success = apiComment.UpdateComment(comment, token).getCode();
                         int message = (success != (200 | 201)) ? R.string.string_comment_update_success : R.string.string_comment_update_error;
-                        ((HomeActivity) context).showSnackBar(message);
+                        ((SeePostActivity) context).showSnackBar(message);
                     });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
